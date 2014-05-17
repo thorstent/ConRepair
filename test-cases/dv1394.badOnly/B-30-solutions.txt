@@ -1,0 +1,2 @@
+ (12,42) : MoveUp (12,72) - 91: if (nondet == 0) {...}  ->  85: assertd(state != 3); 
+ (12,57) : MoveUp (12,88) - 117: mtx = 0;               ->  85: assertd(state != 3); 

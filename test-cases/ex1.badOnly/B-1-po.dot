@@ -1,0 +1,99 @@
+digraph PartialOrder {
+	compound = true
+	"73a: assume(napi_poll == 0);" -> "73b: napi_poll = 1;"
+	"92: updated = 0;" -> "93: napi_disabled = 0;"
+	"89: napi_poll = 0;" -> "90: shutdown = 0;"
+	"94: thread1();" -> "95: thread2();"
+	"24a: assume(napi_poll == 0);" -> "24b: napi_poll = 1;"
+	"73b: napi_poll = 1;" -> "75a: napi_poll = 0;" [ltail = cluster8, lhead = cluster11]
+	"90: shutdown = 0;" -> "91: stuff1_done = 0;"
+	"93: napi_disabled = 0;" -> "94: thread1();"
+	"61: assume(napi_disabled == 1);" -> "62: assert(updated == 1);"
+	"95: thread2();" -> "96: thread3();"
+	"91: stuff1_done = 0;" -> "92: updated = 0;"
+	subgraph cluster6 {
+		label = "84: void stuff3() {...}"
+		color = blue
+		"85: assert(shutdown == 0);"  [label = "85: assert(shutdown == 0);"]
+	}
+	subgraph cluster13 {
+		label = "36: void stuff1() {...}"
+		color = blue
+		"37: shutdown = 1;"  [label = "37: shutdown = 1;"]
+	}
+	subgraph cluster10 {
+		label = "18: int update_state() {...}"
+		color = blue
+		"20: updated = 1;"  [label = "20: updated = 1;"]
+	}
+	subgraph cluster9 {
+		label = "44: void thread2() {...}"
+		color = blue
+		"48: rtl_shutdown();"  [label = "48: rtl_shutdown();"]
+	}
+	subgraph cluster4 {
+		label = "52: void rtl_shutdown() {...}"
+		color = blue
+		"54: stuff2();"  [label = "54: stuff2();"]
+	}
+	subgraph cluster2 {
+		label = "23: int disable_napi() {...}"
+		color = blue
+		"24: lock(napi_poll);"  [label, style = invisible]
+		"25: napi_disabled = 1;"  [label = "25: napi_disabled = 1;"]
+		subgraph cluster3 {
+			label = "24: lock(napi_poll);"
+			color = blue
+			"24b: napi_poll = 1;"  [label = "24b: napi_poll = 1;"]
+			"24a: assume(napi_poll == 0);"  [label = "24a: assume(napi_poll == 0);"]
+		}
+	}
+	subgraph cluster5 {
+		label = "29: void thread1() {...}"
+		color = blue
+		"31: stuff1();"  [label = "31: stuff1();"]
+		"32: update_state();"  [label = "32: update_state();"]
+		"33: disable_napi();"  [label = "33: disable_napi();"]
+	}
+	subgraph cluster14 {
+		label = "79: void rtl8169_poll() {...}"
+		color = blue
+		"81: stuff3();"  [label = "81: stuff3();"]
+	}
+	subgraph cluster12 {
+		label = "58: void stuff2() {...}"
+		color = blue
+		"62: assert(updated == 1);"  [label = "62: assert(updated == 1);"]
+		"61: assume(napi_disabled == 1);"  [label = "61: assume(napi_disabled == 1);"]
+	}
+	subgraph cluster7 {
+		label = "71: void thread3() {...}"
+		color = blue
+		"74: rtl8169_poll();"  [label = "74: rtl8169_poll();"]
+		"75: unlock(napi_poll);"  [label, style = invisible]
+		"73: lock(napi_poll);"  [label, style = invisible]
+		subgraph cluster11 {
+			label = "75: unlock(napi_poll);"
+			color = blue
+			"75a: napi_poll = 0;"  [label = "75a: napi_poll = 0;"]
+		}
+		subgraph cluster8 {
+			label = "73: lock(napi_poll);"
+			color = blue
+			"73a: assume(napi_poll == 0);"  [label = "73a: assume(napi_poll == 0);"]
+			"73b: napi_poll = 1;"  [label = "73b: napi_poll = 1;"]
+		}
+	}
+	subgraph cluster1 {
+		label = "88: void main() {...}"
+		color = blue
+		"93: napi_disabled = 0;"  [label = "93: napi_disabled = 0;"]
+		"96: thread3();"  [label = "96: thread3();"]
+		"95: thread2();"  [label = "95: thread2();"]
+		"90: shutdown = 0;"  [label = "90: shutdown = 0;"]
+		"89: napi_poll = 0;"  [label = "89: napi_poll = 0;"]
+		"92: updated = 0;"  [label = "92: updated = 0;"]
+		"91: stuff1_done = 0;"  [label = "91: stuff1_done = 0;"]
+		"94: thread1();"  [label = "94: thread1();"]
+	}
+}

@@ -1,0 +1,2 @@
+ (90,2) : MoveUp (90,45) - 511: napi_disable();  ->  512: free_irq();        
+ (90,3) : MoveUp (90,50) - 293: drv_close();     ->  292: netif_running = 0; 

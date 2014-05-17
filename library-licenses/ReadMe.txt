@@ -1,0 +1,1 @@
+All these components are part of the binary release of ConRepair. They are included in the jar file.

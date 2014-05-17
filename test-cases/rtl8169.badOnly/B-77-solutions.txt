@@ -1,0 +1,4 @@
+ (75,3) : MoveUp (75,50)  - 295: unlock(rtnl_lock);             ->  291: if (netif_running != 0) {...} 
+ (75,4) : MoveUp (75,55)  - 291: if (netif_running != 0) {...}  ->  290: lock(rtnl_lock);              
+ (76,1) : MoveUp (76,132) - 268: close();                       ->  263: if (nondet == 0) {...}        
+ (75,5) : MoveUp (75,56)  - 268: close();                       ->  263: if (nondet == 0) {...}        

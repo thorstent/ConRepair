@@ -1,0 +1,9 @@
+ (7,6)  : MoveUp   (7,9)  - 363: nr{ want_dev = 6; ...}     ->  353: nr{ want_sysfs = 6; ...} 
+ (7,8)  : MoveUp   (7,12) - 249: drv_disconnect();          ->  240: nr{ want_dev = 5; ...}   
+ (7,10) : MoveUp   (7,14) - 646: device_remove_bin_file();  ->  637: nr{ want_sysfs = 5; ...} 
+ (7,11) : MoveUp   (7,15) - 377: unlock(sysfs_lock);        ->  363: nr{ want_dev = 6; ...}   
+ (7,11) : MoveDown (7,15) - 377: unlock(sysfs_lock);        ->  363: nr{ want_dev = 6; ...}   
+ (7,13) : MoveUp   (7,28) - 250: unlock(dev_lock);          ->  249: drv_disconnect();        
+ (7,14) : MoveUp   (7,39) - 376: unlock(dev_lock);          ->  353: nr{ want_sysfs = 6; ...} 
+ (7,14) : MoveDown (7,39) - 376: unlock(dev_lock);          ->  353: nr{ want_sysfs = 6; ...} 
+ (7,17) : MoveUp   (7,58) - 377: unlock(sysfs_lock);        ->  376: unlock(dev_lock);        

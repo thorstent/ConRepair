@@ -1,0 +1,3 @@
+ (37,2) : MoveUp (37,30) - 511: napi_disable();  ->  510: dev_down();        
+ (37,4) : MoveUp (37,50) - 293: drv_close();     ->  292: netif_running = 0; 
+ (37,3) : MoveUp (37,45) - 511: napi_disable();  ->  512: free_irq();        

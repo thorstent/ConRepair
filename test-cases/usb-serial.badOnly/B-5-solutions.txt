@@ -1,0 +1,154 @@
+ (2,4)  : MoveUp   (2,56)  - 190: assume(port_write_in_progress == 0);          ->  187: cancel_work_sync();                                    
+ (2,4)  : MoveDown (2,56)  - 190: assume(port_write_in_progress == 0);          ->  187: cancel_work_sync();                                    
+ (2,6)  : MoveUp   (2,57)  - 537: assume(!port_dev_registered);                 ->  534: usb_serial_device_probe();                             
+ (2,8)  : MoveUp   (2,57)  - 278: assume(port_tty_registered == 0);             ->  276: port_dev_registered = 0;                               
+ (2,10) : MoveUp   (2,59)  - 535: unlock_serial_bus();                          ->  534: usb_serial_device_probe();                             
+ (2,11) : MoveDown (2,61)  - 191: port_tty_installed = 0;                       ->  187: cancel_work_sync();                                    
+ (2,6)  : MoveDown (2,57)  - 537: assume(!port_dev_registered);                 ->  534: usb_serial_device_probe();                             
+ (2,15) : MoveDown (2,62)  - 280: port_initialized = 0;                         ->  277: unlock_serial_bus();                                   
+ (2,8)  : MoveDown (2,57)  - 278: assume(port_tty_registered == 0);             ->  276: port_dev_registered = 0;                               
+ (2,19) : MoveDown (2,63)  - 278: assume(port_tty_registered == 0);             ->  262: if (port_idr_registered == 0) {...}                    
+ (2,11) : MoveUp   (2,61)  - 191: port_tty_installed = 0;                       ->  187: cancel_work_sync();                                    
+ (2,23) : MoveDown (2,66)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  187: cancel_work_sync();                                    
+ (2,13) : MoveUp   (2,61)  - 190: assume(port_write_in_progress == 0);          ->  199: unlock_tty();                                          
+ (2,13) : MoveDown (2,61)  - 190: assume(port_write_in_progress == 0);          ->  199: unlock_tty();                                          
+ (2,15) : MoveUp   (2,62)  - 280: port_initialized = 0;                         ->  277: unlock_serial_bus();                                   
+ (2,32) : MoveUp   (2,71)  - 535: unlock_serial_bus();                          ->  533: assume(port_dev_registered);                           
+ (2,17) : MoveUp   (2,62)  - 538: lock_serial_bus();                            ->  534: usb_serial_device_probe();                             
+ (2,17) : MoveDown (2,62)  - 538: lock_serial_bus();                            ->  534: usb_serial_device_probe();                             
+ (2,19) : MoveUp   (2,63)  - 278: assume(port_tty_registered == 0);             ->  262: if (port_idr_registered == 0) {...}                    
+ (2,40) : MoveUp   (2,74)  - 280: port_initialized = 0;                         ->  275: lock_serial_bus();                                     
+ (2,21) : MoveUp   (2,66)  - 191: port_tty_installed = 0;                       ->  199: unlock_tty();                                          
+ (2,21) : MoveDown (2,66)  - 191: port_tty_installed = 0;                       ->  199: unlock_tty();                                          
+ (2,23) : MoveUp   (2,66)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  187: cancel_work_sync();                                    
+ (2,47) : MoveDown (2,81)  - 195: usb_serial_put();                             ->  187: cancel_work_sync();                                    
+ (2,25) : MoveUp   (2,67)  - 278: assume(port_tty_registered == 0);             ->  275: lock_serial_bus();                                     
+ (2,25) : MoveDown (2,67)  - 278: assume(port_tty_registered == 0);             ->  275: lock_serial_bus();                                     
+ (2,27) : MoveUp   (2,67)  - 280: port_initialized = 0;                         ->  276: port_dev_registered = 0;                               
+ (2,27) : MoveDown (2,67)  - 280: port_initialized = 0;                         ->  276: port_dev_registered = 0;                               
+ (2,29) : MoveUp   (2,67)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  277: unlock_serial_bus();                                   
+ (2,29) : MoveDown (2,67)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  277: unlock_serial_bus();                                   
+ (2,31) : MoveUp   (2,69)  - 534: usb_serial_device_probe();                    ->  533: assume(port_dev_registered);                           
+ (2,64) : MoveUp   (2,125) - 547: lock_tty();                                   ->  544: assume(drv_registered_with_serial_fw);                 
+ (2,32) : MoveDown (2,71)  - 535: unlock_serial_bus();                          ->  533: assume(port_dev_registered);                           
+ (2,34) : MoveUp   (2,71)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  199: unlock_tty();                                          
+ (2,34) : MoveDown (2,71)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  199: unlock_tty();                                          
+ (2,36) : MoveUp   (2,72)  - 539: usb_serial_device_remove();                   ->  535: unlock_serial_bus();                                   
+ (2,36) : MoveDown (2,72)  - 539: usb_serial_device_remove();                   ->  535: unlock_serial_bus();                                   
+ (2,38) : MoveUp   (2,72)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  276: port_dev_registered = 0;                               
+ (2,38) : MoveDown (2,72)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  276: port_dev_registered = 0;                               
+ (3,8)  : MoveUp   (3,57)  - 195: usb_serial_put();                             ->  188: port_work_initialized = 0;                             
+ (2,40) : MoveDown (2,74)  - 280: port_initialized = 0;                         ->  275: lock_serial_bus();                                     
+ (2,42) : MoveUp   (2,78)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  262: if (port_idr_registered == 0) {...}                    
+ (2,42) : MoveDown (2,78)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  262: if (port_idr_registered == 0) {...}                    
+ (2,44) : MoveUp   (2,79)  - 537: assume(!port_dev_registered);                 ->  533: assume(port_dev_registered);                           
+ (2,44) : MoveDown (2,79)  - 537: assume(!port_dev_registered);                 ->  533: assume(port_dev_registered);                           
+ (2,46) : MoveUp   (2,80)  - 547: lock_tty();                                   ->  545: serial_install();                                      
+ (2,47) : MoveUp   (2,81)  - 195: usb_serial_put();                             ->  187: cancel_work_sync();                                    
+ (3,24) : MoveUp   (3,71)  - 535: unlock_serial_bus();                          ->  533: assume(port_dev_registered);                           
+ (2,49) : MoveUp   (2,82)  - 280: port_initialized = 0;                         ->  262: if (port_idr_registered == 0) {...}                    
+ (2,49) : MoveDown (2,82)  - 280: port_initialized = 0;                         ->  262: if (port_idr_registered == 0) {...}                    
+ (2,51) : MoveUp   (2,82)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  275: lock_serial_bus();                                     
+ (2,51) : MoveDown (2,82)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  275: lock_serial_bus();                                     
+ (2,53) : MoveUp   (2,84)  - 538: lock_serial_bus();                            ->  533: assume(port_dev_registered);                           
+ (2,53) : MoveDown (2,84)  - 538: lock_serial_bus();                            ->  533: assume(port_dev_registered);                           
+ (2,55) : MoveUp   (2,86)  - 195: usb_serial_put();                             ->  199: unlock_tty();                                          
+ (2,55) : MoveDown (2,86)  - 195: usb_serial_put();                             ->  199: unlock_tty();                                          
+ (2,57) : MoveUp   (2,97)  - 540: unlock_serial_bus();                          ->  534: usb_serial_device_probe();                             
+ (2,57) : MoveDown (2,97)  - 540: unlock_serial_bus();                          ->  534: usb_serial_device_probe();                             
+ (2,59) : MoveUp   (2,102) - 539: usb_serial_device_remove();                   ->  533: assume(port_dev_registered);                           
+ (2,59) : MoveDown (2,102) - 539: usb_serial_device_remove();                   ->  533: assume(port_dev_registered);                           
+ (2,61) : MoveUp   (2,105) - 545: serial_install();                             ->  544: assume(drv_registered_with_serial_fw);                 
+ (2,62) : MoveUp   (2,119) - 540: unlock_serial_bus();                          ->  533: assume(port_dev_registered);                           
+ (2,62) : MoveDown (2,119) - 540: unlock_serial_bus();                          ->  533: assume(port_dev_registered);                           
+ (2,72) : MoveDown (2,195) - 564: unlock_tty();                                 ->  544: assume(drv_registered_with_serial_fw);                 
+ (2,64) : MoveDown (2,125) - 547: lock_tty();                                   ->  544: assume(drv_registered_with_serial_fw);                 
+ (2,66) : MoveUp   (2,129) - 490: usb_serial_exit();                            ->  481: belkin_init();                                         
+ (2,66) : MoveDown (2,129) - 490: usb_serial_exit();                            ->  481: belkin_init();                                         
+ (2,68) : MoveUp   (2,135) - 548: if (port_tty_installed == 0) {...}            ->  544: assume(drv_registered_with_serial_fw);                 
+ (2,68) : MoveDown (2,135) - 548: if (port_tty_installed == 0) {...}            ->  544: assume(drv_registered_with_serial_fw);                 
+ (2,70) : MoveUp   (2,150) - 564: unlock_tty();                                 ->  545: serial_install();                                      
+ (2,71) : MoveUp   (2,167) - 501: if (port_dev_registered == 0) {...}           ->  496: assume(drv_usb_registered | drv_device_id_registered); 
+ (2,72) : MoveUp   (2,195) - 564: unlock_tty();                                 ->  544: assume(drv_registered_with_serial_fw);                 
+ (3,1)  : MoveUp   (3,37)  - 191: port_tty_installed = 0;                       ->  188: port_work_initialized = 0;                             
+ (3,1)  : MoveDown (3,37)  - 191: port_tty_installed = 0;                       ->  188: port_work_initialized = 0;                             
+ (3,3)  : MoveUp   (3,42)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  188: port_work_initialized = 0;                             
+ (3,3)  : MoveDown (3,42)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  188: port_work_initialized = 0;                             
+ (3,5)  : MoveUp   (3,52)  - 191: port_tty_installed = 0;                       ->  190: assume(port_write_in_progress == 0);                   
+ (3,6)  : MoveUp   (3,52)  - 547: lock_tty();                                   ->  545: serial_install();                                      
+ (3,7)  : MoveUp   (3,54)  - 483: at{ assume(drv_module_ref_cnt == 0); ...}     ->  481: belkin_init();                                         
+ (4,8)  : MoveUp   (4,169) - 501: if (port_dev_registered == 0) {...}           ->  496: assume(drv_usb_registered | drv_device_id_registered); 
+ (3,8)  : MoveDown (3,57)  - 195: usb_serial_put();                             ->  188: port_work_initialized = 0;                             
+ (3,10) : MoveUp   (3,57)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  190: assume(port_write_in_progress == 0);                   
+ (3,10) : MoveDown (3,57)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  190: assume(port_write_in_progress == 0);                   
+ (3,12) : MoveUp   (3,58)  - 540: unlock_serial_bus();                          ->  539: usb_serial_device_remove();                            
+ (3,13) : MoveUp   (3,59)  - 535: unlock_serial_bus();                          ->  534: usb_serial_device_probe();                             
+ (3,14) : MoveUp   (3,62)  - 191: port_tty_installed = 0;                       ->  187: cancel_work_sync();                                    
+ (3,14) : MoveDown (3,62)  - 191: port_tty_installed = 0;                       ->  187: cancel_work_sync();                                    
+ (3,16) : MoveUp   (3,64)  - 537: assume(!port_dev_registered);                 ->  534: usb_serial_device_probe();                             
+ (3,16) : MoveDown (3,64)  - 537: assume(!port_dev_registered);                 ->  534: usb_serial_device_probe();                             
+ (3,18) : MoveUp   (3,66)  - 280: port_initialized = 0;                         ->  275: lock_serial_bus();                                     
+ (3,18) : MoveDown (3,66)  - 280: port_initialized = 0;                         ->  275: lock_serial_bus();                                     
+ (3,20) : MoveUp   (3,67)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  187: cancel_work_sync();                                    
+ (3,20) : MoveDown (3,67)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  187: cancel_work_sync();                                    
+ (3,22) : MoveUp   (3,68)  - 488: belkin_exit();                                ->  483: at{ assume(drv_module_ref_cnt == 0); ...}              
+ (3,23) : MoveUp   (3,69)  - 534: usb_serial_device_probe();                    ->  533: assume(port_dev_registered);                           
+ (3,75) : MoveDown (3,207) - 564: unlock_tty();                                 ->  544: assume(drv_registered_with_serial_fw);                 
+ (3,24) : MoveDown (3,71)  - 535: unlock_serial_bus();                          ->  533: assume(port_dev_registered);                           
+ (3,26) : MoveUp   (3,71)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  275: lock_serial_bus();                                     
+ (3,26) : MoveDown (3,71)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  275: lock_serial_bus();                                     
+ (3,28) : MoveUp   (3,72)  - 191: port_tty_installed = 0;                       ->  199: unlock_tty();                                          
+ (3,28) : MoveDown (3,72)  - 191: port_tty_installed = 0;                       ->  199: unlock_tty();                                          
+ (3,30) : MoveUp   (3,72)  - 195: usb_serial_put();                             ->  190: assume(port_write_in_progress == 0);                   
+ (3,30) : MoveDown (3,72)  - 195: usb_serial_put();                             ->  190: assume(port_write_in_progress == 0);                   
+ (3,32) : MoveUp   (3,74)  - 534: usb_serial_device_probe();                    ->  532: lock_serial_bus();                                     
+ (3,32) : MoveDown (3,74)  - 534: usb_serial_device_probe();                    ->  532: lock_serial_bus();                                     
+ (3,34) : MoveUp   (3,74)  - 538: lock_serial_bus();                            ->  534: usb_serial_device_probe();                             
+ (3,34) : MoveDown (3,74)  - 538: lock_serial_bus();                            ->  534: usb_serial_device_probe();                             
+ (3,36) : MoveUp   (3,76)  - 277: unlock_serial_bus();                          ->  262: if (port_idr_registered == 0) {...}                    
+ (3,36) : MoveDown (3,76)  - 277: unlock_serial_bus();                          ->  262: if (port_idr_registered == 0) {...}                    
+ (3,38) : MoveUp   (3,76)  - 537: assume(!port_dev_registered);                 ->  533: assume(port_dev_registered);                           
+ (3,38) : MoveDown (3,76)  - 537: assume(!port_dev_registered);                 ->  533: assume(port_dev_registered);                           
+ (3,40) : MoveUp   (3,77)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  199: unlock_tty();                                          
+ (3,40) : MoveDown (3,77)  - 194: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  199: unlock_tty();                                          
+ (3,42) : MoveUp   (3,78)  - 540: unlock_serial_bus();                          ->  537: assume(!port_dev_registered);                          
+ (3,42) : MoveDown (3,78)  - 540: unlock_serial_bus();                          ->  537: assume(!port_dev_registered);                          
+ (3,44) : MoveUp   (3,82)  - 195: usb_serial_put();                             ->  187: cancel_work_sync();                                    
+ (3,44) : MoveDown (3,82)  - 195: usb_serial_put();                             ->  187: cancel_work_sync();                                    
+ (3,46) : MoveUp   (3,84)  - 537: assume(!port_dev_registered);                 ->  532: lock_serial_bus();                                     
+ (3,46) : MoveDown (3,84)  - 537: assume(!port_dev_registered);                 ->  532: lock_serial_bus();                                     
+ (3,48) : MoveUp   (3,86)  - 538: lock_serial_bus();                            ->  533: assume(port_dev_registered);                           
+ (3,48) : MoveDown (3,86)  - 538: lock_serial_bus();                            ->  533: assume(port_dev_registered);                           
+ (3,50) : MoveUp   (3,86)  - 280: port_initialized = 0;                         ->  262: if (port_idr_registered == 0) {...}                    
+ (3,50) : MoveDown (3,86)  - 280: port_initialized = 0;                         ->  262: if (port_idr_registered == 0) {...}                    
+ (3,52) : MoveUp   (3,88)  - 540: unlock_serial_bus();                          ->  534: usb_serial_device_probe();                             
+ (3,52) : MoveDown (3,88)  - 540: unlock_serial_bus();                          ->  534: usb_serial_device_probe();                             
+ (3,54) : MoveUp   (3,91)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  262: if (port_idr_registered == 0) {...}                    
+ (3,54) : MoveDown (3,91)  - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  262: if (port_idr_registered == 0) {...}                    
+ (3,56) : MoveUp   (3,92)  - 195: usb_serial_put();                             ->  199: unlock_tty();                                          
+ (3,56) : MoveDown (3,92)  - 195: usb_serial_put();                             ->  199: unlock_tty();                                          
+ (3,58) : MoveUp   (3,93)  - 490: usb_serial_exit();                            ->  483: at{ assume(drv_module_ref_cnt == 0); ...}              
+ (3,58) : MoveDown (3,93)  - 490: usb_serial_exit();                            ->  483: at{ assume(drv_module_ref_cnt == 0); ...}              
+ (3,60) : MoveUp   (3,94)  - 539: usb_serial_device_remove();                   ->  533: assume(port_dev_registered);                           
+ (3,60) : MoveDown (3,94)  - 539: usb_serial_device_remove();                   ->  533: assume(port_dev_registered);                           
+ (3,62) : MoveUp   (3,98)  - 564: unlock_tty();                                 ->  545: serial_install();                                      
+ (3,63) : MoveUp   (3,99)  - 539: usb_serial_device_remove();                   ->  532: lock_serial_bus();                                     
+ (3,63) : MoveDown (3,99)  - 539: usb_serial_device_remove();                   ->  532: lock_serial_bus();                                     
+ (3,65) : MoveUp   (3,105) - 545: serial_install();                             ->  544: assume(drv_registered_with_serial_fw);                 
+ (3,66) : MoveUp   (3,108) - 490: usb_serial_exit();                            ->  481: belkin_init();                                         
+ (3,66) : MoveDown (3,108) - 490: usb_serial_exit();                            ->  481: belkin_init();                                         
+ (3,68) : MoveUp   (3,113) - 540: unlock_serial_bus();                          ->  533: assume(port_dev_registered);                           
+ (3,68) : MoveDown (3,113) - 540: unlock_serial_bus();                          ->  533: assume(port_dev_registered);                           
+ (3,70) : MoveUp   (3,117) - 548: if (port_tty_installed == 0) {...}            ->  544: assume(drv_registered_with_serial_fw);                 
+ (3,70) : MoveDown (3,117) - 548: if (port_tty_installed == 0) {...}            ->  544: assume(drv_registered_with_serial_fw);                 
+ (3,72) : MoveUp   (3,125) - 547: lock_tty();                                   ->  544: assume(drv_registered_with_serial_fw);                 
+ (3,72) : MoveDown (3,125) - 547: lock_tty();                                   ->  544: assume(drv_registered_with_serial_fw);                 
+ (3,74) : MoveUp   (3,157) - 501: if (port_dev_registered == 0) {...}           ->  496: assume(drv_usb_registered | drv_device_id_registered); 
+ (3,75) : MoveUp   (3,207) - 564: unlock_tty();                                 ->  544: assume(drv_registered_with_serial_fw);                 
+ (4,1)  : MoveUp   (4,56)  - 483: at{ assume(drv_module_ref_cnt == 0); ...}     ->  481: belkin_init();                                         
+ (4,2)  : MoveUp   (4,58)  - 540: unlock_serial_bus();                          ->  539: usb_serial_device_remove();                            
+ (4,3)  : MoveUp   (4,84)  - 490: usb_serial_exit();                            ->  481: belkin_init();                                         
+ (4,3)  : MoveDown (4,84)  - 490: usb_serial_exit();                            ->  481: belkin_init();                                         
+ (4,5)  : MoveUp   (4,98)  - 540: unlock_serial_bus();                          ->  534: usb_serial_device_probe();                             
+ (4,6)  : MoveUp   (4,113) - 540: unlock_serial_bus();                          ->  533: assume(port_dev_registered);                           
+ (4,6)  : MoveDown (4,113) - 540: unlock_serial_bus();                          ->  533: assume(port_dev_registered);                           

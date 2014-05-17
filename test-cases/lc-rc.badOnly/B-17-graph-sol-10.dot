@@ -1,0 +1,51 @@
+digraph Counterexample {
+	22 -> 26 [color = black, style = dotted]
+	10 -> 18 [color = black, style = solid, constraint = false]
+	27 -> 29 [color = black, style = dotted]
+	18 -> 19 [color = black, style = dotted]
+	29 -> 10 [color = red, style = solid, constraint = false]
+	13 -> 25 [color = black, style = solid, constraint = false]
+	23 -> 25 [color = white, style = solid]
+	27 -> 34 [color = black, style = solid, constraint = false]
+	20 -> 22 [color = black, style = dotted]
+	21 -> 23 [color = white, style = solid]
+	10 -> 20 [color = white, style = solid]
+	22 -> 25 [color = black, style = solid, constraint = false]
+	23 -> 29 [color = black, style = solid, constraint = false]
+	26 -> 27 [color = black, style = dotted]
+	13 -> 24 [color = white, style = solid]
+	19 -> 20 [color = black, style = solid, constraint = false]
+	24 -> 34 [color = white, style = solid]
+	19 -> 21 [color = black, style = solid, constraint = false]
+	24 -> 26 [color = black, style = solid, constraint = false]
+	subgraph cluster2 {
+		label = rc_thread
+		color = blue
+		24  [label = "44: assume(stop_rc);"]
+		34  [label = "46: rc_running = 0;"]
+		13  [label = "42: assert(neh_running);"]
+	}
+	subgraph cluster4 {
+		label = rsv_thread
+		color = blue
+		18  [label = "60: assume(stop_rsv);"]
+		19  [label = "62: rsv_running = 0;"]
+	}
+	subgraph cluster3 {
+		label = neh_thread
+		color = blue
+		23  [label = "53: assume(stop_neh);"]
+		25  [label = "55: neh_running = 0;"]
+		21  [label = "51: assert(rsv_running);", color = red]
+	}
+	subgraph cluster1 {
+		label = shutdown_thread
+		color = blue
+		26  [label = "31: stop_rc = 1;"]
+		20  [label = "29: assume(!rsv_running);"]
+		22  [label = "37: assume(!neh_running);"]
+		29  [label = "35: stop_neh = 1;"]
+		10  [label = "27: stop_rsv = 1;"]
+		27  [label = "33: assume(!rc_running);"]
+	}
+}

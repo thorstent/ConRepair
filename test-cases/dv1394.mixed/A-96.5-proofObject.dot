@@ -1,0 +1,49 @@
+digraph ProofObject {
+	5 -> 6 [style = dotted, color = black]
+	18 -> 19 [style = dotted, color = black]
+	20 -> 21 [style = dotted, color = black]
+	17 -> 23 [style = dotted, color = black]
+	12 -> 25 [color = Red, constraint = false]
+	14 -> 17 [style = dotted, color = black]
+	11 -> 12 [style = dotted, color = black]
+	2 -> 3 [style = dotted, color = black]
+	19 -> 20 [style = dotted, color = black]
+	3 -> 25 [color = Red, constraint = false]
+	21 -> 22 [style = dotted, color = black]
+	23 -> 25 [style = dotted, color = black]
+	2 -> 11 [color = Blue, constraint = false]
+	6 -> 7 [style = dotted, color = black]
+	19 -> 25 [color = Red, constraint = false]
+	4 -> 5 [style = dotted, color = black]
+	3 -> 4 [style = dotted, color = black]
+	12 -> 14 [style = dotted, color = black]
+	subgraph cluster1 {
+		label = mmap_thread
+		color = blue
+		18  [label = "30: assume(sem == 1);"]
+		22  [label = "43: assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0));"]
+		20  [label = "35: assert(vm_consistent == 1);"]
+		21  [label = "37: vm_consistent = 0;"]
+		19  [label = "31: sem = 0;"]
+	}
+	subgraph cluster0 {
+		label = main
+		color = blue
+		3  [label = "137: want_mtx = 0;"]
+		5  [label = "139: want_sem = 0;"]
+		7  [label = "141: vm_consistent = 1;"]
+		2  [label = "136: mtx = 0;"]
+		4  [label = "138: sem = 1;"]
+		6  [label = "140: state = 0;"]
+	}
+	subgraph cluster2 {
+		label = ioctl_thread
+		color = blue
+		11  [label = "80: assume(mtx == 0);"]
+		17  [label = "87: old_state = state;"]
+		12  [label = "81: mtx = 1;"]
+		23  [label = "89: state = 3;"]
+		14  [label = "85: assertd(state != 3);"]
+		25  [label = "96: assert(((want_mtx == 0) | (sem == 1)) | (mtx == 0));"]
+	}
+}

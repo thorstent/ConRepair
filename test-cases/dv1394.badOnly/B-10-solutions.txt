@@ -1,0 +1,1 @@
+ (10,30) : MoveUp (10,46) - 72: sem = 1;  ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 

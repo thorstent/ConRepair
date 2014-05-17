@@ -1,0 +1,14 @@
+ (1,5)  : MoveUp        (1,14) - 41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...}  ->  37: vm_consistent = 0;                                             
+ (1,10) : MoveUp        (1,20) - 70: vm_consistent = 1;                                              ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (1,2)  : AtomicSection (1,22) - 107: assert(vm_consistent);                                         ->  110: sem = 1;                                                      
+ (1,8)  : AtomicSection (1,32) - 100: at{ assume(sem == 1); ...}                                     ->  110: sem = 1;                                                      
+ (1,4)  : AtomicSection (1,28) - 79: at{ assume(mtx == 0); ...}                                      ->  91: if (nondet == 0) {...}                                         
+ (1,12) : MoveUp        (1,22) - 91: if (nondet == 0) {...}                                          ->  89: state = 3;                                                     
+ (1,14) : MoveUp        (1,22) - 115: state = old_state;                                             ->  91: if (nondet == 0) {...}                                         
+ (1,16) : AtomicSection (1,39) - 29: at{ assume(sem == 1); ...}                                      ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (1,21) : AtomicSection (1,47) - 96: assert(((want_mtx == 0) | (sem == 1)) | (mtx == 0));            ->  110: sem = 1;                                                      
+ (1,29) : MoveUp        (1,42) - 91: if (nondet == 0) {...}                                          ->  87: old_state = state;                                             
+ (1,31) : AtomicSection (1,59) - 48: at{ assume(mtx == 0); ...}                                      ->  66: mtx = 0;                                                       
+ (1,43) : MoveUp        (1,52) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (1,58) : AtomicSection (1,77) - 79: at{ assume(mtx == 0); ...}                                      ->  117: mtx = 0;                                                      
+ (1,66) : AtomicSection (1,92) - 43: assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0));           ->  66: mtx = 0;                                                       

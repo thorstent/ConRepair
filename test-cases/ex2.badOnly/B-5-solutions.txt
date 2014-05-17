@@ -1,0 +1,2 @@
+ (5,1) : MoveUp (5,6)  - 23: wm5102_patch();         ->  24: set_IntrMask(); 
+ (5,2) : MoveUp (5,27) - 37: assume(IntrMask == 1);  ->  36: starting = 0;   

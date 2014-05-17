@@ -1,0 +1,4 @@
+ (1,1) : MoveUp   (1,2)  - 37: assume(IntrMask == 1);    ->  36: starting = 0;   
+ (1,2) : MoveUp   (1,29) - 24: set_IntrMask();           ->  23: wm5102_patch(); 
+ (1,3) : MoveUp   (1,39) - 25: arizona_wait_for_boot();  ->  23: wm5102_patch(); 
+ (1,3) : MoveDown (1,39) - 25: arizona_wait_for_boot();  ->  23: wm5102_patch(); 

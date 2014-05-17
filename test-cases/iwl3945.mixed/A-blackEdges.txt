@@ -1,0 +1,16 @@
+ Deadlock-Round                                    : reassoc_thread()                - 101: assume(notify == 1);                         --> 103: assert(restarted == 1);                      
+ Deadlock-Round                                    : main()                          - 107: lock1 = 0;                                   --> 109: rtnl_lock = 0;                               
+ Deadlock-Round                                    : config_thread()                 - 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); --> 53: lock1 = 0;                                    
+ Deadlock-Round                                    : iwl3945_bg_alive_start_thread() - 70: restarted = 1;                                --> 72: nr{ want_rtnl_lock = 2; ...}                  
+ Deadlock-Round                                    : config_thread()                 - 29: at{ assume(rtnl_lock == 0); ...}              --> 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); 
+ Deadlock-Round                                    : iwl3945_bg_alive_start_thread() - 64: assume(lock1 == 0);                           --> 65: lock1 = 1;                                    
+ 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); : iwl3945_bg_alive_start_thread() - 64: assume(lock1 == 0);                           --> 65: lock1 = 1;                                    
+ 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); : config_thread()                 - 29: at{ assume(rtnl_lock == 0); ...}              --> 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); 
+ 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); : iwl3945_bg_alive_start_thread() - 63: at{ assume(lock1 == 0); ...}                  --> 72: nr{ want_rtnl_lock = 2; ...}                  
+ 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); : config_thread()                 - 29: at{ assume(rtnl_lock == 0); ...}              --> 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); 
+ 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); : iwl3945_bg_alive_start_thread() - 81: at{ assume(rtnl_lock == 0); ...}              --> 92: rtnl_lock = 0;                                
+ 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); : config_thread()                 - 29: at{ assume(rtnl_lock == 0); ...}              --> 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); 
+ 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); : iwl3945_bg_alive_start_thread() - 81: at{ assume(rtnl_lock == 0); ...}              --> 92: rtnl_lock = 0;                                
+ 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); : config_thread()                 - 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); --> 53: lock1 = 0;                                    
+ 103: assert(restarted == 1);                      : iwl3945_bg_alive_start_thread() - 70: restarted = 1;                                --> 72: nr{ want_rtnl_lock = 2; ...}                  
+ 103: assert(restarted == 1);                      : reassoc_thread()                - 101: assume(notify == 1);                         --> 103: assert(restarted == 1);                      

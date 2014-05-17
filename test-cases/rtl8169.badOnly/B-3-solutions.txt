@@ -1,0 +1,11 @@
+ (3,1)  : MoveUp   (3,22)  - 613: synchronize_irq();                                                            ->  611: write_IntrMask(0);            
+ (3,2)  : MoveUp   (3,30)  - 512: free_irq();                                                                   ->  510: dev_down();                   
+ (3,2)  : MoveDown (3,30)  - 512: free_irq();                                                                   ->  510: dev_down();                   
+ (3,4)  : MoveUp   (3,32)  - 293: drv_close();                                                                  ->  292: netif_running = 0;            
+ (3,5)  : MoveUp   (3,42)  - 511: napi_disable();                                                               ->  510: dev_down();                   
+ (3,6)  : MoveUp   (3,42)  - 291: if (netif_running != 0) {...}                                                 ->  290: lock(rtnl_lock);              
+ (3,7)  : MoveUp   (3,44)  - 306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...}  ->  305: down(irq_sem);                
+ (3,8)  : MoveUp   (3,52)  - 268: close();                                                                      ->  263: if (nondet == 0) {...}        
+ (3,9)  : MoveUp   (3,95)  - 295: unlock(rtnl_lock);                                                            ->  291: if (netif_running != 0) {...} 
+ (3,10) : MoveUp   (3,96)  - 284: unlock(rtnl_lock);                                                            ->  278: if (registered != 0) {...}    
+ (3,11) : MoveUp   (3,109) - 534: write_IntrStatus(status1);                                                    ->  528: if (intr_mask != 0) {...}     

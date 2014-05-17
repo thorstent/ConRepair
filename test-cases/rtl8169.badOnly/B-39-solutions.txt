@@ -1,0 +1,1 @@
+ (39,3) : MoveUp (39,87) - 278: if (registered != 0) {...}  ->  277: lock(rtnl_lock); 

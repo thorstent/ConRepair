@@ -1,0 +1,5 @@
+ (2,7)  : MoveUp   (2,14) - 91: if (nondet == 0) {...}  ->  89: state = 3;                                                     
+ (2,34) : MoveUp   (2,39) - 117: mtx = 0;               ->  89: state = 3;                                                     
+ (2,18) : MoveUp   (2,27) - 72: sem = 1;                ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (2,53) : MoveDown (2,71) - 115: state = old_state;     ->  79: at{ assume(mtx == 0); ...}                                     
+ (2,53) : MoveUp   (2,71) - 115: state = old_state;     ->  79: at{ assume(mtx == 0); ...}                                     

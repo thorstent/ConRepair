@@ -1,0 +1,6 @@
+ (6,2) : MoveUp (6,7)   - 549: intr_mask = 255;                                                              ->  548: napi_complete();                                                             
+ (6,3) : MoveUp (6,25)  - 329: if (napi_scheduled == 0) {...}                                                ->  328: down(napi_sem);                                                              
+ (6,4) : MoveUp (6,27)  - 332: up(napi_sem);                                                                 ->  329: if (napi_scheduled == 0) {...}                                               
+ (6,5) : MoveUp (6,65)  - 534: write_IntrStatus(status1);                                                    ->  528: if (intr_mask != 0) {...}                                                    
+ (6,6) : MoveUp (6,85)  - 310: up(irq_sem);                                                                  ->  306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...} 
+ (6,7) : MoveUp (6,130) - 306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...}  ->  305: down(irq_sem);                                                               

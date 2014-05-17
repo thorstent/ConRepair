@@ -1,0 +1,55 @@
+digraph ProofObject {
+	19 -> 22 [style = dotted, color = black]
+	5 -> 6 [style = dotted, color = black]
+	27 -> 28 [color = Black]
+	16 -> 19 [color = Black]
+	14 -> 16 [color = Blue, constraint = false]
+	24 -> 27 [color = Blue, constraint = false]
+	19 -> 24 [color = Black]
+	10 -> 14 [color = Black]
+	25 -> 30 [style = dotted, color = black]
+	2 -> 3 [style = dotted, color = black]
+	19 -> 28 [color = Green, constraint = false]
+	22 -> 24 [style = dotted, color = black]
+	22 -> 25 [color = Blue, constraint = false]
+	24 -> 30 [color = Red, constraint = false]
+	24 -> 22 [style = dotted, color = red, constraint = false]
+	4 -> 5 [style = dotted, color = black]
+	10 -> 19 [color = Red, constraint = false]
+	3 -> 4 [style = dotted, color = black]
+	subgraph cluster4 {
+		label = thread4
+		color = blue
+		25  [label = "28: assume(a == 1);"]
+		30  [label = "29: assert(b == 1);"]
+	}
+	subgraph cluster3 {
+		label = thread3
+		color = blue
+		27  [label = "23: assume(b == 1);"]
+		28  [label = "24: x = 2;"]
+	}
+	subgraph cluster1 {
+		label = thread1
+		color = blue
+		10  [label = "9: x = 1;"]
+		14  [label = "10: y = 1;"]
+	}
+	subgraph cluster0 {
+		label = main
+		color = blue
+		3  [label = "34: y = 0;"]
+		2  [label = "33: x = 0;"]
+		4  [label = "35: z = 0;"]
+		6  [label = "37: b = 0;"]
+		5  [label = "36: a = 0;"]
+	}
+	subgraph cluster2 {
+		label = thread2
+		color = blue
+		19  [label = "16: assertd(x == 1);"]
+		22  [label = "17: a = 1;"]
+		24  [label = "19: b = 1;"]
+		16  [label = "14: assume(y == 1);"]
+	}
+}

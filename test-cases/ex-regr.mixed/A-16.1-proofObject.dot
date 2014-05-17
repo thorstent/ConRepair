@@ -1,0 +1,31 @@
+digraph ProofObject {
+	2 -> 3 [style = dotted, color = black]
+	7 -> 10 [style = dotted, color = black]
+	7 -> 12 [color = Blue, constraint = false]
+	10 -> 7 [style = dotted, color = red, constraint = false]
+	12 -> 14 [style = dotted, color = black]
+	10 -> 14 [color = Red, constraint = false]
+	subgraph cluster3 {
+		label = thread3
+		color = blue
+		17  [label = "20: assert((x == 1) | (y == 0));"]
+	}
+	subgraph cluster0 {
+		label = main
+		color = blue
+		3  [label = "25: y = 0;"]
+		2  [label = "24: x = 0;"]
+	}
+	subgraph cluster2 {
+		label = thread2
+		color = blue
+		12  [label = "15: assume(x == 1);"]
+		14  [label = "16: assert(y == 1);"]
+	}
+	subgraph cluster1 {
+		label = thread1
+		color = blue
+		10  [label = "11: y = 1;"]
+		7  [label = "10: x = 1;"]
+	}
+}

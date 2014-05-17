@@ -1,0 +1,69 @@
+digraph ProofObject {
+	37 -> 38 [style = dotted, color = black]
+	2 -> 16 [color = Blue, constraint = false]
+	43 -> 44 [style = dotted, color = black]
+	12 -> 15 [style = dotted, color = black]
+	24 -> 26 [style = dotted, color = black]
+	15 -> 16 [style = dotted, color = black]
+	26 -> 27 [style = dotted, color = black]
+	2 -> 3 [style = dotted, color = black]
+	22 -> 24 [style = dotted, color = black]
+	44 -> 46 [style = dotted, color = black]
+	24 -> 26 [color = Blue, constraint = false]
+	46 -> 48 [style = dotted, color = black]
+	38 -> 39 [style = dotted, color = black]
+	48 -> 50 [style = dotted, color = black]
+	16 -> 17 [style = dotted, color = black]
+	18 -> 20 [style = dotted, color = black]
+	39 -> 40 [style = dotted, color = black]
+	20 -> 21 [style = dotted, color = black]
+	17 -> 18 [style = dotted, color = black]
+	27 -> 42 [color = Blue, constraint = false]
+	40 -> 42 [style = dotted, color = black]
+	22 -> 38 [color = Blue, constraint = false]
+	46 -> 48 [color = Blue, constraint = false]
+	34 -> 37 [style = dotted, color = black]
+	42 -> 43 [style = dotted, color = black]
+	3 -> 20 [color = Blue, constraint = false]
+	21 -> 22 [style = dotted, color = black]
+	4 -> 5 [style = dotted, color = black]
+	3 -> 4 [style = dotted, color = black]
+	subgraph cluster0 {
+		label = main
+		color = blue
+		3  [label = "111: bsy = 0;"]
+		2  [label = "110: lock1 = 0;"]
+		5  [label = "113: request = 0;"]
+		4  [label = "112: pending = 0;"]
+	}
+	subgraph cluster1 {
+		label = client_thread1
+		color = blue
+		16  [label = "70: assume(lock1 == 0);"]
+		20  [label = "78a: assume(bsy == 0);"]
+		15  [label = "67: result = 0;"]
+		24  [label = "90: result = -1;"]
+		22  [label = "82: lock1 = 0;"]
+		12  [label = "30a: thread_id = 1;"]
+		21  [label = "80: bsy = 1;"]
+		17  [label = "71: lock1 = thread_id;"]
+		18  [label = "75: pending = 0;"]
+		27  [label = "94: bsy = 0;"]
+		26  [label = "92a: assume(result == (-1));"]
+	}
+	subgraph cluster2 {
+		label = client_thread2
+		color = blue
+		50  [label = "94: bsy = 0;"]
+		46  [label = "90: result = -1;"]
+		42  [label = "78a: assume(bsy == 0);"]
+		43  [label = "80: bsy = 1;"]
+		34  [label = "35a: thread_id = 2;"]
+		40  [label = "75: pending = 0;"]
+		39  [label = "71: lock1 = thread_id;"]
+		44  [label = "82: lock1 = 0;"]
+		38  [label = "70: assume(lock1 == 0);"]
+		48  [label = "92a: assume(result == (-1));"]
+		37  [label = "67: result = 0;"]
+	}
+}

@@ -1,0 +1,58 @@
+digraph PartialOrder {
+	compound = true
+	"45: patched = 0;" -> "46: thread1();"
+	"12: assert(starting == 0);" -> "13: patched = 1;"
+	"36: starting = 0;" -> "37: assume(IntrMask == 1);"
+	"17: arizona_wait_for_boot();" -> "18: IntrMask = 1;"
+	"37: assume(IntrMask == 1);" -> "38: assert(patched == 1);"
+	"23: wm5102_patch();" -> "24: set_IntrMask();"
+	"44: IntrMask = 0;" -> "45: patched = 0;"
+	"46: thread1();" -> "47: thread2();"
+	"36: starting = 0;" -> "38: assert(patched == 1);"
+	"43: starting = 1;" -> "44: IntrMask = 0;"
+	subgraph cluster5 {
+		label = "7: int arizona_wait_for_boot() {...}"
+		color = blue
+		"8: assume(starting == 0);"  [label = "8: assume(starting == 0);"]
+	}
+	subgraph cluster2 {
+		label = "28: int thread1() {...}"
+		color = blue
+		"30: arizona_dev_init();"  [label = "30: arizona_dev_init();"]
+	}
+	subgraph cluster3 {
+		label = "21: void arizona_dev_init() {...}"
+		color = blue
+		"25: arizona_wait_for_boot();"  [label = "25: arizona_wait_for_boot();"]
+		"23: wm5102_patch();"  [label = "23: wm5102_patch();"]
+		"24: set_IntrMask();"  [label = "24: set_IntrMask();"]
+	}
+	subgraph cluster7 {
+		label = "11: int wm5102_patch() {...}"
+		color = blue
+		"12: assert(starting == 0);"  [label = "12: assert(starting == 0);"]
+		"13: patched = 1;"  [label = "13: patched = 1;"]
+	}
+	subgraph cluster6 {
+		label = "16: int set_IntrMask() {...}"
+		color = blue
+		"18: IntrMask = 1;"  [label = "18: IntrMask = 1;"]
+		"17: arizona_wait_for_boot();"  [label = "17: arizona_wait_for_boot();"]
+	}
+	subgraph cluster4 {
+		label = "33: int thread2() {...}"
+		color = blue
+		"36: starting = 0;"  [label = "36: starting = 0;"]
+		"38: assert(patched == 1);"  [label = "38: assert(patched == 1);"]
+		"37: assume(IntrMask == 1);"  [label = "37: assume(IntrMask == 1);"]
+	}
+	subgraph cluster1 {
+		label = "42: void main() {...}"
+		color = blue
+		"47: thread2();"  [label = "47: thread2();"]
+		"44: IntrMask = 0;"  [label = "44: IntrMask = 0;"]
+		"43: starting = 1;"  [label = "43: starting = 1;"]
+		"46: thread1();"  [label = "46: thread1();"]
+		"45: patched = 0;"  [label = "45: patched = 0;"]
+	}
+}

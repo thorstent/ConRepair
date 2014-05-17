@@ -1,0 +1,37 @@
+ | main              | client_thread1                 | client_thread2                    | worker_thread                   | 
+ | ================= | ============================== | ================================= | =============================== | 
+ | 110: lock1 = 0;   |                                |                                   |                                 | 
+ | 111: bsy = 0;     |                                |                                   |                                 | 
+ | 112: pending = 0; |                                |                                   |                                 | 
+ | 113: request = 0; |                                |                                   |                                 | 
+ |                   |                                | 35: acm_cdc_notify(2);            |                                 | 
+ |                   |                                |   35a: thread_id = 2;             |                                 | 
+ |                   |                                |   67: result = 0;                 |                                 | 
+ |                   |                                |   70: assume(lock1 == 0);         |                                 | 
+ |                   |                                |   71: lock1 = thread_id;          |                                 | 
+ |                   |                                |   75: pending = 0;                |                                 | 
+ |                   |                                |   78a: assume(bsy == 0);          |                                 | 
+ |                   |                                |   80: bsy = 1;                    |                                 | 
+ |                   |                                |   87: request = thread_id;        |                                 | 
+ |                   |                                |   92b: assume(!(result == (-1))); |                                 | 
+ |                   |                                |                                   | 43: assume(request);            | 
+ |                   |                                |                                   | !!46: assert(lock1 != request); | 
+ |                   |                                |   82: lock1 = 0;                  |                                 | 
+ |                   |                                |                                   | 48: assume(lock1 == 0);         | 
+ |                   |                                |                                   | 49: lock1 = 3;                  | 
+ |                   |                                |                                   | 53: bsy = 0;                    | 
+ |                   |                                |                                   | 54: request = 0;                | 
+ |                   |                                |                                   | 57: lock1 = 0;                  | 
+ |                   |                                |                                   | 60a: assume(pending == 0);      | 
+ |                   | 30: acm_cdc_notify(1);         |                                   |                                 | 
+ |                   |   30a: thread_id = 1;          |                                   |                                 | 
+ |                   |   67: result = 0;              |                                   |                                 | 
+ |                   |   70: assume(lock1 == 0);      |                                   |                                 | 
+ |                   |   71: lock1 = thread_id;       |                                   |                                 | 
+ |                   |   75: pending = 0;             |                                   |                                 | 
+ |                   |   78a: assume(bsy == 0);       |                                   |                                 | 
+ |                   |   80: bsy = 1;                 |                                   |                                 | 
+ |                   |   90: result = -1;             |                                   |                                 | 
+ |                   |   92a: assume(result == (-1)); |                                   |                                 | 
+ |                   |   94: bsy = 0;                 |                                   |                                 | 
+ |                   |   82: lock1 = 0;               |                                   |                                 | 

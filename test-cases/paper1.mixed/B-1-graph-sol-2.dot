@@ -1,0 +1,32 @@
+digraph Counterexample {
+	13 -> 15 [color = black, style = solid, constraint = false]
+	20 -> 22 [color = white, style = solid]
+	13 -> 17 [color = white, style = solid]
+	17 -> 20 [color = black, style = solid, constraint = false]
+	15 -> 16 [color = black, style = dotted]
+	14 -> 15 [color = white, style = solid]
+	16 -> 17 [color = black, style = solid, constraint = false]
+	10 -> 14 [color = black, style = solid, constraint = false]
+	10 -> 13 [color = black, style = dotted]
+	17 -> 10 [color = red, style = solid, constraint = false]
+	subgraph cluster3 {
+		label = thread3
+		color = blue
+		20  [label = "21: assume(z == 1);"]
+		22  [label = "22: assert(y == 1);"]
+	}
+	subgraph cluster1 {
+		label = thread1
+		color = blue
+		17  [label = "9: z = 1;"]
+		13  [label = "8: y = 1;"]
+		10  [label = "7: x = 1;"]
+	}
+	subgraph cluster2 {
+		label = thread2
+		color = blue
+		14  [label = "14: assume(x == 1);"]
+		16  [label = "16: assert(z == 1);", color = red]
+		15  [label = "15: assume(y == 1);"]
+	}
+}

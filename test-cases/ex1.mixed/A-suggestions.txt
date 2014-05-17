@@ -1,0 +1,2 @@
+ Deadlock-Round             : thread1() - 33: disable_napi(); --> 31: stuff1(); 
+ 85: assert(shutdown == 0); : thread1() - 33: disable_napi(); --> 31: stuff1(); 

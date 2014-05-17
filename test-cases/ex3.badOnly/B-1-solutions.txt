@@ -1,0 +1,2 @@
+ (1,1) : MoveUp   (1,4) - 13: registered = 1;  ->  11: initialised3 = 1; 
+ (1,1) : MoveDown (1,4) - 13: registered = 1;  ->  11: initialised3 = 1; 

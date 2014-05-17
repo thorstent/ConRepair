@@ -1,0 +1,52 @@
+digraph Counterexample {
+	36 -> 40 [color = black, style = solid, constraint = false]
+	22 -> 32 [color = black, style = solid, constraint = false]
+	16 -> 18 [color = white, style = solid]
+	34 -> 36 [color = black, style = dotted]
+	14 -> 15 [color = white, style = solid]
+	33 -> 34 [color = black, style = dotted]
+	24 -> 26 [color = white, style = solid]
+	28 -> 31 [color = white, style = solid]
+	37 -> 41 [color = white, style = solid]
+	21 -> 22 [color = white, style = solid]
+	15 -> 16 [color = white, style = solid]
+	26 -> 40 [color = white, style = solid]
+	32 -> 33 [color = black, style = dotted]
+	40 -> 41 [color = black, style = solid, constraint = false]
+	22 -> 24 [color = white, style = solid]
+	31 -> 32 [color = white, style = solid]
+	41 -> 32 [color = red, style = solid, constraint = false]
+	41 -> 42 [color = white, style = solid]
+	18 -> 21 [color = white, style = solid]
+	13 -> 14 [color = white, style = solid]
+	36 -> 37 [color = white, style = solid]
+	10 -> 13 [color = white, style = solid]
+	subgraph cluster2 {
+		label = client_thread2
+		color = blue
+		14  [label = "70: assume(lock1 == 0);"]
+		15  [label = "71: lock1 = thread_id;"]
+		24  [label = "90: result = -1;"]
+		22  [label = "82: lock1 = 0;"]
+		13  [label = "67: result = 0;"]
+		16  [label = "75: pending = 0;"]
+		18  [label = "78a: assume(bsy == 0);"]
+		10  [label = "35a: thread_id = 2;"]
+		40  [label = "94: bsy = 0;"]
+		21  [label = "80: bsy = 1;"]
+		26  [label = "92a: assume(result == (-1));"]
+	}
+	subgraph cluster1 {
+		label = client_thread1
+		color = blue
+		41  [label = "102: assert(bsy);", color = red]
+		31  [label = "67: result = 0;"]
+		34  [label = "75: pending = 0;"]
+		33  [label = "71: lock1 = thread_id;"]
+		28  [label = "30a: thread_id = 1;"]
+		32  [label = "70: assume(lock1 == 0);"]
+		36  [label = "78b: assume(!(bsy == 0));"]
+		42  [label = "105: lock1 = 0;"]
+		37  [label = "99: pending = 1;"]
+	}
+}

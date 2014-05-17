@@ -1,0 +1,144 @@
+digraph PartialOrder {
+	compound = true
+	"57: state = 3;" -> "59: state = 1;"
+	"139: want_sem = 0;" -> "140: state = 0;"
+	"102: sem = 0;" -> "103: want_sem = 0;"
+	"61: state = 3;" -> "63: state = 2;"
+	"107: assert(vm_consistent);" -> "110: sem = 1;"
+	"35: assert(vm_consistent == 1);" -> "37: vm_consistent = 0;"
+	"55: assert(state != 3);" -> "57: state = 3;"
+	"80: assume(mtx == 0);" -> "81: mtx = 1;"
+	"49: assume(mtx == 0);" -> "55: assert(state != 3);" [ltail = cluster9]
+	"37: vm_consistent = 0;" -> "70: vm_consistent = 1;"
+	"81: mtx = 1;" -> "93: nr{ assert(((want_mtx == 0) | (sem == 1)) | (mtx == 0)); ...}" [ltail = cluster10, lhead = cluster3]
+	"101: assume(sem == 1);" -> "107: assert(vm_consistent);" [ltail = cluster12]
+	"128: assert(state != 3);" -> "131: mtx = 0;"
+	"137: want_mtx = 0;" -> "138: sem = 1;"
+	"136: mtx = 0;" -> "137: want_mtx = 0;"
+	"31: sem = 0;" -> "35: assert(vm_consistent == 1);" [ltail = cluster6]
+	"115: state = old_state;" -> "81: mtx = 1;" [lhead = cluster10]
+	"143: mmap_thread();" -> "144: ioctl_thread();"
+	"96: assert(((want_mtx == 0) | (sem == 1)) | (mtx == 0));" -> "97: want_sem = 2;"
+	"117: mtx = 0;" -> "85: assertd(state != 3);"
+	"141: vm_consistent = 1;" -> "143: mmap_thread();"
+	"35: assert(vm_consistent == 1);" -> "57: state = 3;" [lhead = cluster7]
+	"140: state = 0;" -> "141: vm_consistent = 1;"
+	"97: want_sem = 2;" -> "101: assume(sem == 1);" [lhead = cluster12]
+	"43: assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0));" -> "45: want_mtx = 1;"
+	"87: old_state = state;" -> "89: state = 3;"
+	"124: mtx = 1;" -> "128: assert(state != 3);" [ltail = cluster11]
+	"59: state = 1;" -> "61: state = 3;"
+	"123: assume(mtx == 0);" -> "124: mtx = 1;"
+	"138: sem = 1;" -> "139: want_sem = 0;"
+	"30: assume(sem == 1);" -> "31: sem = 0;"
+	"89: state = 3;" -> "115: state = old_state;"
+	"144: ioctl_thread();" -> "145: rw_thread();"
+	"63: state = 2;" -> "66: mtx = 0;"
+	"50: mtx = 1;" -> "51: want_mtx = 0;"
+	"93: nr{ assert(((want_mtx == 0) | (sem == 1)) | (mtx == 0)); ...}" -> "117: mtx = 0;" [ltail = cluster3]
+	"35: assert(vm_consistent == 1);" -> "72: sem = 1;"
+	"45: want_mtx = 1;" -> "49: assume(mtx == 0);" [lhead = cluster9]
+	"49: assume(mtx == 0);" -> "50: mtx = 1;"
+	"101: assume(sem == 1);" -> "102: sem = 0;"
+	"57: state = 3;" -> "37: vm_consistent = 0;" [ltail = cluster7]
+	subgraph cluster5 {
+		label = "26: int mmap_thread() {...}"
+		color = blue
+		"35: assert(vm_consistent == 1);"  [label = "35: assert(vm_consistent == 1);"]
+		"41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...}"  [label, style = invisible]
+		"72: sem = 1;"  [label = "72: sem = 1;"]
+		"29: at{ assume(sem == 1); ...}"  [label, style = invisible]
+		"37: vm_consistent = 0;"  [label = "37: vm_consistent = 0;"]
+		"70: vm_consistent = 1;"  [label = "70: vm_consistent = 1;"]
+		subgraph cluster7 {
+			label = "41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...}"
+			color = blue
+			"43: assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0));"  [label = "43: assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0));"]
+			"63: state = 2;"  [label = "63: state = 2;"]
+			"57: state = 3;"  [label = "57: state = 3;"]
+			"66: mtx = 0;"  [label = "66: mtx = 0;"]
+			"59: state = 1;"  [label = "59: state = 1;"]
+			"55: assert(state != 3);"  [label = "55: assert(state != 3);"]
+			"61: state = 3;"  [label = "61: state = 3;"]
+			"45: want_mtx = 1;"  [label = "45: want_mtx = 1;"]
+			"48: at{ assume(mtx == 0); ...}"  [label, style = invisible]
+			subgraph cluster9 {
+				label = "48: at{ assume(mtx == 0); ...}"
+				color = blue
+				"50: mtx = 1;"  [label = "50: mtx = 1;"]
+				"49: assume(mtx == 0);"  [label = "49: assume(mtx == 0);"]
+				"51: want_mtx = 0;"  [label = "51: want_mtx = 0;"]
+			}
+		}
+		subgraph cluster6 {
+			label = "29: at{ assume(sem == 1); ...}"
+			color = blue
+			"30: assume(sem == 1);"  [label = "30: assume(sem == 1);"]
+			"31: sem = 0;"  [label = "31: sem = 0;"]
+		}
+	}
+	subgraph cluster2 {
+		label = "75: int ioctl_thread() {...}"
+		color = blue
+		"117: mtx = 0;"  [label = "117: mtx = 0;"]
+		"87: old_state = state;"  [label = "87: old_state = state;"]
+		"85: assertd(state != 3);"  [label = "85: assertd(state != 3);"]
+		"89: state = 3;"  [label = "89: state = 3;"]
+		"91: if (nondet == 0) {...}"  [label, style = invisible]
+		"79: at{ assume(mtx == 0); ...}"  [label, style = invisible]
+		"115: state = old_state;"  [label = "115: state = old_state;"]
+		subgraph cluster3 {
+			label = "91: if (nondet == 0) {...}"
+			color = blue
+			"93: nr{ assert(((want_mtx == 0) | (sem == 1)) | (mtx == 0)); ...}"  [label, style = invisible]
+			subgraph cluster4 {
+				label = "93: nr{ assert(((want_mtx == 0) | (sem == 1)) | (mtx == 0)); ...}"
+				color = blue
+				"96: assert(((want_mtx == 0) | (sem == 1)) | (mtx == 0));"  [label = "96: assert(((want_mtx == 0) | (sem == 1)) | (mtx == 0));"]
+				"97: want_sem = 2;"  [label = "97: want_sem = 2;"]
+				"107: assert(vm_consistent);"  [label = "107: assert(vm_consistent);"]
+				"100: at{ assume(sem == 1); ...}"  [label, style = invisible]
+				"110: sem = 1;"  [label = "110: sem = 1;"]
+				subgraph cluster12 {
+					label = "100: at{ assume(sem == 1); ...}"
+					color = blue
+					"102: sem = 0;"  [label = "102: sem = 0;"]
+					"101: assume(sem == 1);"  [label = "101: assume(sem == 1);"]
+					"103: want_sem = 0;"  [label = "103: want_sem = 0;"]
+				}
+			}
+		}
+		subgraph cluster10 {
+			label = "79: at{ assume(mtx == 0); ...}"
+			color = blue
+			"80: assume(mtx == 0);"  [label = "80: assume(mtx == 0);"]
+			"81: mtx = 1;"  [label = "81: mtx = 1;"]
+		}
+	}
+	subgraph cluster8 {
+		label = "134: void main() {...}"
+		color = blue
+		"141: vm_consistent = 1;"  [label = "141: vm_consistent = 1;"]
+		"140: state = 0;"  [label = "140: state = 0;"]
+		"144: ioctl_thread();"  [label = "144: ioctl_thread();"]
+		"143: mmap_thread();"  [label = "143: mmap_thread();"]
+		"137: want_mtx = 0;"  [label = "137: want_mtx = 0;"]
+		"145: rw_thread();"  [label = "145: rw_thread();"]
+		"138: sem = 1;"  [label = "138: sem = 1;"]
+		"136: mtx = 0;"  [label = "136: mtx = 0;"]
+		"139: want_sem = 0;"  [label = "139: want_sem = 0;"]
+	}
+	subgraph cluster1 {
+		label = "120: int rw_thread() {...}"
+		color = blue
+		"131: mtx = 0;"  [label = "131: mtx = 0;"]
+		"122: at{ assume(mtx == 0); ...}"  [label, style = invisible]
+		"128: assert(state != 3);"  [label = "128: assert(state != 3);"]
+		subgraph cluster11 {
+			label = "122: at{ assume(mtx == 0); ...}"
+			color = blue
+			"124: mtx = 1;"  [label = "124: mtx = 1;"]
+			"123: assume(mtx == 0);"  [label = "123: assume(mtx == 0);"]
+		}
+	}
+}

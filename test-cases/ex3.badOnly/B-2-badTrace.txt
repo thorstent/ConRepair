@@ -1,0 +1,16 @@
+ | main                  | thread1                     | thread2                          | thread3                        | 
+ | ===================== | =========================== | ================================ | ============================== | 
+ | 36: registered = 0;   |                             |                                  |                                | 
+ | 37: initialised1 = 0; |                             |                                  |                                | 
+ | 38: initialised2 = 0; |                             |                                  |                                | 
+ | 39: initialised3 = 0; |                             |                                  |                                | 
+ |                       | 18: srp_attach_transport(); |                                  |                                | 
+ |                       |   10: initialised1 = 1;     |                                  |                                | 
+ |                       |   13: registered = 1;       |                                  |                                | 
+ |                       |   11: initialised3 = 1;     |                                  |                                | 
+ |                       |                             | 23: assume(registered == 1);     |                                | 
+ |                       |                             | !!24: assert(initialised2 == 1); |                                | 
+ |                       |   12: initialised2 = 1;     |                                  |                                | 
+ |                       |                             |                                  | 29: assume(initialised3 == 1); | 
+ |                       |                             |                                  | 30: assert(registered == 1);   | 
+ |                       |                             |                                  | 31: assert(initialised1 == 1); | 

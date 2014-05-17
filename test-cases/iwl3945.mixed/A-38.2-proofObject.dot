@@ -1,0 +1,75 @@
+digraph ProofObject {
+	37 -> 38 [style = dotted, color = black]
+	18 -> 33 [color = Red, constraint = false]
+	23 -> 24 [style = dotted, color = black]
+	15 -> 16 [style = dotted, color = black]
+	12 -> 13 [style = dotted, color = black]
+	32 -> 22 [style = dotted, color = red, constraint = false]
+	14 -> 15 [style = dotted, color = black]
+	32 -> 33 [color = Red, constraint = false]
+	20 -> 22 [style = dotted, color = black]
+	2 -> 3 [style = dotted, color = black]
+	35 -> 36 [style = dotted, color = black]
+	34 -> 35 [style = dotted, color = black]
+	6 -> 7 [style = dotted, color = black]
+	36 -> 37 [style = dotted, color = black]
+	16 -> 17 [style = dotted, color = black]
+	5 -> 6 [style = dotted, color = black]
+	18 -> 20 [style = dotted, color = black]
+	13 -> 14 [style = dotted, color = black]
+	17 -> 18 [style = dotted, color = black]
+	22 -> 32 [style = dotted, color = black]
+	23 -> 33 [color = Black]
+	22 -> 23 [color = Blue, constraint = false]
+	27 -> 28 [style = dotted, color = black]
+	24 -> 25 [style = dotted, color = black]
+	25 -> 33 [style = dotted, color = black]
+	18 -> 22 [color = Black]
+	4 -> 5 [style = dotted, color = black]
+	33 -> 34 [style = dotted, color = black]
+	3 -> 4 [style = dotted, color = black]
+	32 -> 34 [color = Blue, constraint = false]
+	subgraph cluster3 {
+		label = reassoc_thread
+		color = blue
+		28  [label = "103: assert(restarted == 1);"]
+		27  [label = "101: assume(notify == 1);"]
+	}
+	subgraph cluster0 {
+		label = main
+		color = blue
+		5  [label = "110: want_rtnl_lock = 0;"]
+		4  [label = "109: rtnl_lock = 0;"]
+		2  [label = "107: lock1 = 0;"]
+		6  [label = "111: restarted = 0;"]
+		3  [label = "108: want_lock = 0;"]
+		7  [label = "112: notify = 0;"]
+	}
+	subgraph cluster2 {
+		label = iwl3945_bg_alive_start_thread
+		color = blue
+		15  [label = "74: want_rtnl_lock = 2;"]
+		20  [label = "89: notify = 1;"]
+		12  [label = "64: assume(lock1 == 0);"]
+		13  [label = "65: lock1 = 1;"]
+		14  [label = "70: restarted = 1;"]
+		17  [label = "83: rtnl_lock = 1;"]
+		16  [label = "82: assume(rtnl_lock == 0);"]
+		32  [label = "96: lock1 = 0;"]
+		18  [label = "84: want_rtnl_lock = 0;"]
+		22  [label = "92: rtnl_lock = 0;"]
+	}
+	subgraph cluster1 {
+		label = config_thread
+		color = blue
+		24  [label = "31: rtnl_lock = 1;"]
+		23  [label = "30: assume(rtnl_lock == 0);"]
+		34  [label = "43: assume(lock1 == 0);"]
+		33  [label = "38: assert((lock1 == 0) | (want_rtnl_lock != 2));"]
+		36  [label = "45: want_lock = 0;"]
+		35  [label = "44: lock1 = 1;"]
+		38  [label = "55: rtnl_lock = 0;"]
+		37  [label = "53: lock1 = 0;"]
+		25  [label = "36: want_lock = 1;"]
+	}
+}

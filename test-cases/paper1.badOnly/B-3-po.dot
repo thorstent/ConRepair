@@ -1,0 +1,43 @@
+digraph PartialOrder {
+	compound = true
+	"30: thread2();" -> "31: thread3();"
+	"29: thread1();" -> "30: thread2();"
+	"8: y = 1;" -> "7: x = 1;"
+	"27: y = 0;" -> "28: z = 0;"
+	"26: x = 0;" -> "27: y = 0;"
+	"9: z = 1;" -> "8: y = 1;"
+	"14: assume(x == 1);" -> "16: assert(z == 1);"
+	"28: z = 0;" -> "29: thread1();"
+	"21: assume(z == 1);" -> "22: assert(y == 1);"
+	"15: assume(y == 1);" -> "16: assert(z == 1);"
+	subgraph cluster3 {
+		label = "19: void thread3() {...}"
+		color = blue
+		"21: assume(z == 1);"  [label = "21: assume(z == 1);"]
+		"22: assert(y == 1);"  [label = "22: assert(y == 1);"]
+	}
+	subgraph cluster2 {
+		label = "5: void thread1() {...}"
+		color = blue
+		"7: x = 1;"  [label = "7: x = 1;"]
+		"9: z = 1;"  [label = "9: z = 1;"]
+		"8: y = 1;"  [label = "8: y = 1;"]
+	}
+	subgraph cluster1 {
+		label = "25: int main() {...}"
+		color = blue
+		"27: y = 0;"  [label = "27: y = 0;"]
+		"28: z = 0;"  [label = "28: z = 0;"]
+		"29: thread1();"  [label = "29: thread1();"]
+		"30: thread2();"  [label = "30: thread2();"]
+		"26: x = 0;"  [label = "26: x = 0;"]
+		"31: thread3();"  [label = "31: thread3();"]
+	}
+	subgraph cluster4 {
+		label = "12: void thread2() {...}"
+		color = blue
+		"15: assume(y == 1);"  [label = "15: assume(y == 1);"]
+		"16: assert(z == 1);"  [label = "16: assert(z == 1);"]
+		"14: assume(x == 1);"  [label = "14: assume(x == 1);"]
+	}
+}

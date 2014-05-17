@@ -1,0 +1,1158 @@
+File: lc-rc.c
+Mode: Combined
+
+ | BadOnly                                                          | Mixed                                                            | 
+ | ================================================================ | ================================================================ | 
+ | Summary:                                                         | Summary:                                                         | 
+ | 0 # of good rounds                                               | 7 # of good rounds                                               | 
+ | 179 # of bad rounds                                              | 10 # of bad rounds                                               | 
+ | 121.72s (98.17%)¹ total                                          |  8.87s (79.35%)¹ total                                           | 
+ |                                                                  |  1.60s (91.32%)¹ good trace learning²                            | 
+ | Solution found, fixed the program.                               |  7.27s (76.71%)¹ bad trace program repair                        | 
+ |                                                                  |                                                                  | 
+ |                                                                  | Solution found, fixed the program.                               | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ |                                                                  |                                                                  | 
+ |                                                                  | Good trace learning:                                             | 
+ |                                                                  | - - - - - - - - - - -                                            | 
+ |                                                                  | Iteration  1:  0.74s (78.90%)¹                                   | 
+ |                                                                  | Iteration  2:  0.79s (90.53%)¹                                   | 
+ |                                                                  | Iteration  3:  0.83s (90.42%)¹                                   | 
+ |                                                                  | Iteration  4:  0.27s (100.00%)¹                                  | 
+ |                                                                  | Iteration  5:  0.35s (100.00%)¹                                  | 
+ |                                                                  | Iteration  6:  0.32s (100.00%)¹                                  | 
+ |                                                                  | Iteration  7:  0.29s (100.00%)¹                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ |                                                                  |                                                                  | 
+ | Bad trace program repair:                                        | Bad trace program repair:                                        | 
+ | - - - - - - - - - - - - -                                        | - - - - - - - - - - - - -                                        | 
+ | Iteration  1:  0.52s (56.57%)¹                                   | Iteration  1:  0.83s (37.53%)¹                                   | 
+ | Assertion triggered: 51: assert(rsv_running);                    | Assertion triggered: 51: assert(rsv_running);                    | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Verification:  0.49s (100.00%)¹                                  | Verification:  0.45s (100.00%)¹                                  | 
+ | Changes up to this iteration³:                                   | Changes up to this iteration³:                                   | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         | AtomicSection(35: stop_neh = 1; --> 37: assume(!neh_running);)   | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | --Switched to non-deadlock mode--                                | --Switched to non-deadlock mode--                                | 
+ | Iteration  2:  0.46s (86.40%)¹                                   | Iteration  2:  0.58s (62.71%)¹                                   | 
+ | Assertion triggered: 51: assert(rsv_running);                    | Assertion triggered: 51: assert(rsv_running);                    | 
+ | Changes up to this iteration³:                                   | Changes up to this iteration³:                                   | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         | AtomicSection(35: stop_neh = 1; --> 37: assume(!neh_running);)   | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration  3:  0.56s (90.93%)¹                                   | Iteration  3:  0.71s (73.17%)¹                                   | 
+ | Assertion triggered: 51: assert(rsv_running);                    | Assertion triggered: 51: assert(rsv_running);                    | 
+ | Changes up to this iteration³:                                   | Changes up to this iteration³:                                   | 
+ | Reorder(37: assume(!neh_running); <-- 33: assume(!rc_running);)  | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration  4:  0.56s (91.09%)¹                                   | Iteration  4:  0.68s (75.33%)¹                                   | 
+ | Assertion triggered: 51: assert(rsv_running);                    | Assertion triggered: 51: assert(rsv_running);                    | 
+ | Changes up to this iteration³:                                   | Changes up to this iteration³:                                   | 
+ | Reorder(37: assume(!neh_running); --> 33: assume(!rc_running);)  | Reorder(33: assume(!rc_running); <-- 29: assume(!rsv_running);)  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration  5:  0.76s (100.00%)¹                                  | Iteration  5:  0.70s (73.42%)¹                                   | 
+ | Changes up to this iteration³:                                   | Assertion triggered: 51: assert(rsv_running);                    | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         | Changes up to this iteration³:                                   | 
+ |                                                                  | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration  6:  0.57s (89.30%)¹                                   | Iteration  6:  0.62s (80.29%)¹                                   | 
+ | Assertion triggered: 51: assert(rsv_running);                    | Assertion triggered: 51: assert(rsv_running);                    | 
+ | Changes up to this iteration³:                                   | Changes up to this iteration³:                                   | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           | Reorder(35: stop_neh = 1; <-- 29: assume(!rsv_running);)         | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration  7:  0.57s (89.35%)¹                                   | Iteration  7:  0.55s (100.00%)¹                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    | Changes up to this iteration³:                                   | 
+ | Changes up to this iteration³:                                   | AtomicSection(27: stop_rsv = 1; --> 29: assume(!rsv_running);)   | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration  8:  0.76s (100.00%)¹                                  | Iteration  8:  0.60s (82.47%)¹                                   | 
+ | Changes up to this iteration³:                                   | Assertion triggered: 51: assert(rsv_running);                    | 
+ | Reorder(31: stop_rc = 1; --> 27: stop_rsv = 1;)                  | Changes up to this iteration³:                                   | 
+ |                                                                  | Reorder(37: assume(!neh_running); <-- 29: assume(!rsv_running);) | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration  9:  0.56s (90.50%)¹                                   | Iteration  9:  0.65s (77.81%)¹                                   | 
+ | Assertion triggered: 51: assert(rsv_running);                    | Assertion triggered: 51: assert(rsv_running);                    | 
+ | Changes up to this iteration³:                                   | Changes up to this iteration³:                                   | 
+ | Reorder(33: assume(!rc_running); <-- 29: assume(!rsv_running);)  | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 10:  0.56s (87.57%)¹                                   | Iteration 10:  0.53s (92.44%)¹                                   | 
+ | Assertion triggered: 51: assert(rsv_running);                    | Assertion triggered: 51: assert(rsv_running);                    | 
+ | Changes up to this iteration³:                                   | Changes up to this iteration³:                                   | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  | AtomicSection(31: stop_rc = 1; --> 33: assume(!rc_running);)     | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 11:  0.54s (92.78%)¹                                   | Verification:  0.37s (100.00%)¹                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    | Changes up to this iteration³:                                   | 
+ | Changes up to this iteration³:                                   | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 12:  0.55s (92.12%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 31: stop_rc = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 13:  0.56s (92.97%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 29: assume(!rsv_running);)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 14:  0.57s (89.12%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 29: assume(!rsv_running);)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 15:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 16:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 17:  0.58s (88.64%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 18:  0.57s (90.48%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 19:  0.38s (98.15%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 29: assume(!rsv_running);) |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 20:  0.55s (90.68%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 29: assume(!rsv_running);) |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 21:  0.59s (90.19%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 22:  0.78s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 23:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 24:  0.78s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 25:  0.78s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 26:  0.56s (93.55%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 27:  0.77s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | Reorder(31: stop_rc = 1; --> 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 28:  0.77s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 29:  0.74s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 30:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 31:  0.74s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 32:  0.79s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 33:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 34:  0.85s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 35:  0.56s (93.74%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 36:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(31: stop_rc = 1; --> 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 37:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 38:  0.77s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 39:  0.79s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 40:  0.78s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 41:  0.57s (91.53%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 42:  0.78s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 43:  0.78s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 44:  0.56s (91.31%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 45:  0.77s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(31: stop_rc = 1; --> 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 46:  0.55s (92.57%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 47:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 48:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 49:  0.77s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 50:  0.78s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 51:  0.77s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 33: assume(!rc_running);)  |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 52:  0.52s (93.32%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(55: neh_running = 0; <-- 53: assume(stop_neh);)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 53:  0.81s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 54:  0.77s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 55:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 56:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 57:  0.74s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(31: stop_rc = 1; --> 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 58:  0.37s (97.04%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 59:  0.50s (97.42%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(62: rsv_running = 0; <-- 60: assume(stop_rsv);)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 60:  0.50s (98.80%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(62: rsv_running = 0; <-- 60: assume(stop_rsv);)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 61:  0.50s (98.01%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(62: rsv_running = 0; <-- 60: assume(stop_rsv);)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 62:  0.78s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 63:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 64:  0.78s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 65:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 66:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 67:  0.57s (90.18%)¹                                   |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 68:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 69:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 70:  0.73s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 31: stop_rc = 1;)           |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 71:  0.51s (98.43%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 72:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 73:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 74:  0.56s (91.84%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 75:  0.52s (97.51%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 76:  0.52s (97.87%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 77:  0.37s (98.11%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 78:  0.52s (97.49%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 79:  0.54s (95.34%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 80:  0.52s (95.40%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 81:  0.80s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 82:  0.50s (98.61%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 83:  0.37s (98.38%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 31: stop_rc = 1;)           |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 84:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 85:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 86:  0.56s (91.12%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 87:  0.54s (94.83%)¹                                   |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 88:  0.74s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 89:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 90:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 91:  0.77s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 92:  0.74s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 93:  0.78s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 94:  0.74s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 95:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 96:  0.73s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 97:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(29: assume(!rsv_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 98:  0.75s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 99:  0.76s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 100:  0.77s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 101:  0.77s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 102:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 103:  0.55s (94.13%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 104:  0.54s (93.53%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 31: stop_rc = 1;)           |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 105:  0.37s (98.92%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 37: assume(!neh_running);)  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 106:  0.53s (95.48%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 37: assume(!neh_running);)  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 107:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 108:  0.80s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 109:  0.38s (93.77%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 110:  0.74s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 111:  0.39s (92.09%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 112:  0.53s (94.94%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 113:  0.52s (95.36%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 114:  0.54s (95.20%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 37: assume(!neh_running);) |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 115:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 116:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 117:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 118:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 119:  0.77s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 120:  0.77s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 121:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 122:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 123:  0.78s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(29: assume(!rsv_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 124:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 125:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 126:  0.77s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(29: assume(!rsv_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 127:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 128:  0.78s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 31: stop_rc = 1;)           |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 129:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 37: assume(!neh_running);)  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 130:  0.77s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 37: assume(!neh_running);)  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 131:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 132:  0.78s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 133:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 134:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 135:  0.77s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 136:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 137:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 138:  0.78s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); --> 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 139:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 140:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 141:  0.74s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 142:  0.74s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 143:  0.77s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 144:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 145:  0.73s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 37: assume(!neh_running);) |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 35: stop_neh = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 146:  0.78s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 37: assume(!neh_running);) |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 147:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 37: assume(!neh_running);) |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 148:  0.79s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 31: stop_rc = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 149:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 150:  0.78s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 151:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 152:  0.51s (98.62%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(55: neh_running = 0; <-- 53: assume(stop_neh);)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 153:  0.78s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 154:  0.52s (93.49%)¹                                  |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(31: stop_rc = 1; <-- 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 155:  0.77s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(31: stop_rc = 1; --> 27: stop_rsv = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 156:  0.37s (98.65%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 157:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 158:  0.78s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 159:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 160:  0.53s (94.52%)¹                                  |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 161:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 162:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 163:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 164:  0.57s (90.75%)¹                                  |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 165:  0.53s (94.18%)¹                                  |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 166:  0.53s (92.47%)¹                                  |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 31: stop_rc = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 167:  0.55s (95.62%)¹                                  |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; --> 31: stop_rc = 1;)                  |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 168:  0.75s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 169:  0.76s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 170:  0.54s (92.63%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 171:  0.53s (96.01%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 172:  0.52s (99.04%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 173:  0.40s (99.00%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 174:  0.51s (98.45%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 27: stop_rsv = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 175:  0.51s (97.24%)¹                                  |                                                                  | 
+ | Assertion triggered: 42: assert(neh_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(37: assume(!neh_running); --> 31: stop_rc = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 176:  0.79s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 177:  0.57s (90.94%)¹                                  |                                                                  | 
+ | Assertion triggered: 51: assert(rsv_running);                    |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 178:  0.78s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | Reorder(33: assume(!rc_running); <-- 31: stop_rc = 1;)           |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Iteration 179:  0.77s (100.00%)¹                                 |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | Reorder(29: assume(!rsv_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+ | Verification:  0.37s (100.00%)¹                                  |                                                                  | 
+ | Changes up to this iteration³:                                   |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 29: assume(!rsv_running);)  |                                                                  | 
+ | Reorder(35: stop_neh = 1; <-- 27: stop_rsv = 1;)                 |                                                                  | 
+ | Reorder(33: assume(!rc_running); --> 35: stop_neh = 1;)          |                                                                  | 
+ | Reorder(37: assume(!neh_running); <-- 27: stop_rsv = 1;)         |                                                                  | 
+ | ---------------------------------------------------------------- | ---------------------------------------------------------------- | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

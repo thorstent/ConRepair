@@ -1,0 +1,665 @@
+digraph PartialOrder {
+	compound = true
+	"356: assume(sysfs_lock == 0);" -> "357: sysfs_lock = 6;"
+	"638: want_sysfs = 5;" -> "647a: sysfs_lock = 0;" [ltail = cluster49, lhead = cluster52]
+	"277a: assume(rtnl_lock == 0);" -> "277b: rtnl_lock = 1;"
+	"685: napi_thread();" -> "686: workqueue_thread();"
+	"673: want_dev = 0;" -> "675: irq_sem = 0;"
+	"328a: assume(napi_sem == 0);" -> "328b: napi_sem = 1;"
+	"629b: sysfs_lock = 1;" -> "631a: sysfs_lock = 0;" [ltail = cluster2, lhead = cluster66]
+	"328a: assume(napi_sem == 0);" -> "332a: napi_sem = 0;" [ltail = cluster47, lhead = cluster90]
+	"565a: assume(rtnl_lock == 0);" -> "565b: rtnl_lock = 1;"
+	"365: at{ assume(dev_lock == 0); ...}" -> "376a: dev_lock = 0;" [ltail = cluster5, lhead = cluster32]
+	"260: open1 = open();" -> "263: if (nondet == 0) {...}" [lhead = cluster29]
+	"307: assert(intr_mask != 0);" -> "308: drv_irq();"
+	"268: close();" -> "266: drv_xmit_timeout();" [lhead = cluster76]
+	"656: registered = 0;" -> "657: netif_running = 0;"
+	"249: drv_disconnect();" -> "241: want_dev = 5;" [lhead = cluster68]
+	"355: at{ assume(sysfs_lock == 0); ...}" -> "377a: sysfs_lock = 0;" [ltail = cluster34, lhead = cluster63]
+	"550: IntrMask = 255;" -> "549: intr_mask = 255;"
+	"682: pci_thread();" -> "683: network_thread();"
+	"446a: assume(irq_sem == 0);" -> "446b: irq_sem = 1;"
+	"659: irq_enabled = 0;" -> "661: napi_enabled = 0;"
+	"534: write_IntrStatus(status1);" -> "529: write_IntrMask(0);" [lhead = cluster92]
+	"605: intr_mask = 1;" -> "604: write_IntrMask(1);"
+	"565b: rtnl_lock = 1;" -> "574: dev_down();" [ltail = cluster19, lhead = cluster45]
+	"293: drv_close();" -> "292: netif_running = 0;"
+	"476: rc1 = register_netdev();" -> "480: ret4 = rc1;" [lhead = cluster8]
+	"603: dev_on = 1;" -> "604: write_IntrMask(1);"
+	"669: sysfs_lock = 0;" -> "670: rtnl_lock = 0;"
+	"591: assert(dev_on != 0);" -> "592: IntrMask = val;"
+	"672: want_sysfs = 0;" -> "673: want_dev = 0;"
+	"640: assume(sysfs_lock == 0);" -> "641: sysfs_lock = 5;"
+	"670: rtnl_lock = 0;" -> "672: want_sysfs = 0;"
+	"277a: assume(rtnl_lock == 0);" -> "284a: rtnl_lock = 0;" [ltail = cluster93, lhead = cluster24]
+	"571: napi_disable();" -> "577: napi_enable();"
+	"310a: irq_sem = 0;" -> "308: drv_irq();" [ltail = cluster77, lhead = cluster70]
+	"477: hw_start = drv_hw_start;" -> "476: rc1 = register_netdev();"
+	"446a: assume(irq_sem == 0);" -> "447a: irq_sem = 0;" [ltail = cluster78, lhead = cluster85]
+	"279: ret1 = drv_open();" -> "281: netif_running = 1;" [lhead = cluster36]
+	"290a: assume(rtnl_lock == 0);" -> "290b: rtnl_lock = 1;"
+	"366: assume(dev_lock == 0);" -> "367: dev_lock = 6;"
+	"661: napi_enabled = 0;" -> "662: napi_scheduled = 0;"
+	"496: rc2 = request_irq();" -> "499: ret5 = rc2;" [lhead = cluster61]
+	"687: sysfs_thread();" -> "688: dev_thread();"
+	"657: netif_running = 0;" -> "659: irq_enabled = 0;"
+	"679: IntrStatus = 0;" -> "680: IntrMask = 0;"
+	"680: IntrMask = 0;" -> "682: pci_thread();"
+	"241: want_dev = 5;" -> "243: assume(dev_lock == 0);" [lhead = cluster88]
+	"243: assume(dev_lock == 0);" -> "244: dev_lock = 5;"
+	"666: sysfs_registered = 0;" -> "668: dev_lock = 0;"
+	"244: dev_lock = 5;" -> "245: want_dev = 0;"
+	"574: dev_down();" -> "575: dev_up();"
+	"662: napi_scheduled = 0;" -> "664: reset_task_ready = 0;"
+	"683: network_thread();" -> "684: irq_thread();"
+	"641: sysfs_lock = 5;" -> "642: want_sysfs = 0;"
+	"545: work_done = handle_interrupt();" -> "550: IntrMask = 255;" [lhead = cluster51]
+	"427a: assume(napi_sem == 0);" -> "427b: napi_sem = 1;"
+	"499: ret5 = rc2;" -> "492a: assert(hw_start != 0);" [ltail = cluster61, lhead = cluster31]
+	"676: napi_sem = 0;" -> "677: dev_on = 0;"
+	"675: irq_sem = 0;" -> "676: napi_sem = 0;"
+	"534: write_IntrStatus(status1);" -> "537: assume(!status1);" [ltail = cluster40]
+	"668: dev_lock = 0;" -> "669: sysfs_lock = 0;"
+	"290b: rtnl_lock = 1;" -> "295a: rtnl_lock = 0;" [ltail = cluster82, lhead = cluster74]
+	"684: irq_thread();" -> "685: napi_thread();"
+	"241: want_dev = 5;" -> "250a: dev_lock = 0;" [ltail = cluster68, lhead = cluster80]
+	"597: assert(dev_on != 0);" -> "598: IntrStatus = IntrStatus & (~val);"
+	"496: rc2 = request_irq();" -> "494: IntrMask = 0;"
+	"354: want_sysfs = 6;" -> "357: sysfs_lock = 6;" [lhead = cluster73]
+	"364: want_dev = 6;" -> "366: assume(dev_lock == 0);" [lhead = cluster6]
+	"524: handled2 = 0;" -> "534: write_IntrStatus(status1);" [lhead = cluster40]
+	"512: free_irq();" -> "510: dev_down();"
+	"611: write_IntrMask(0);" -> "615: dev_on = 0;"
+	"686: workqueue_thread();" -> "687: sysfs_thread();"
+	"280: if (ret1 == 0) {...}" -> "277a: assume(rtnl_lock == 0);" [ltail = cluster35, lhead = cluster93]
+	"357: sysfs_lock = 6;" -> "358: want_sysfs = 0;"
+	"377a: sysfs_lock = 0;" -> "365: at{ assume(dev_lock == 0); ...}" [ltail = cluster63, lhead = cluster5]
+	"534: write_IntrStatus(status1);" -> "535: status1 = IntrStatus;"
+	"275: ret1 = 0;" -> "280: if (ret1 == 0) {...}" [lhead = cluster35]
+	"677: dev_on = 0;" -> "679: IntrStatus = 0;"
+	"237: probe1 = drv_probe();" -> "249: drv_disconnect();" [lhead = cluster33]
+	"494: IntrMask = 0;" -> "499: ret5 = rc2;" [lhead = cluster61]
+	"526: status1 = IntrStatus;" -> "534: write_IntrStatus(status1);" [lhead = cluster40]
+	"664: reset_task_ready = 0;" -> "666: sysfs_registered = 0;"
+	"305a: assume(irq_sem == 0);" -> "305b: irq_sem = 1;"
+	"305b: irq_sem = 1;" -> "310a: irq_sem = 0;" [ltail = cluster87, lhead = cluster77]
+	"688: dev_thread();" -> "689: deadlock_thread();"
+	"629a: assume(sysfs_lock == 0);" -> "629b: sysfs_lock = 1;"
+	"638: want_sysfs = 5;" -> "642: want_sysfs = 0;" [lhead = cluster94]
+	"367: dev_lock = 6;" -> "368: want_dev = 0;"
+	subgraph cluster13 {
+		label = "337: void workqueue_thread() {...}"
+		color = blue
+		"339: while (1) {...}"  [label, style = invisible]
+		subgraph cluster14 {
+			label = "339: while (1) {...}"
+			color = blue
+			"340: if (reset_task_ready == 0) {...}"  [label, style = invisible]
+			subgraph cluster15 {
+				label = "340: if (reset_task_ready == 0) {...}"
+				color = blue
+				"341: drv_reset_task();"  [label = "341: drv_reset_task();"]
+				"342: reset_task_ready = 0;"  [label = "342: reset_task_ready = 0;"]
+			}
+		}
+	}
+	subgraph cluster25 {
+		label = "314: void dev_thread() {...}"
+		color = blue
+		"316: while (1) {...}"  [label, style = invisible]
+		subgraph cluster26 {
+			label = "316: while (1) {...}"
+			color = blue
+			"317: IntrStatus = 1;"  [label = "317: IntrStatus = 1;"]
+		}
+	}
+	subgraph cluster75 {
+		label = "414: void free_irq() {...}"
+		color = blue
+		"416: irq_enabled = 0;"  [label = "416: irq_enabled = 0;"]
+	}
+	subgraph cluster59 {
+		label = "402: int request_irq() {...}"
+		color = blue
+		"405: if (nondet == 0) {...}"  [label, style = invisible]
+		subgraph cluster86 {
+			label = "405: if (nondet == 0) {...}"
+			color = blue
+			"406: irq_enabled = 1;"  [label = "406: irq_enabled = 1;"]
+			"407: ret3 = 0;"  [label = "407: ret3 = 0;"]
+			"409: ret3 = -1;"  [label = "409: ret3 = -1;"]
+		}
+	}
+	subgraph cluster56 {
+		label = "430: void napi_schedule() {...}"
+		color = blue
+		"432: at{ if (napi_enabled != 0) {...} ...}"  [label, style = invisible]
+		subgraph cluster83 {
+			label = "432: at{ if (napi_enabled != 0) {...} ...}"
+			color = blue
+			"433: if (napi_enabled != 0) {...}"  [label, style = invisible]
+			subgraph cluster84 {
+				label = "433: if (napi_enabled != 0) {...}"
+				color = blue
+				"434: napi_scheduled = 1;"  [label = "434: napi_scheduled = 1;"]
+			}
+		}
+	}
+	subgraph cluster81 {
+		label = "450: void device_create_bin_file() {...}"
+		color = blue
+		"452: sysfs_registered = 1;"  [label = "452: sysfs_registered = 1;"]
+	}
+	subgraph cluster38 {
+		label = "396: void unregister_netdev() {...}"
+		color = blue
+		"399: assume(!(netif_running != 0));"  [label = "399: assume(!(netif_running != 0));"]
+		"398: registered = 0;"  [label = "398: registered = 0;"]
+	}
+	subgraph cluster20 {
+		label = "651: void deadlock_thread() {...}"
+		color = blue
+		"652: assert(!((((dev_lock == want_sysfs) & (sysfs_lock == want_dev)) & (dev_lock != 0)) & (sysfs_lock != 0)));"  [label = "652: assert(!((((dev_lock == want_sysfs) & (sysfs_lock == want_dev)) & (dev_lock != 0)) & (sysfs_lock != 0)));"]
+	}
+	subgraph cluster41 {
+		label = "424: void napi_disable() {...}"
+		color = blue
+		"427: down(napi_sem);"  [label, style = invisible]
+		"426: napi_enabled = 0;"  [label = "426: napi_enabled = 0;"]
+		subgraph cluster91 {
+			label = "427: down(napi_sem);"
+			color = blue
+			"427a: assume(napi_sem == 0);"  [label = "427a: assume(napi_sem == 0);"]
+			"427b: napi_sem = 1;"  [label = "427b: napi_sem = 1;"]
+		}
+	}
+	subgraph cluster22 {
+		label = "619: int handle_interrupt() {...}"
+		color = blue
+		"622: nondet3 = nondet_int();"  [label = "622: nondet3 = nondet_int();"]
+		"623: IntrStatus = 0;"  [label = "623: IntrStatus = 0;"]
+	}
+	subgraph cluster53 {
+		label = "515: void drv_disconnect() {...}"
+		color = blue
+		"518: remove_sysfs_files();"  [label = "518: remove_sysfs_files();"]
+		"517: unregister_netdev();"  [label = "517: unregister_netdev();"]
+	}
+	subgraph cluster17 {
+		label = "301: void irq_thread() {...}"
+		color = blue
+		"303: while (1) {...}"  [label, style = invisible]
+		subgraph cluster64 {
+			label = "303: while (1) {...}"
+			color = blue
+			"306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...}"  [label, style = invisible]
+			"310: up(irq_sem);"  [label, style = invisible]
+			"305: down(irq_sem);"  [label, style = invisible]
+			subgraph cluster77 {
+				label = "310: up(irq_sem);"
+				color = blue
+				"310a: irq_sem = 0;"  [label = "310a: irq_sem = 0;"]
+			}
+			subgraph cluster70 {
+				label = "306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...}"
+				color = blue
+				"308: drv_irq();"  [label = "308: drv_irq();"]
+				"307: assert(intr_mask != 0);"  [label = "307: assert(intr_mask != 0);"]
+			}
+			subgraph cluster87 {
+				label = "305: down(irq_sem);"
+				color = blue
+				"305b: irq_sem = 1;"  [label = "305b: irq_sem = 1;"]
+				"305a: assume(irq_sem == 0);"  [label = "305a: assume(irq_sem == 0);"]
+			}
+		}
+	}
+	subgraph cluster3 {
+		label = "348: void sysfs_thread() {...}"
+		color = blue
+		"351: while (1) {...}"  [label, style = invisible]
+		subgraph cluster4 {
+			label = "351: while (1) {...}"
+			color = blue
+			"363: nr{ want_dev = 6; ...}"  [label, style = invisible]
+			"377: unlock(sysfs_lock);"  [label, style = invisible]
+			"353: nr{ want_sysfs = 6; ...}"  [label, style = invisible]
+			"376: unlock(dev_lock);"  [label, style = invisible]
+			"372: if (sysfs_registered != 0) {...}"  [label, style = invisible]
+			subgraph cluster63 {
+				label = "377: unlock(sysfs_lock);"
+				color = blue
+				"377a: sysfs_lock = 0;"  [label = "377a: sysfs_lock = 0;"]
+			}
+			subgraph cluster21 {
+				label = "372: if (sysfs_registered != 0) {...}"
+				color = blue
+				"373: nondet1 = nondet_int();"  [label = "373: nondet1 = nondet_int();"]
+				"374: drv_sysfs_read(nondet1);"  [label = "374: drv_sysfs_read(nondet1);"]
+			}
+			subgraph cluster32 {
+				label = "376: unlock(dev_lock);"
+				color = blue
+				"376a: dev_lock = 0;"  [label = "376a: dev_lock = 0;"]
+			}
+			subgraph cluster5 {
+				label = "363: nr{ want_dev = 6; ...}"
+				color = blue
+				"365: at{ assume(dev_lock == 0); ...}"  [label, style = invisible]
+				"364: want_dev = 6;"  [label = "364: want_dev = 6;"]
+				subgraph cluster6 {
+					label = "365: at{ assume(dev_lock == 0); ...}"
+					color = blue
+					"367: dev_lock = 6;"  [label = "367: dev_lock = 6;"]
+					"366: assume(dev_lock == 0);"  [label = "366: assume(dev_lock == 0);"]
+					"368: want_dev = 0;"  [label = "368: want_dev = 0;"]
+				}
+			}
+			subgraph cluster34 {
+				label = "353: nr{ want_sysfs = 6; ...}"
+				color = blue
+				"355: at{ assume(sysfs_lock == 0); ...}"  [label, style = invisible]
+				"354: want_sysfs = 6;"  [label = "354: want_sysfs = 6;"]
+				subgraph cluster73 {
+					label = "355: at{ assume(sysfs_lock == 0); ...}"
+					color = blue
+					"357: sysfs_lock = 6;"  [label = "357: sysfs_lock = 6;"]
+					"356: assume(sysfs_lock == 0);"  [label = "356: assume(sysfs_lock == 0);"]
+					"358: want_sysfs = 0;"  [label = "358: want_sysfs = 0;"]
+				}
+			}
+		}
+	}
+	subgraph cluster69 {
+		label = "455: void device_remove_bin_file() {...}"
+		color = blue
+		"457: sysfs_registered = 0;"  [label = "457: sysfs_registered = 0;"]
+	}
+	subgraph cluster27 {
+		label = "256: void network_thread() {...}"
+		color = blue
+		"259: while (1) {...}"  [label, style = invisible]
+		subgraph cluster28 {
+			label = "259: while (1) {...}"
+			color = blue
+			"260: open1 = open();"  [label = "260: open1 = open();"]
+			"261: if (open1 == 0) {...}"  [label, style = invisible]
+			subgraph cluster29 {
+				label = "261: if (open1 == 0) {...}"
+				color = blue
+				"268: close();"  [label = "268: close();"]
+				"263: if (nondet == 0) {...}"  [label, style = invisible]
+				subgraph cluster76 {
+					label = "263: if (nondet == 0) {...}"
+					color = blue
+					"266: drv_xmit_timeout();"  [label = "266: drv_xmit_timeout();"]
+					"264: drv_start_xmit();"  [label = "264: drv_start_xmit();"]
+				}
+			}
+		}
+	}
+	subgraph cluster71 {
+		label = "438: void napi_complete() {...}"
+		color = blue
+		"440: napi_scheduled = 0;"  [label = "440: napi_scheduled = 0;"]
+	}
+	subgraph cluster62 {
+		label = "419: void napi_enable() {...}"
+		color = blue
+		"421: napi_enabled = 1;"  [label = "421: napi_enabled = 1;"]
+	}
+	subgraph cluster42 {
+		label = "324: void napi_thread() {...}"
+		color = blue
+		"327: while (1) {...}"  [label, style = invisible]
+		subgraph cluster43 {
+			label = "327: while (1) {...}"
+			color = blue
+			"328: down(napi_sem);"  [label, style = invisible]
+			"332: up(napi_sem);"  [label, style = invisible]
+			"329: if (napi_scheduled == 0) {...}"  [label, style = invisible]
+			subgraph cluster90 {
+				label = "332: up(napi_sem);"
+				color = blue
+				"332a: napi_sem = 0;"  [label = "332a: napi_sem = 0;"]
+			}
+			subgraph cluster44 {
+				label = "329: if (napi_scheduled == 0) {...}"
+				color = blue
+				"330: drv_napi_poll();"  [label = "330: drv_napi_poll();"]
+			}
+			subgraph cluster47 {
+				label = "328: down(napi_sem);"
+				color = blue
+				"328a: assume(napi_sem == 0);"  [label = "328a: assume(napi_sem == 0);"]
+				"328b: napi_sem = 1;"  [label = "328b: napi_sem = 1;"]
+			}
+		}
+	}
+	subgraph cluster10 {
+		label = "582: unsigned int drv_sysfs_read(int off) {...}"
+		color = blue
+		"585: nondet2 = nondet_int();"  [label = "585: nondet2 = nondet_int();"]
+	}
+	subgraph cluster12 {
+		label = "384: int register_netdev() {...}"
+		color = blue
+		"387: if (nondet == 0) {...}"  [label, style = invisible]
+		subgraph cluster65 {
+			label = "387: if (nondet == 0) {...}"
+			color = blue
+			"391: ret2 = -1;"  [label = "391: ret2 = -1;"]
+			"388: registered = 1;"  [label = "388: registered = 1;"]
+			"389: ret2 = 0;"  [label = "389: ret2 = 0;"]
+		}
+	}
+	subgraph cluster55 {
+		label = "558: void drv_xmit_timeout() {...}"
+		color = blue
+		"560: reset_task_ready = 1;"  [label = "560: reset_task_ready = 1;"]
+	}
+	subgraph cluster9 {
+		label = "234: void pci_thread() {...}"
+		color = blue
+		"237: probe1 = drv_probe();"  [label = "237: probe1 = drv_probe();"]
+		"238: if (probe1 == 0) {...}"  [label, style = invisible]
+		subgraph cluster33 {
+			label = "238: if (probe1 == 0) {...}"
+			color = blue
+			"250: unlock(dev_lock);"  [label, style = invisible]
+			"249: drv_disconnect();"  [label = "249: drv_disconnect();"]
+			"240: nr{ want_dev = 5; ...}"  [label, style = invisible]
+			subgraph cluster80 {
+				label = "250: unlock(dev_lock);"
+				color = blue
+				"250a: dev_lock = 0;"  [label = "250a: dev_lock = 0;"]
+			}
+			subgraph cluster68 {
+				label = "240: nr{ want_dev = 5; ...}"
+				color = blue
+				"242: at{ assume(dev_lock == 0); ...}"  [label, style = invisible]
+				"241: want_dev = 5;"  [label = "241: want_dev = 5;"]
+				subgraph cluster88 {
+					label = "242: at{ assume(dev_lock == 0); ...}"
+					color = blue
+					"243: assume(dev_lock == 0);"  [label = "243: assume(dev_lock == 0);"]
+					"244: dev_lock = 5;"  [label = "244: dev_lock = 5;"]
+					"245: want_dev = 0;"  [label = "245: want_dev = 0;"]
+				}
+			}
+		}
+	}
+	subgraph cluster79 {
+		label = "595: void write_IntrStatus(u8 val) {...}"
+		color = blue
+		"597: assert(dev_on != 0);"  [label = "597: assert(dev_on != 0);"]
+		"598: IntrStatus = IntrStatus & (~val);"  [label = "598: IntrStatus = IntrStatus & (~val);"]
+	}
+	subgraph cluster16 {
+		label = "288: int close() {...}"
+		color = blue
+		"290: lock(rtnl_lock);"  [label, style = invisible]
+		"291: if (netif_running != 0) {...}"  [label, style = invisible]
+		"295: unlock(rtnl_lock);"  [label, style = invisible]
+		subgraph cluster74 {
+			label = "295: unlock(rtnl_lock);"
+			color = blue
+			"295a: rtnl_lock = 0;"  [label = "295a: rtnl_lock = 0;"]
+		}
+		subgraph cluster82 {
+			label = "290: lock(rtnl_lock);"
+			color = blue
+			"290a: assume(rtnl_lock == 0);"  [label = "290a: assume(rtnl_lock == 0);"]
+			"290b: rtnl_lock = 1;"  [label = "290b: rtnl_lock = 1;"]
+		}
+		subgraph cluster60 {
+			label = "291: if (netif_running != 0) {...}"
+			color = blue
+			"293: drv_close();"  [label = "293: drv_close();"]
+			"292: netif_running = 0;"  [label = "292: netif_running = 0;"]
+		}
+	}
+	subgraph cluster7 {
+		label = "469: int drv_probe() {...}"
+		color = blue
+		"479: if (rc1 < 0) {...}"  [label, style = invisible]
+		"474: create_sysfs_files();"  [label = "474: create_sysfs_files();"]
+		"477: hw_start = drv_hw_start;"  [label = "477: hw_start = drv_hw_start;"]
+		"476: rc1 = register_netdev();"  [label = "476: rc1 = register_netdev();"]
+		subgraph cluster8 {
+			label = "479: if (rc1 < 0) {...}"
+			color = blue
+			"480: ret4 = rc1;"  [label = "480: ret4 = rc1;"]
+			"482: ret4 = 0;"  [label = "482: ret4 = 0;"]
+		}
+	}
+	subgraph cluster39 {
+		label = "521: int drv_irq() {...}"
+		color = blue
+		"526: status1 = IntrStatus;"  [label = "526: status1 = IntrStatus;"]
+		"527: while (nondet != 0) {...}"  [label, style = invisible]
+		"537: assume(!status1);"  [label = "537: assume(!status1);"]
+		"524: handled2 = 0;"  [label = "524: handled2 = 0;"]
+		subgraph cluster40 {
+			label = "527: while (nondet != 0) {...}"
+			color = blue
+			"528: if (intr_mask != 0) {...}"  [label, style = invisible]
+			"534: write_IntrStatus(status1);"  [label = "534: write_IntrStatus(status1);"]
+			"535: status1 = IntrStatus;"  [label = "535: status1 = IntrStatus;"]
+			subgraph cluster92 {
+				label = "528: if (intr_mask != 0) {...}"
+				color = blue
+				"531: napi_schedule();"  [label = "531: napi_schedule();"]
+				"530: intr_mask = 0;"  [label = "530: intr_mask = 0;"]
+				"529: write_IntrMask(0);"  [label = "529: write_IntrMask(0);"]
+				"532: handled2 = 1;"  [label = "532: handled2 = 1;"]
+			}
+		}
+	}
+	subgraph cluster54 {
+		label = "508: void drv_close() {...}"
+		color = blue
+		"510: dev_down();"  [label = "510: dev_down();"]
+		"511: napi_disable();"  [label = "511: napi_disable();"]
+		"512: free_irq();"  [label = "512: free_irq();"]
+	}
+	subgraph cluster37 {
+		label = "634: void remove_sysfs_files() {...}"
+		color = blue
+		"646: device_remove_bin_file();"  [label = "646: device_remove_bin_file();"]
+		"647: unlock(sysfs_lock);"  [label, style = invisible]
+		"637: nr{ want_sysfs = 5; ...}"  [label, style = invisible]
+		subgraph cluster52 {
+			label = "647: unlock(sysfs_lock);"
+			color = blue
+			"647a: sysfs_lock = 0;"  [label = "647a: sysfs_lock = 0;"]
+		}
+		subgraph cluster49 {
+			label = "637: nr{ want_sysfs = 5; ...}"
+			color = blue
+			"639: at{ assume(sysfs_lock == 0); ...}"  [label, style = invisible]
+			"638: want_sysfs = 5;"  [label = "638: want_sysfs = 5;"]
+			subgraph cluster94 {
+				label = "639: at{ assume(sysfs_lock == 0); ...}"
+				color = blue
+				"641: sysfs_lock = 5;"  [label = "641: sysfs_lock = 5;"]
+				"640: assume(sysfs_lock == 0);"  [label = "640: assume(sysfs_lock == 0);"]
+				"642: want_sysfs = 0;"  [label = "642: want_sysfs = 0;"]
+			}
+		}
+	}
+	subgraph cluster72 {
+		label = "589: void write_IntrMask(u8 val) {...}"
+		color = blue
+		"591: assert(dev_on != 0);"  [label = "591: assert(dev_on != 0);"]
+		"592: IntrMask = val;"  [label = "592: IntrMask = val;"]
+	}
+	subgraph cluster50 {
+		label = "541: void drv_napi_poll() {...}"
+		color = blue
+		"545: work_done = handle_interrupt();"  [label = "545: work_done = handle_interrupt();"]
+		"547: if (work_done < 100) {...}"  [label, style = invisible]
+		subgraph cluster51 {
+			label = "547: if (work_done < 100) {...}"
+			color = blue
+			"548: napi_complete();"  [label = "548: napi_complete();"]
+			"550: IntrMask = 255;"  [label = "550: IntrMask = 255;"]
+			"549: intr_mask = 255;"  [label = "549: intr_mask = 255;"]
+		}
+	}
+	subgraph cluster58 {
+		label = "601: void dev_up() {...}"
+		color = blue
+		"603: dev_on = 1;"  [label = "603: dev_on = 1;"]
+		"604: write_IntrMask(1);"  [label = "604: write_IntrMask(1);"]
+		"605: intr_mask = 1;"  [label = "605: intr_mask = 1;"]
+	}
+	subgraph cluster67 {
+		label = "609: void dev_down() {...}"
+		color = blue
+		"613: synchronize_irq();"  [label = "613: synchronize_irq();"]
+		"611: write_IntrMask(0);"  [label = "611: write_IntrMask(0);"]
+		"615: dev_on = 0;"  [label = "615: dev_on = 0;"]
+	}
+	subgraph cluster18 {
+		label = "563: void drv_reset_task() {...}"
+		color = blue
+		"565: lock(rtnl_lock);"  [label, style = invisible]
+		"568: if ((!netif_running) == 0) {...}"  [label, style = invisible]
+		subgraph cluster45 {
+			label = "568: if ((!netif_running) == 0) {...}"
+			color = blue
+			"577: napi_enable();"  [label = "577: napi_enable();"]
+			"574: dev_down();"  [label = "574: dev_down();"]
+			"571: napi_disable();"  [label = "571: napi_disable();"]
+			"575: dev_up();"  [label = "575: dev_up();"]
+			"578: unlock(rtnl_lock);"  [label, style = invisible]
+			subgraph cluster46 {
+				label = "578: unlock(rtnl_lock);"
+				color = blue
+				"578a: rtnl_lock = 0;"  [label = "578a: rtnl_lock = 0;"]
+			}
+		}
+		subgraph cluster19 {
+			label = "565: lock(rtnl_lock);"
+			color = blue
+			"565b: rtnl_lock = 1;"  [label = "565b: rtnl_lock = 1;"]
+			"565a: assume(rtnl_lock == 0);"  [label = "565a: assume(rtnl_lock == 0);"]
+		}
+	}
+	subgraph cluster57 {
+		label = "444: void synchronize_irq() {...}"
+		color = blue
+		"447: up(irq_sem);"  [label, style = invisible]
+		"446: down(irq_sem);"  [label, style = invisible]
+		subgraph cluster85 {
+			label = "447: up(irq_sem);"
+			color = blue
+			"447a: irq_sem = 0;"  [label = "447a: irq_sem = 0;"]
+		}
+		subgraph cluster78 {
+			label = "446: down(irq_sem);"
+			color = blue
+			"446a: assume(irq_sem == 0);"  [label = "446a: assume(irq_sem == 0);"]
+			"446b: irq_sem = 1;"  [label = "446b: irq_sem = 1;"]
+		}
+	}
+	subgraph cluster30 {
+		label = "487: int drv_open() {...}"
+		color = blue
+		"492: (*hw_start)();"  [label, style = invisible]
+		"494: IntrMask = 0;"  [label = "494: IntrMask = 0;"]
+		"496: rc2 = request_irq();"  [label = "496: rc2 = request_irq();"]
+		"498: if (rc2 < 0) {...}"  [label, style = invisible]
+		subgraph cluster61 {
+			label = "498: if (rc2 < 0) {...}"
+			color = blue
+			"503: ret5 = 0;"  [label = "503: ret5 = 0;"]
+			"499: ret5 = rc2;"  [label = "499: ret5 = rc2;"]
+			"501: napi_enable();"  [label = "501: napi_enable();"]
+			"502: dev_up();"  [label = "502: dev_up();"]
+		}
+		subgraph cluster31 {
+			label = "492: (*hw_start)();"
+			color = blue
+			"492a: assert(hw_start != 0);"  [label = "492a: assert(hw_start != 0);"]
+		}
+	}
+	subgraph cluster1 {
+		label = "627: void create_sysfs_files() {...}"
+		color = blue
+		"631: unlock(sysfs_lock);"  [label, style = invisible]
+		"630: device_create_bin_file();"  [label = "630: device_create_bin_file();"]
+		"629: lock(sysfs_lock);"  [label, style = invisible]
+		subgraph cluster66 {
+			label = "631: unlock(sysfs_lock);"
+			color = blue
+			"631a: sysfs_lock = 0;"  [label = "631a: sysfs_lock = 0;"]
+		}
+		subgraph cluster2 {
+			label = "629: lock(sysfs_lock);"
+			color = blue
+			"629a: assume(sysfs_lock == 0);"  [label = "629a: assume(sysfs_lock == 0);"]
+			"629b: sysfs_lock = 1;"  [label = "629b: sysfs_lock = 1;"]
+		}
+	}
+	subgraph cluster11 {
+		label = "655: void main() {...}"
+		color = blue
+		"687: sysfs_thread();"  [label = "687: sysfs_thread();"]
+		"685: napi_thread();"  [label = "685: napi_thread();"]
+		"679: IntrStatus = 0;"  [label = "679: IntrStatus = 0;"]
+		"676: napi_sem = 0;"  [label = "676: napi_sem = 0;"]
+		"683: network_thread();"  [label = "683: network_thread();"]
+		"677: dev_on = 0;"  [label = "677: dev_on = 0;"]
+		"662: napi_scheduled = 0;"  [label = "662: napi_scheduled = 0;"]
+		"670: rtnl_lock = 0;"  [label = "670: rtnl_lock = 0;"]
+		"686: workqueue_thread();"  [label = "686: workqueue_thread();"]
+		"672: want_sysfs = 0;"  [label = "672: want_sysfs = 0;"]
+		"668: dev_lock = 0;"  [label = "668: dev_lock = 0;"]
+		"682: pci_thread();"  [label = "682: pci_thread();"]
+		"689: deadlock_thread();"  [label = "689: deadlock_thread();"]
+		"688: dev_thread();"  [label = "688: dev_thread();"]
+		"684: irq_thread();"  [label = "684: irq_thread();"]
+		"657: netif_running = 0;"  [label = "657: netif_running = 0;"]
+		"666: sysfs_registered = 0;"  [label = "666: sysfs_registered = 0;"]
+		"664: reset_task_ready = 0;"  [label = "664: reset_task_ready = 0;"]
+		"675: irq_sem = 0;"  [label = "675: irq_sem = 0;"]
+		"669: sysfs_lock = 0;"  [label = "669: sysfs_lock = 0;"]
+		"673: want_dev = 0;"  [label = "673: want_dev = 0;"]
+		"661: napi_enabled = 0;"  [label = "661: napi_enabled = 0;"]
+		"680: IntrMask = 0;"  [label = "680: IntrMask = 0;"]
+		"659: irq_enabled = 0;"  [label = "659: irq_enabled = 0;"]
+		"656: registered = 0;"  [label = "656: registered = 0;"]
+	}
+	subgraph cluster23 {
+		label = "273: int open() {...}"
+		color = blue
+		"275: ret1 = 0;"  [label = "275: ret1 = 0;"]
+		"277: lock(rtnl_lock);"  [label, style = invisible]
+		"284: unlock(rtnl_lock);"  [label, style = invisible]
+		"278: if (registered != 0) {...}"  [label, style = invisible]
+		subgraph cluster24 {
+			label = "284: unlock(rtnl_lock);"
+			color = blue
+			"284a: rtnl_lock = 0;"  [label = "284a: rtnl_lock = 0;"]
+		}
+		subgraph cluster35 {
+			label = "278: if (registered != 0) {...}"
+			color = blue
+			"279: ret1 = drv_open();"  [label = "279: ret1 = drv_open();"]
+			"280: if (ret1 == 0) {...}"  [label, style = invisible]
+			subgraph cluster36 {
+				label = "280: if (ret1 == 0) {...}"
+				color = blue
+				"281: netif_running = 1;"  [label = "281: netif_running = 1;"]
+			}
+		}
+		subgraph cluster93 {
+			label = "277: lock(rtnl_lock);"
+			color = blue
+			"277b: rtnl_lock = 1;"  [label = "277b: rtnl_lock = 1;"]
+			"277a: assume(rtnl_lock == 0);"  [label = "277a: assume(rtnl_lock == 0);"]
+		}
+	}
+}

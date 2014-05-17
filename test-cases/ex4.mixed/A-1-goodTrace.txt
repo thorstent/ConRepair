@@ -1,0 +1,32 @@
+Deadlock step
+
+ | main              | client_thread1                 | client_thread2                 | 
+ | ================= | ============================== | ============================== | 
+ | 110: lock1 = 0;   |                                |                                | 
+ | 111: bsy = 0;     |                                |                                | 
+ | 112: pending = 0; |                                |                                | 
+ | 113: request = 0; |                                |                                | 
+ |                   | 30: acm_cdc_notify(1);         |                                | 
+ |                   |   30a: thread_id = 1;          |                                | 
+ |                   |   67: result = 0;              |                                | 
+ |                   |   70: assume(lock1 == 0);      |                                | 
+ |                   |   71: lock1 = thread_id;       |                                | 
+ |                   |   75: pending = 0;             |                                | 
+ |                   |   78a: assume(bsy == 0);       |                                | 
+ |                   |   80: bsy = 1;                 |                                | 
+ |                   |   82: lock1 = 0;               |                                | 
+ |                   |   90: result = -1;             |                                | 
+ |                   |   92a: assume(result == (-1)); |                                | 
+ |                   |   94: bsy = 0;                 |                                | 
+ |                   |                                | 35: acm_cdc_notify(2);         | 
+ |                   |                                |   35a: thread_id = 2;          | 
+ |                   |                                |   67: result = 0;              | 
+ |                   |                                |   70: assume(lock1 == 0);      | 
+ |                   |                                |   71: lock1 = thread_id;       | 
+ |                   |                                |   75: pending = 0;             | 
+ |                   |                                |   78a: assume(bsy == 0);       | 
+ |                   |                                |   80: bsy = 1;                 | 
+ |                   |                                |   82: lock1 = 0;               | 
+ |                   |                                |   90: result = -1;             | 
+ |                   |                                |   92a: assume(result == (-1)); | 
+ |                   |                                |   94: bsy = 0;                 | 

@@ -1,0 +1,8 @@
+ Deadlock-Round : shutdown_thread() - 35: stop_neh = 1;        --> 37: assume(!neh_running); 
+ Deadlock-Round : neh_thread()      - 53: assume(stop_neh);    --> 55: neh_running = 0;      
+ Deadlock-Round : rsv_thread()      - 60: assume(stop_rsv);    --> 62: rsv_running = 0;      
+ Deadlock-Round : shutdown_thread() - 31: stop_rc = 1;         --> 33: assume(!rc_running);  
+ Deadlock-Round : shutdown_thread() - 33: assume(!rc_running); --> 35: stop_neh = 1;         
+ Deadlock-Round : rc_thread()       - 44: assume(stop_rc);     --> 46: rc_running = 0;       
+ Deadlock-Round : rc_thread()       - 42: assert(neh_running); --> 46: rc_running = 0;       
+ Deadlock-Round : shutdown_thread() - 27: stop_rsv = 1;        --> 29: assume(!rsv_running); 

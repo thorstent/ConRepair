@@ -1,0 +1,104 @@
+digraph PartialOrder {
+	compound = true
+	"115: config_thread();" -> "116: iwl3945_bg_alive_start_thread();"
+	"38: assert((lock1 == 0) | (want_rtnl_lock != 2));" -> "45: want_lock = 0;" [lhead = cluster3]
+	"31: rtnl_lock = 1;" -> "36: want_lock = 1;" [ltail = cluster4]
+	"30: assume(rtnl_lock == 0);" -> "31: rtnl_lock = 1;"
+	"83: rtnl_lock = 1;" -> "84: want_rtnl_lock = 0;"
+	"112: notify = 0;" -> "115: config_thread();"
+	"64: assume(lock1 == 0);" -> "65: lock1 = 1;"
+	"89: notify = 1;" -> "92: rtnl_lock = 0;"
+	"84: want_rtnl_lock = 0;" -> "89: notify = 1;" [ltail = cluster8]
+	"82: assume(rtnl_lock == 0);" -> "83: rtnl_lock = 1;"
+	"74: want_rtnl_lock = 2;" -> "84: want_rtnl_lock = 0;" [lhead = cluster8]
+	"110: want_rtnl_lock = 0;" -> "111: restarted = 0;"
+	"89: notify = 1;" -> "70: restarted = 1;" [ltail = cluster7]
+	"36: want_lock = 1;" -> "38: assert((lock1 == 0) | (want_rtnl_lock != 2));"
+	"111: restarted = 0;" -> "112: notify = 0;"
+	"108: want_lock = 0;" -> "109: rtnl_lock = 0;"
+	"109: rtnl_lock = 0;" -> "110: want_rtnl_lock = 0;"
+	"101: assume(notify == 1);" -> "103: assert(restarted == 1);"
+	"107: lock1 = 0;" -> "108: want_lock = 0;"
+	"53: lock1 = 0;" -> "55: rtnl_lock = 0;"
+	"65: lock1 = 1;" -> "96: lock1 = 0;" [ltail = cluster9]
+	"45: want_lock = 0;" -> "53: lock1 = 0;" [ltail = cluster3]
+	"44: lock1 = 1;" -> "45: want_lock = 0;"
+	"116: iwl3945_bg_alive_start_thread();" -> "117: reassoc_thread();"
+	"43: assume(lock1 == 0);" -> "44: lock1 = 1;"
+	subgraph cluster1 {
+		label = "24: int config_thread() {...}"
+		color = blue
+		"25: nr{ at{ assume(rtnl_lock == 0); ...} ...}"  [label, style = invisible]
+		subgraph cluster2 {
+			label = "25: nr{ at{ assume(rtnl_lock == 0); ...} ...}"
+			color = blue
+			"55: rtnl_lock = 0;"  [label = "55: rtnl_lock = 0;"]
+			"53: lock1 = 0;"  [label = "53: lock1 = 0;"]
+			"36: want_lock = 1;"  [label = "36: want_lock = 1;"]
+			"38: assert((lock1 == 0) | (want_rtnl_lock != 2));"  [label = "38: assert((lock1 == 0) | (want_rtnl_lock != 2));"]
+			"29: at{ assume(rtnl_lock == 0); ...}"  [label, style = invisible]
+			"42: at{ assume(lock1 == 0); ...}"  [label, style = invisible]
+			subgraph cluster3 {
+				label = "42: at{ assume(lock1 == 0); ...}"
+				color = blue
+				"45: want_lock = 0;"  [label = "45: want_lock = 0;"]
+				"44: lock1 = 1;"  [label = "44: lock1 = 1;"]
+				"43: assume(lock1 == 0);"  [label = "43: assume(lock1 == 0);"]
+			}
+			subgraph cluster4 {
+				label = "29: at{ assume(rtnl_lock == 0); ...}"
+				color = blue
+				"31: rtnl_lock = 1;"  [label = "31: rtnl_lock = 1;"]
+				"30: assume(rtnl_lock == 0);"  [label = "30: assume(rtnl_lock == 0);"]
+			}
+		}
+	}
+	subgraph cluster5 {
+		label = "106: void main() {...}"
+		color = blue
+		"110: want_rtnl_lock = 0;"  [label = "110: want_rtnl_lock = 0;"]
+		"115: config_thread();"  [label = "115: config_thread();"]
+		"111: restarted = 0;"  [label = "111: restarted = 0;"]
+		"107: lock1 = 0;"  [label = "107: lock1 = 0;"]
+		"112: notify = 0;"  [label = "112: notify = 0;"]
+		"117: reassoc_thread();"  [label = "117: reassoc_thread();"]
+		"108: want_lock = 0;"  [label = "108: want_lock = 0;"]
+		"109: rtnl_lock = 0;"  [label = "109: rtnl_lock = 0;"]
+		"116: iwl3945_bg_alive_start_thread();"  [label = "116: iwl3945_bg_alive_start_thread();"]
+	}
+	subgraph cluster6 {
+		label = "60: int iwl3945_bg_alive_start_thread() {...}"
+		color = blue
+		"96: lock1 = 0;"  [label = "96: lock1 = 0;"]
+		"70: restarted = 1;"  [label = "70: restarted = 1;"]
+		"72: nr{ want_rtnl_lock = 2; ...}"  [label, style = invisible]
+		"63: at{ assume(lock1 == 0); ...}"  [label, style = invisible]
+		subgraph cluster9 {
+			label = "63: at{ assume(lock1 == 0); ...}"
+			color = blue
+			"64: assume(lock1 == 0);"  [label = "64: assume(lock1 == 0);"]
+			"65: lock1 = 1;"  [label = "65: lock1 = 1;"]
+		}
+		subgraph cluster7 {
+			label = "72: nr{ want_rtnl_lock = 2; ...}"
+			color = blue
+			"89: notify = 1;"  [label = "89: notify = 1;"]
+			"81: at{ assume(rtnl_lock == 0); ...}"  [label, style = invisible]
+			"92: rtnl_lock = 0;"  [label = "92: rtnl_lock = 0;"]
+			"74: want_rtnl_lock = 2;"  [label = "74: want_rtnl_lock = 2;"]
+			subgraph cluster8 {
+				label = "81: at{ assume(rtnl_lock == 0); ...}"
+				color = blue
+				"84: want_rtnl_lock = 0;"  [label = "84: want_rtnl_lock = 0;"]
+				"82: assume(rtnl_lock == 0);"  [label = "82: assume(rtnl_lock == 0);"]
+				"83: rtnl_lock = 1;"  [label = "83: rtnl_lock = 1;"]
+			}
+		}
+	}
+	subgraph cluster10 {
+		label = "99: int reassoc_thread() {...}"
+		color = blue
+		"101: assume(notify == 1);"  [label = "101: assume(notify == 1);"]
+		"103: assert(restarted == 1);"  [label = "103: assert(restarted == 1);"]
+	}
+}

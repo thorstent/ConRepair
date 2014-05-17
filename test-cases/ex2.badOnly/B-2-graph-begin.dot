@@ -1,0 +1,28 @@
+digraph Counterexample {
+	22 -> 23 [color = black, style = solid, constraint = false]
+	22 -> 25 [color = white, style = solid]
+	21 -> 23 [color = white, style = solid]
+	23 -> 25 [color = black, style = solid, constraint = false]
+	25 -> 31 [color = white, style = solid]
+	14 -> 22 [color = white, style = solid]
+	13 -> 14 [color = white, style = solid]
+	21 -> 22 [color = black, style = solid, constraint = false]
+	14 -> 20 [color = black, style = solid, constraint = false]
+	20 -> 21 [color = white, style = solid]
+	subgraph cluster2 {
+		label = thread2
+		color = blue
+		21  [label = "36: starting = 0;"]
+		20  [label = "37: assume(IntrMask == 1);"]
+		23  [label = "38: assert(patched == 1);"]
+	}
+	subgraph cluster1 {
+		label = thread1
+		color = blue
+		22  [label = "8: assume(starting == 0);"]
+		31  [label = "8: assume(starting == 0);"]
+		14  [label = "13: patched = 1;"]
+		25  [label = "18: IntrMask = 1;"]
+		13  [label = "12: assert(starting == 0);", color = red]
+	}
+}

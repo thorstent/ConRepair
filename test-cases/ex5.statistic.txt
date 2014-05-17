@@ -1,0 +1,81 @@
+File: ex5.c
+Mode: Combined
+
+ | BadOnly                                                        | Mixed                                                       | 
+ | ============================================================== | =========================================================== | 
+ | Summary:                                                       | Summary:                                                    | 
+ | 0 # of good rounds                                             | 7 # of good rounds                                          | 
+ | 8 # of bad rounds                                              | 1 # of bad rounds                                           | 
+ |  3.78s (72.73%)¹ total                                         |  1.86s (82.06%)¹ total                                      | 
+ |                                                                |  0.92s (87.88%)¹ good trace learning²                       | 
+ | Solution found, fixed the program.                             |  0.93s (76.29%)¹ bad trace program repair                   | 
+ |                                                                |                                                             | 
+ |                                                                | Solution found, fixed the program.                          | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ |                                                                |                                                             | 
+ |                                                                | Good trace learning:                                        | 
+ |                                                                | - - - - - - - - - - -                                       | 
+ |                                                                | Iteration  1:  0.79s (82.89%)¹                              | 
+ |                                                                | Iteration  2:  0.83s (80.26%)¹                              | 
+ |                                                                | Iteration  3:  0.89s (83.30%)¹                              | 
+ |                                                                | Iteration  4:  0.31s (99.67%)¹                              | 
+ |                                                                | Iteration  5:  0.27s (100.00%)¹                             | 
+ |                                                                | Iteration  6:  0.34s (99.71%)¹                              | 
+ |                                                                | Iteration  7:  0.28s (100.00%)¹                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ |                                                                |                                                             | 
+ | Bad trace program repair:                                      | Bad trace program repair:                                   | 
+ | - - - - - - - - - - - - -                                      | - - - - - - - - - - - - -                                   | 
+ | Iteration  1:  0.44s (61.14%)¹                                 | Iteration  1:  0.49s (54.90%)¹                              | 
+ | Assertion triggered: 29: assert(b == 1);                       | Assertion triggered: 29: assert(b == 1);                    | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Iteration  2:  0.48s (63.15%)¹                                 | Verification:  0.44s (100.00%)¹                             | 
+ | Assertion triggered: 16: assertd(x == 1);                      | Changes up to this iteration³:                              | 
+ | Changes up to this iteration³:                                 | AtomicSection(15: nr{ assertd(x == 1); ...} --> 19: b = 1;) | 
+ | Reorder(19: b = 1; <-- 15: nr{ assertd(x == 1); ...})          |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Iteration  3:  0.46s (67.17%)¹                                 |                                                             | 
+ | Assertion triggered: 16: assertd(x == 1);                      |                                                             | 
+ | Changes up to this iteration³:                                 |                                                             | 
+ | Reorder(19: b = 1; <-- 15: nr{ assertd(x == 1); ...})          |                                                             | 
+ | Reorder(15: nr{ assertd(x == 1); ...} <-- 14: assume(y == 1);) |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Iteration  4:  0.47s (60.22%)¹                                 |                                                             | 
+ | Assertion triggered: 16: assertd(x == 1);                      |                                                             | 
+ | Changes up to this iteration³:                                 |                                                             | 
+ | Reorder(19: b = 1; --> 14: assume(y == 1);)                    |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Iteration  5:  0.40s (76.87%)¹                                 |                                                             | 
+ | Assertion triggered: 16: assertd(x == 1);                      |                                                             | 
+ | Changes up to this iteration³:                                 |                                                             | 
+ | Reorder(19: b = 1; --> 14: assume(y == 1);)                    |                                                             | 
+ | Reorder(19: b = 1; <-- 15: nr{ assertd(x == 1); ...})          |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Iteration  6:  0.35s (78.59%)¹                                 |                                                             | 
+ | Assertion triggered: 16: assertd(x == 1);                      |                                                             | 
+ | Changes up to this iteration³:                                 |                                                             | 
+ | Reorder(19: b = 1; --> 14: assume(y == 1);)                    |                                                             | 
+ | Reorder(14: assume(y == 1); <-- 15: nr{ assertd(x == 1); ...}) |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Iteration  7:  0.36s (76.86%)¹                                 |                                                             | 
+ | Assertion triggered: 16: assertd(x == 1);                      |                                                             | 
+ | Changes up to this iteration³:                                 |                                                             | 
+ | Reorder(19: b = 1; <-- 14: assume(y == 1);)                    |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Iteration  8:  0.37s (74.87%)¹                                 |                                                             | 
+ | Assertion triggered: 16: assertd(x == 1);                      |                                                             | 
+ | Changes up to this iteration³:                                 |                                                             | 
+ | Reorder(19: b = 1; <-- 14: assume(y == 1);)                    |                                                             | 
+ | Reorder(15: nr{ assertd(x == 1); ...} <-- 19: b = 1;)          |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Verification:  0.44s (100.00%)¹                                |                                                             | 
+ | Changes up to this iteration³:                                 |                                                             | 
+ | AtomicSection(15: nr{ assertd(x == 1); ...} --> 19: b = 1;)    |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

@@ -1,0 +1,3 @@
+ (14,1) : MoveUp (14,55)  - 496: rc2 = request_irq();        ->  494: IntrMask = 0;              
+ (14,2) : MoveUp (14,87)  - 278: if (registered != 0) {...}  ->  277: lock(rtnl_lock);           
+ (14,3) : MoveUp (14,125) - 284: unlock(rtnl_lock);          ->  278: if (registered != 0) {...} 

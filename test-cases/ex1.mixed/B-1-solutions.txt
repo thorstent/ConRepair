@@ -1,0 +1,1 @@
+ (1,1) : MoveUp (1,-996) - 33: disable_napi();  ->  31: stuff1(); 

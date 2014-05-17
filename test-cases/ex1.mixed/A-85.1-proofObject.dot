@@ -1,0 +1,51 @@
+digraph ProofObject {
+	37 -> 38 [color = Blue, constraint = false]
+	5 -> 6 [style = dotted, color = black]
+	39 -> 40 [style = dotted, color = black]
+	13 -> 14 [style = dotted, color = black]
+	2 -> 13 [color = Blue, constraint = false]
+	14 -> 20 [style = dotted, color = black]
+	20 -> 21 [color = Green, constraint = false]
+	3 -> 20 [color = Red, constraint = false]
+	2 -> 3 [style = dotted, color = black]
+	29 -> 38 [style = dotted, color = black]
+	38 -> 21 [style = dotted, color = red, constraint = false]
+	38 -> 39 [style = dotted, color = black]
+	21 -> 29 [style = dotted, color = black]
+	20 -> 37 [style = dotted, color = black]
+	4 -> 5 [style = dotted, color = black]
+	3 -> 4 [style = dotted, color = black]
+	41 -> 42 [style = dotted, color = black]
+	subgraph cluster2 {
+		label = thread2
+		color = blue
+		41  [label = "61: assume(napi_disabled == 1);"]
+		42  [label = "62: assert(updated == 1);"]
+	}
+	subgraph cluster0 {
+		label = main
+		color = blue
+		5  [label = "92: updated = 0;"]
+		4  [label = "91: stuff1_done = 0;"]
+		6  [label = "93: napi_disabled = 0;"]
+		2  [label = "89: napi_poll = 0;"]
+		3  [label = "90: shutdown = 0;"]
+	}
+	subgraph cluster1 {
+		label = thread1
+		color = blue
+		21  [label = "37: shutdown = 1;"]
+		29  [label = "20: updated = 1;"]
+		40  [label = "25: napi_disabled = 1;"]
+		39  [label = "24b: napi_poll = 1;"]
+		38  [label = "24a: assume(napi_poll == 0);"]
+	}
+	subgraph cluster3 {
+		label = thread3
+		color = blue
+		13  [label = "73a: assume(napi_poll == 0);"]
+		14  [label = "73b: napi_poll = 1;"]
+		37  [label = "75a: napi_poll = 0;"]
+		20  [label = "85: assert(shutdown == 0);"]
+	}
+}

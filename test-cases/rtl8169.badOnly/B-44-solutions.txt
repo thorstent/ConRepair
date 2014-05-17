@@ -1,0 +1,4 @@
+ (40,5) : MoveUp (40,50)  - 293: drv_close();                   ->  292: netif_running = 0;     
+ (43,1) : MoveUp (43,107) - 268: close();                       ->  263: if (nondet == 0) {...} 
+ (44,1) : MoveUp (44,116) - 268: close();                       ->  263: if (nondet == 0) {...} 
+ (44,2) : MoveUp (44,133) - 291: if (netif_running != 0) {...}  ->  290: lock(rtnl_lock);       

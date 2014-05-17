@@ -1,0 +1,3 @@
+ (28,5) : MoveUp   (28,117) - 377: unlock(sysfs_lock);  ->  363: nr{ want_dev = 6; ...}   
+ (28,7) : MoveUp   (28,132) - 376: unlock(dev_lock);    ->  353: nr{ want_sysfs = 6; ...} 
+ (28,7) : MoveDown (28,132) - 376: unlock(dev_lock);    ->  353: nr{ want_sysfs = 6; ...} 

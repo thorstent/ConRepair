@@ -1,0 +1,2 @@
+ (1,1) : AtomicSection (1,21) - 82: lock1 = 0;                    ->  92: if (result == (-1)) {...} 
+ (1,2) : AtomicSection (1,59) - 69: at{ assume(lock1 == 0); ...}  ->  78: if (bsy == 0) {...}       

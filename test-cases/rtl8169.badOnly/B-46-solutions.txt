@@ -1,0 +1,7 @@
+ (44,1) : MoveUp (44,116) - 268: close();                       ->  263: if (nondet == 0) {...} 
+ (44,2) : MoveUp (44,133) - 291: if (netif_running != 0) {...}  ->  290: lock(rtnl_lock);       
+ (45,1) : MoveUp (45,125) - 291: if (netif_running != 0) {...}  ->  290: lock(rtnl_lock);       
+ (46,1) : MoveUp (46,30)  - 511: napi_disable();                ->  510: dev_down();            
+ (46,2) : MoveUp (46,45)  - 511: napi_disable();                ->  512: free_irq();            
+ (46,3) : MoveUp (46,50)  - 293: drv_close();                   ->  292: netif_running = 0;     
+ (46,9) : MoveUp (46,97)  - 249: drv_disconnect();              ->  240: nr{ want_dev = 5; ...} 

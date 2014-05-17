@@ -1,0 +1,1 @@
+ (37,4) : MoveUp (37,50) - 293: drv_close();  ->  292: netif_running = 0; 

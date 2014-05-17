@@ -1,0 +1,2 @@
+ Deadlock-Round               : srp_attach_transport() - 13: registered = 1; --> 11: initialised3 = 1; 
+ 30: assert(registered == 1); : srp_attach_transport() - 13: registered = 1; --> 11: initialised3 = 1; 

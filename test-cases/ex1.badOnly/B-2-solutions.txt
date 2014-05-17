@@ -1,0 +1,1 @@
+ (2,1) : MoveUp (2,4) - 32: update_state();  ->  33: disable_napi(); 

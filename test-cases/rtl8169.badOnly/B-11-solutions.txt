@@ -1,0 +1,8 @@
+ (11,1) : MoveUp (11,30) - 511: napi_disable();                ->  510: dev_down();                   
+ (11,2) : MoveUp (11,39) - 534: write_IntrStatus(status1);     ->  528: if (intr_mask != 0) {...}     
+ (11,3) : MoveUp (11,45) - 511: napi_disable();                ->  512: free_irq();                   
+ (11,4) : MoveUp (11,45) - 295: unlock(rtnl_lock);             ->  291: if (netif_running != 0) {...} 
+ (11,5) : MoveUp (11,50) - 293: drv_close();                   ->  292: netif_running = 0;            
+ (11,6) : MoveUp (11,60) - 291: if (netif_running != 0) {...}  ->  290: lock(rtnl_lock);              
+ (11,7) : MoveUp (11,70) - 268: close();                       ->  263: if (nondet == 0) {...}        
+ (11,8) : MoveUp (11,87) - 278: if (registered != 0) {...}     ->  277: lock(rtnl_lock);              

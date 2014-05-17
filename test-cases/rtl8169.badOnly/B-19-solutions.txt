@@ -1,0 +1,5 @@
+ (13,5) : MoveUp   (13,119) - 377: unlock(sysfs_lock);  ->  376: unlock(dev_lock);      
+ (13,6) : MoveDown (13,120) - 377: unlock(sysfs_lock);  ->  363: nr{ want_dev = 6; ...} 
+ (13,6) : MoveUp   (13,120) - 377: unlock(sysfs_lock);  ->  363: nr{ want_dev = 6; ...} 
+ (19,1) : MoveUp   (19,2)   - 511: napi_disable();      ->  510: dev_down();            
+ (19,2) : MoveUp   (19,57)  - 511: napi_disable();      ->  512: free_irq();            

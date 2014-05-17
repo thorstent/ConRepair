@@ -1,0 +1,7 @@
+ (43,5)  : MoveUp   (43,57) - 70: vm_consistent = 1;      ->  72: sem = 1;                   
+ (44,1)  : MoveUp   (44,2)  - 70: vm_consistent = 1;      ->  72: sem = 1;                   
+ (44,14) : MoveUp   (44,32) - 115: state = old_state;     ->  91: if (nondet == 0) {...}     
+ (44,28) : MoveUp   (44,57) - 91: if (nondet == 0) {...}  ->  89: state = 3;                 
+ (44,36) : MoveUp   (44,67) - 117: mtx = 0;               ->  89: state = 3;                 
+ (44,41) : MoveUp   (44,74) - 115: state = old_state;     ->  79: at{ assume(mtx == 0); ...} 
+ (44,41) : MoveDown (44,74) - 115: state = old_state;     ->  79: at{ assume(mtx == 0); ...} 

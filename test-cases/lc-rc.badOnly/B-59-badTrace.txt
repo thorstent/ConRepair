@@ -1,0 +1,22 @@
+ | main                 | shutdown_thread            | rc_thread                | neh_thread                 | rsv_thread            | 
+ | ==================== | ========================== | ======================== | ========================== | ===================== | 
+ | 66: neh_running = 1; |                            |                          |                            |                       | 
+ | 67: stop_neh = 0;    |                            |                          |                            |                       | 
+ | 69: rc_running = 1;  |                            |                          |                            |                       | 
+ | 70: stop_rc = 0;     |                            |                          |                            |                       | 
+ | 72: rsv_running = 1; |                            |                          |                            |                       | 
+ | 73: stop_rsv = 0;    |                            |                          |                            |                       | 
+ |                      |                            | 42: assert(neh_running); |                            |                       | 
+ |                      | 35: stop_neh = 1;          |                          |                            |                       | 
+ |                      | 27: stop_rsv = 1;          |                          |                            |                       | 
+ |                      |                            |                          |                            | 62: rsv_running = 0;  | 
+ |                      | 29: assume(!rsv_running);  |                          |                            |                       | 
+ |                      |                            |                          | !!51: assert(rsv_running); |                       | 
+ |                      | ##33: assume(!rc_running); |                          |                            |                       | 
+ |                      |                            |                          | 53: assume(stop_neh);      |                       | 
+ |                      |                            | ##44: assume(stop_rc);   |                            |                       | 
+ |                      |                            |                          | 55: neh_running = 0;       |                       | 
+ |                      |                            | 46: rc_running = 0;      |                            |                       | 
+ |                      |                            |                          |                            | 60: assume(stop_rsv); | 
+ |                      | 31: stop_rc = 1;           |                          |                            |                       | 
+ |                      | 37: assume(!neh_running);  |                          |                            |                       | 

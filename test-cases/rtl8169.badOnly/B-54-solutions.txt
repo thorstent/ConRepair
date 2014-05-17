@@ -1,0 +1,2 @@
+ (49,2) : MoveUp (49,45) - 511: napi_disable();  ->  512: free_irq();            
+ (49,3) : MoveUp (49,55) - 268: close();         ->  263: if (nondet == 0) {...} 

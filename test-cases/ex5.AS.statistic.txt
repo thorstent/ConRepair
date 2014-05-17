@@ -1,0 +1,54 @@
+File: ex5.c
+Mode: Combined
+
+ | BadOnly                                                        | Mixed                                                       | 
+ | ============================================================== | =========================================================== | 
+ | Summary:                                                       | Summary:                                                    | 
+ | 0 # of good rounds                                             | 7 # of good rounds                                          | 
+ | 3 # of bad rounds                                              | 1 # of bad rounds                                           | 
+ |  1.76s (74.52%)¹ total                                         |  1.88s (80.97%)¹ total                                      | 
+ |                                                                |  0.96s (84.58%)¹ good trace learning²                       | 
+ | Solution found, fixed the program.                             |  0.92s (77.20%)¹ bad trace program repair                   | 
+ |                                                                |                                                             | 
+ |                                                                | Solution found, fixed the program.                          | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ |                                                                |                                                             | 
+ |                                                                | Good trace learning:                                        | 
+ |                                                                | - - - - - - - - - - -                                       | 
+ |                                                                | Iteration  1:  0.83s (78.51%)¹                              | 
+ |                                                                | Iteration  2:  0.95s (78.38%)¹                              | 
+ |                                                                | Iteration  3:  0.88s (76.14%)¹                              | 
+ |                                                                | Iteration  4:  0.34s (100.00%)¹                             | 
+ |                                                                | Iteration  5:  0.30s (100.00%)¹                             | 
+ |                                                                | Iteration  6:  0.27s (100.00%)¹                             | 
+ |                                                                | Iteration  7:  0.28s (100.00%)¹                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ |                                                                |                                                             | 
+ | Bad trace program repair:                                      | Bad trace program repair:                                   | 
+ | - - - - - - - - - - - - -                                      | - - - - - - - - - - - - -                                   | 
+ | Iteration  1:  0.42s (63.59%)¹                                 | Iteration  1:  0.48s (56.16%)¹                              | 
+ | Assertion triggered: 29: assert(b == 1);                       | Assertion triggered: 29: assert(b == 1);                    | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Iteration  2:  0.45s (67.33%)¹                                 | Verification:  0.44s (100.00%)¹                             | 
+ | Assertion triggered: 16: assertd(x == 1);                      | Changes up to this iteration³:                              | 
+ | Changes up to this iteration³:                                 | AtomicSection(15: nr{ assertd(x == 1); ...} --> 19: b = 1;) | 
+ | Reorder(19: b = 1; <-- 15: nr{ assertd(x == 1); ...})          |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Iteration  3:  0.46s (67.76%)¹                                 |                                                             | 
+ | Assertion triggered: 16: assertd(x == 1);                      |                                                             | 
+ | Changes up to this iteration³:                                 |                                                             | 
+ | Reorder(19: b = 1; <-- 15: nr{ assertd(x == 1); ...})          |                                                             | 
+ | Reorder(15: nr{ assertd(x == 1); ...} <-- 14: assume(y == 1);) |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+ | Verification:  0.43s (100.00%)¹                                |                                                             | 
+ | Changes up to this iteration³:                                 |                                                             | 
+ | Reorder(19: b = 1; <-- 15: nr{ assertd(x == 1); ...})          |                                                             | 
+ | AtomicSection(19: b = 1; --> 15: nr{ assertd(x == 1); ...})    |                                                             | 
+ | -------------------------------------------------------------- | ----------------------------------------------------------- | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

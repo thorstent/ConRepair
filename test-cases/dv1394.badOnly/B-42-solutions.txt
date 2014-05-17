@@ -1,0 +1,36 @@
+ (1,52)  : MoveUp   (1,52)  - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (1,52)  : MoveDown (1,52)  - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (37,11) : MoveDown (37,27) - 115: state = old_state;                                             ->  79: at{ assume(mtx == 0); ...}                                     
+ (1,82)  : MoveDown (1,80)  - 72: sem = 1;                                                        ->  37: vm_consistent = 0;                                             
+ (1,61)  : MoveUp   (1,57)  - 115: state = old_state;                                             ->  79: at{ assume(mtx == 0); ...}                                     
+ (37,11) : MoveUp   (37,27) - 115: state = old_state;                                             ->  79: at{ assume(mtx == 0); ...}                                     
+ (38,10) : MoveDown (38,28) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (39,15) : MoveUp   (39,32) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (38,23) : MoveUp   (38,61) - 70: vm_consistent = 1;                                              ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (1,82)  : MoveUp   (1,80)  - 72: sem = 1;                                                        ->  37: vm_consistent = 0;                                             
+ (1,61)  : MoveDown (1,57)  - 115: state = old_state;                                             ->  79: at{ assume(mtx == 0); ...}                                     
+ (40,19) : MoveUp   (40,44) - 70: vm_consistent = 1;                                              ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (38,10) : MoveUp   (38,28) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (39,18) : MoveUp   (39,35) - 70: vm_consistent = 1;                                              ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (39,1)  : MoveUp   (39,9)  - 117: mtx = 0;                                                       ->  89: state = 3;                                                     
+ (41,41) : MoveDown (41,59) - 72: sem = 1;                                                        ->  37: vm_consistent = 0;                                             
+ (39,15) : MoveDown (39,32) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (40,3)  : MoveUp   (40,14) - 41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...}  ->  37: vm_consistent = 0;                                             
+ (40,8)  : MoveUp   (40,28) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (40,8)  : MoveDown (40,28) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (40,14) : MoveUp   (40,38) - 72: sem = 1;                                                        ->  37: vm_consistent = 0;                                             
+ (40,14) : MoveDown (40,38) - 72: sem = 1;                                                        ->  37: vm_consistent = 0;                                             
+ (41,3)  : MoveUp   (41,14) - 41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...}  ->  37: vm_consistent = 0;                                             
+ (41,8)  : MoveUp   (41,23) - 70: vm_consistent = 1;                                              ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (41,13) : MoveUp   (41,33) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (41,13) : MoveDown (41,33) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (41,26) : MoveUp   (41,46) - 87: old_state = state;                                              ->  85: assertd(state != 3);                                           
+ (41,35) : MoveUp   (41,51) - 89: state = 3;                                                      ->  85: assertd(state != 3);                                           
+ (41,41) : MoveUp   (41,59) - 72: sem = 1;                                                        ->  37: vm_consistent = 0;                                             
+ (42,15) : MoveUp   (42,32) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (42,15) : MoveDown (42,32) - 72: sem = 1;                                                        ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (42,20) : MoveUp   (42,35) - 70: vm_consistent = 1;                                              ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (42,22) : MoveUp   (42,36) - 117: mtx = 0;                                                       ->  85: assertd(state != 3);                                           
+ (42,22) : MoveDown (42,36) - 117: mtx = 0;                                                       ->  85: assertd(state != 3);                                           
+ (42,36) : MoveUp   (42,46) - 89: state = 3;                                                      ->  85: assertd(state != 3);                                           
+ (42,43) : MoveUp   (42,51) - 115: state = old_state;                                             ->  85: assertd(state != 3);                                           

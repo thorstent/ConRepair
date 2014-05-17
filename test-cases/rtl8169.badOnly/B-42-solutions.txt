@@ -1,0 +1,3 @@
+ (40,3) : MoveUp (40,43) - 329: if (napi_scheduled == 0) {...}  ->  328: down(napi_sem);    
+ (40,4) : MoveUp (40,45) - 511: napi_disable();                 ->  512: free_irq();        
+ (40,5) : MoveUp (40,50) - 293: drv_close();                    ->  292: netif_running = 0; 

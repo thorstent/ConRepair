@@ -1,0 +1,2 @@
+ (67,1) : MoveUp (67,43) - 329: if (napi_scheduled == 0) {...}  ->  328: down(napi_sem);    
+ (67,3) : MoveUp (67,75) - 530: intr_mask = 0;                  ->  529: write_IntrMask(0); 

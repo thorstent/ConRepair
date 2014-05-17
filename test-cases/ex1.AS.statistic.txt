@@ -1,0 +1,48 @@
+File: ex1.c
+Mode: Combined
+
+ | BadOnly                                              | Mixed                                               | 
+ | ==================================================== | =================================================== | 
+ | Summary:                                             | Summary:                                            | 
+ | 0 # of good rounds                                   | 7 # of good rounds                                  | 
+ | 2 # of bad rounds                                    | 1 # of bad rounds                                   | 
+ |  2.22s (93.96%)¹ total                               |  4.33s (93.74%)¹ total                              | 
+ |                                                      |  2.74s (93.70%)¹ good trace learning²               | 
+ | Solution found, fixed the program.                   |  1.58s (93.80%)¹ bad trace program repair           | 
+ |                                                      |                                                     | 
+ |                                                      | Solution found, fixed the program.                  | 
+ | ---------------------------------------------------- | --------------------------------------------------- | 
+ |                                                      |                                                     | 
+ |                                                      | Good trace learning:                                | 
+ |                                                      | - - - - - - - - - - -                               | 
+ |                                                      | Iteration  1:  1.19s (84.98%)¹                      | 
+ |                                                      | Iteration  2:  1.26s (86.70%)¹                      | 
+ |                                                      | Iteration  3:  1.35s (96.14%)¹                      | 
+ |                                                      | Iteration  4:  0.67s (100.00%)¹                     | 
+ |                                                      | Iteration  5:  0.72s (100.00%)¹                     | 
+ |                                                      | Iteration  6:  0.59s (100.00%)¹                     | 
+ |                                                      | Iteration  7:  0.57s (100.00%)¹                     | 
+ | ---------------------------------------------------- | --------------------------------------------------- | 
+ |                                                      |                                                     | 
+ | Bad trace program repair:                            | Bad trace program repair:                           | 
+ | - - - - - - - - - - - - -                            | - - - - - - - - - - - - -                           | 
+ | Iteration  1:  0.70s (89.19%)¹                       | Iteration  1:  0.77s (87.32%)¹                      | 
+ | Assertion triggered: 85: assert(shutdown == 0);      | Assertion triggered: 85: assert(shutdown == 0);     | 
+ | ---------------------------------------------------- | --------------------------------------------------- | 
+ | Iteration  2:  0.72s (91.91%)¹                       | Verification:  0.81s (100.00%)¹                     | 
+ | Assertion triggered: 62: assert(updated == 1);       | Changes up to this iteration³:                      | 
+ | Changes up to this iteration³:                       | Reorder(33: disable_napi(); <-- 31: stuff1();)      | 
+ | Reorder(33: disable_napi(); <-- 31: stuff1();)       |                                                     | 
+ | ---------------------------------------------------- | --------------------------------------------------- | 
+ | Verification:  0.80s (100.00%)¹                      |                                                     | 
+ | Changes up to this iteration³:                       |                                                     | 
+ | Reorder(33: disable_napi(); <-- 31: stuff1();)       |                                                     | 
+ | Reorder(32: update_state(); <-- 33: disable_napi();) |                                                     | 
+ | ---------------------------------------------------- | --------------------------------------------------- | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

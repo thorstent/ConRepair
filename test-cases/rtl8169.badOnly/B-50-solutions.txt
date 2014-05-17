@@ -1,0 +1,6 @@
+ (46,2) : MoveUp (46,45) - 511: napi_disable();    ->  512: free_irq();            
+ (46,9) : MoveUp (46,97) - 249: drv_disconnect();  ->  240: nr{ want_dev = 5; ...} 
+ (46,3) : MoveUp (46,50) - 293: drv_close();       ->  292: netif_running = 0;     
+ (49,3) : MoveUp (49,55) - 268: close();           ->  263: if (nondet == 0) {...} 
+ (49,1) : MoveUp (49,30) - 511: napi_disable();    ->  510: dev_down();            
+ (49,2) : MoveUp (49,45) - 511: napi_disable();    ->  512: free_irq();            

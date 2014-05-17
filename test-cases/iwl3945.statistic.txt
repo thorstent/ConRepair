@@ -1,0 +1,53 @@
+File: iwl3945.c
+Mode: Combined
+
+ | BadOnly                                                                | Mixed                                                                  | 
+ | ====================================================================== | ====================================================================== | 
+ | Summary:                                                               | Summary:                                                               | 
+ | 0 # of good rounds                                                     | 10 # of good rounds                                                    | 
+ | 2 # of bad rounds                                                      | 1 # of bad rounds                                                      | 
+ |  2.47s (75.79%)¹ total                                                 |  5.47s (75.87%)¹ total                                                 | 
+ |                                                                        |  3.32s (83.61%)¹ good trace learning²                                  | 
+ | Solution found, fixed the program.                                     |  2.15s (63.92%)¹ bad trace program repair                              | 
+ |                                                                        |                                                                        | 
+ |                                                                        | Solution found, fixed the program.                                     | 
+ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | 
+ |                                                                        |                                                                        | 
+ |                                                                        | Good trace learning:                                                   | 
+ |                                                                        | - - - - - - - - - - -                                                  | 
+ |                                                                        | Iteration  1:  0.89s (71.19%)¹                                         | 
+ |                                                                        | Iteration  2:  0.91s (70.10%)¹                                         | 
+ |                                                                        | Iteration  3:  0.98s (75.69%)¹                                         | 
+ |                                                                        | Iteration  4:  0.39s (100.00%)¹                                        | 
+ |                                                                        | Iteration  5:  0.55s (83.76%)¹                                         | 
+ |                                                                        | Iteration  6:  0.29s (100.00%)¹                                        | 
+ |                                                                        | Iteration  7:  0.41s (87.75%)¹                                         | 
+ |                                                                        | Iteration  8:  0.42s (100.00%)¹                                        | 
+ |                                                                        | Iteration  9:  0.35s (95.16%)¹                                         | 
+ |                                                                        | Iteration 10:  0.46s (100.00%)¹                                        | 
+ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | 
+ |                                                                        |                                                                        | 
+ | Bad trace program repair:                                              | Bad trace program repair:                                              | 
+ | - - - - - - - - - - - - -                                              | - - - - - - - - - - - - -                                              | 
+ | Verification:  0.61s (100.00%)¹                                        | Verification:  0.55s (100.00%)¹                                        | 
+ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | 
+ | --Switched to non-deadlock mode--                                      | --Switched to non-deadlock mode--                                      | 
+ | Iteration  1:  0.71s (48.66%)¹                                         | Iteration  1:  1.13s (31.51%)¹                                         | 
+ | Assertion triggered: 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); | Assertion triggered: 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); | 
+ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | 
+ | Iteration  2:  0.73s (68.17%)¹                                         | Verification:  0.46s (100.00%)¹                                        | 
+ | Assertion triggered: 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); | Changes up to this iteration³:                                         | 
+ | Changes up to this iteration³:                                         | Reorder(96: lock1 = 0; <-- 72: nr{ want_rtnl_lock = 2; ...})           | 
+ | Reorder(72: nr{ want_rtnl_lock = 2; ...} <-- 70: restarted = 1;)       |                                                                        | 
+ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | 
+ | Verification:  0.42s (100.00%)¹                                        |                                                                        | 
+ | Changes up to this iteration³:                                         |                                                                        | 
+ | Reorder(96: lock1 = 0; <-- 72: nr{ want_rtnl_lock = 2; ...})           |                                                                        | 
+ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

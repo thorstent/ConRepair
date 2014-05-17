@@ -1,0 +1,2 @@
+ (21,2) : MoveUp (21,166) - 284: unlock(rtnl_lock);  ->  278: if (registered != 0) {...} 
+ (21,3) : MoveUp (21,186) - 494: IntrMask = 0;       ->  492: (*hw_start)();             

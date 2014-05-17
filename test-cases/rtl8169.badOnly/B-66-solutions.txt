@@ -1,0 +1,6 @@
+ (62,3) : MoveUp (62,62) - 293: drv_close();                    ->  292: netif_running = 0;        
+ (65,1) : MoveUp (65,43) - 329: if (napi_scheduled == 0) {...}  ->  328: down(napi_sem);           
+ (63,1) : MoveUp (63,87) - 278: if (registered != 0) {...}      ->  277: lock(rtnl_lock);          
+ (65,2) : MoveUp (65,72) - 535: status1 = IntrStatus;           ->  528: if (intr_mask != 0) {...} 
+ (66,1) : MoveUp (66,29) - 535: status1 = IntrStatus;           ->  528: if (intr_mask != 0) {...} 
+ (66,2) : MoveUp (66,43) - 329: if (napi_scheduled == 0) {...}  ->  328: down(napi_sem);           

@@ -1,0 +1,4 @@
+ (37,1) : MoveUp (37,22) - 496: rc2 = request_irq();  ->  494: IntrMask = 0;      
+ (37,2) : MoveUp (37,30) - 511: napi_disable();       ->  510: dev_down();        
+ (37,3) : MoveUp (37,45) - 511: napi_disable();       ->  512: free_irq();        
+ (37,4) : MoveUp (37,50) - 293: drv_close();          ->  292: netif_running = 0; 

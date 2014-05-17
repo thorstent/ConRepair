@@ -1,0 +1,50 @@
+File: ex4.c
+Mode: Combined
+
+ | BadOnly                                                      | Mixed                                                           | 
+ | ============================================================ | =============================================================== | 
+ | Summary:                                                     | Summary:                                                        | 
+ | 0 # of good rounds                                           | 9 # of good rounds                                              | 
+ | 2 # of bad rounds                                            | 1 # of bad rounds                                               | 
+ |  8.75s (93.77%)¹ total                                       | 21.83s (96.70%)¹ total                                          | 
+ |                                                              | 14.28s (96.09%)¹ good trace learning²                           | 
+ | Solution found, fixed the program.                           |  7.55s (97.84%)¹ bad trace program repair                       | 
+ |                                                              |                                                                 | 
+ |                                                              | Solution found, fixed the program.                              | 
+ | ------------------------------------------------------------ | --------------------------------------------------------------- | 
+ |                                                              |                                                                 | 
+ |                                                              | Good trace learning:                                            | 
+ |                                                              | - - - - - - - - - - -                                           | 
+ |                                                              | Iteration  1:  1.75s (82.17%)¹                                  | 
+ |                                                              | Iteration  2:  2.02s (94.51%)¹                                  | 
+ |                                                              | Iteration  3:  2.54s (95.27%)¹                                  | 
+ |                                                              | Iteration  4:  2.62s (100.00%)¹                                 | 
+ |                                                              | Iteration  5:  2.51s (89.72%)¹                                  | 
+ |                                                              | Iteration  6:  2.84s (100.00%)¹                                 | 
+ |                                                              | Iteration  7:  2.48s (95.48%)¹                                  | 
+ |                                                              | Iteration  8:  2.59s (100.00%)¹                                 | 
+ |                                                              | Iteration  9:  4.03s (100.00%)¹                                 | 
+ | ------------------------------------------------------------ | --------------------------------------------------------------- | 
+ |                                                              |                                                                 | 
+ | Bad trace program repair:                                    | Bad trace program repair:                                       | 
+ | - - - - - - - - - - - - -                                    | - - - - - - - - - - - - -                                       | 
+ | Iteration  1:  1.04s (89.94%)¹                               | Iteration  1:  1.09s (85.07%)¹                                  | 
+ | Assertion triggered: 102: assert(bsy);                       | Assertion triggered: 102: assert(bsy);                          | 
+ | ------------------------------------------------------------ | --------------------------------------------------------------- | 
+ | Iteration  2:  1.38s (68.00%)¹                               | Verification:  6.46s (100.00%)¹                                 | 
+ | Assertion triggered: 46: assert(lock1 != request);           | Changes up to this iteration³:                                  | 
+ | Changes up to this iteration³:                               | AtomicSection(82: lock1 = 0; --> 92: if (result == (-1)) {...}) | 
+ | Reorder(92: if (result == (-1)) {...} <-- 82: lock1 = 0;)    |                                                                 | 
+ | ------------------------------------------------------------ | --------------------------------------------------------------- | 
+ | Verification:  6.33s (100.00%)¹                              |                                                                 | 
+ | Changes up to this iteration³:                               |                                                                 | 
+ | Reorder(92: if (result == (-1)) {...} <-- 82: lock1 = 0;)    |                                                                 | 
+ | AtomicSection(85: if (nondet == 0) {...} --> 82: lock1 = 0;) |                                                                 | 
+ | ------------------------------------------------------------ | --------------------------------------------------------------- | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

@@ -1,0 +1,1482 @@
+file /tmp/output5749022031411626520.c: Parsing
+Converting
+Type-checking output5749022031411626520
+Generating GOTO Program
+Adding CPROVER library
+Function Pointer Removal
+Partial Inlining
+Generic Property Instrumentation
+Starting Bounded Model Checking
+Unwinding loop c::network_thread.0 iteration 1 file /tmp/output5749022031411626520.c line 149 function network_thread thread 2
+Unwinding loop c::network_thread.0 iteration 2 file /tmp/output5749022031411626520.c line 149 function network_thread thread 2
+Unwinding loop c::drv_irq.0 iteration 1 file /tmp/output5749022031411626520.c line 268 function drv_irq thread 3
+Unwinding loop c::drv_irq.0 iteration 2 file /tmp/output5749022031411626520.c line 268 function drv_irq thread 3
+Unwinding loop c::irq_thread.0 iteration 1 file /tmp/output5749022031411626520.c line 610 function irq_thread thread 3
+Unwinding loop c::drv_irq.0 iteration 1 file /tmp/output5749022031411626520.c line 268 function drv_irq thread 3
+Unwinding loop c::drv_irq.0 iteration 2 file /tmp/output5749022031411626520.c line 268 function drv_irq thread 3
+Unwinding loop c::irq_thread.0 iteration 2 file /tmp/output5749022031411626520.c line 610 function irq_thread thread 3
+Unwinding loop c::napi_thread.0 iteration 1 file /tmp/output5749022031411626520.c line 168 function napi_thread thread 4
+Unwinding loop c::napi_thread.0 iteration 2 file /tmp/output5749022031411626520.c line 168 function napi_thread thread 4
+Unwinding loop c::workqueue_thread.0 iteration 1 file /tmp/output5749022031411626520.c line 232 function workqueue_thread thread 5
+Unwinding loop c::workqueue_thread.0 iteration 2 file /tmp/output5749022031411626520.c line 232 function workqueue_thread thread 5
+Unwinding loop c::sysfs_thread.0 iteration 1 file /tmp/output5749022031411626520.c line 190 function sysfs_thread thread 6
+Unwinding loop c::sysfs_thread.0 iteration 2 file /tmp/output5749022031411626520.c line 190 function sysfs_thread thread 6
+Unwinding loop c::dev_thread.0 iteration 1 file /tmp/output5749022031411626520.c line 525 function dev_thread thread 7
+Unwinding loop c::dev_thread.0 iteration 2 file /tmp/output5749022031411626520.c line 525 function dev_thread thread 7
+Adding SC constraints
+size of program expression: 72984 steps
+no slicing due to threads
+Generated 1 VCC(s), 1 remaining after simplification
+Passing problem to SMT2 QF_AUFBV (with FPA) using Z3
+Running SMT2 QF_AUFBV (with FPA) using Z3
+Runtime decision procedure: 173.211s
+Building error trace
+
+Counterexample:
+
+State 3 file <built-in-additions> line 22 thread 0
+----------------------------------------------------
+  __CPROVER_threads_exited=(assignment removed)
+
+State 4 file <built-in-additions> line 23 thread 0
+----------------------------------------------------
+  __CPROVER_next_thread_id=0 (0000000000000000000000000000000000000000000000000000000000000000)
+
+State 5 file /tmp/output5749022031411626520.c line 2 thread 0
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 6 file <built-in-additions> line 30 thread 0
+----------------------------------------------------
+  __CPROVER_deallocated=NULL (0000000000000000000000000000000000000000000000000000000000000000)
+
+State 7 file <built-in-additions> line 31 thread 0
+----------------------------------------------------
+  __CPROVER_dead_object=NULL (0000000000000000000000000000000000000000000000000000000000000000)
+
+State 8 file <built-in-additions> line 32 thread 0
+----------------------------------------------------
+  __CPROVER_malloc_object=NULL (0000000000000000000000000000000000000000000000000000000000000000)
+
+State 9 file <built-in-additions> line 33 thread 0
+----------------------------------------------------
+  __CPROVER_malloc_size=0 (0000000000000000000000000000000000000000000000000000000000000000)
+
+State 10 file /tmp/output5749022031411626520.c line 17 thread 0
+----------------------------------------------------
+  want_sysfs=0 (00000000000000000000000000000000)
+
+State 11 file <built-in-additions> line 34 thread 0
+----------------------------------------------------
+  __CPROVER_malloc_is_new_array=FALSE (0)
+
+State 12 file /tmp/output5749022031411626520.c line 18 thread 0
+----------------------------------------------------
+  want_dev=0 (00000000000000000000000000000000)
+
+State 13 file <built-in-additions> line 35 thread 0
+----------------------------------------------------
+  __CPROVER_memory_leak=NULL (0000000000000000000000000000000000000000000000000000000000000000)
+
+State 14 file /tmp/output5749022031411626520.c line 19 thread 0
+----------------------------------------------------
+  registered=0 (00000000000000000000000000000000)
+
+State 15 file /tmp/output5749022031411626520.c line 20 thread 0
+----------------------------------------------------
+  netif_running=0 (00000000000000000000000000000000)
+
+State 16 file /tmp/output5749022031411626520.c line 21 thread 0
+----------------------------------------------------
+  irq_enabled=0 (00000000000000000000000000000000)
+
+State 17 file /tmp/output5749022031411626520.c line 22 thread 0
+----------------------------------------------------
+  napi_enabled=0 (00000000000000000000000000000000)
+
+State 18 file /tmp/output5749022031411626520.c line 23 thread 0
+----------------------------------------------------
+  napi_scheduled=0 (00000000000000000000000000000000)
+
+State 19 file /tmp/output5749022031411626520.c line 24 thread 0
+----------------------------------------------------
+  reset_task_ready=0 (00000000000000000000000000000000)
+
+State 20 file /tmp/output5749022031411626520.c line 25 thread 0
+----------------------------------------------------
+  sysfs_registered=0 (00000000000000000000000000000000)
+
+State 21 file /tmp/output5749022031411626520.c line 26 thread 0
+----------------------------------------------------
+  dev_lock=0 (00000000000000000000000000000000)
+
+State 22 file /tmp/output5749022031411626520.c line 27 thread 0
+----------------------------------------------------
+  sysfs_lock=0 (00000000000000000000000000000000)
+
+State 23 file /tmp/output5749022031411626520.c line 28 thread 0
+----------------------------------------------------
+  rtnl_lock=0 (00000000000000000000000000000000)
+
+State 24 file /tmp/output5749022031411626520.c line 29 thread 0
+----------------------------------------------------
+  irq_sem=1 (00000000000000000000000000000001)
+
+State 25 file /tmp/output5749022031411626520.c line 30 thread 0
+----------------------------------------------------
+  napi_sem=1 (00000000000000000000000000000001)
+
+State 26 file /tmp/output5749022031411626520.c line 31 thread 0
+----------------------------------------------------
+  IntrStatus=0 (00000000)
+
+State 27 file /tmp/output5749022031411626520.c line 32 thread 0
+----------------------------------------------------
+  IntrMask=0 (00000000)
+
+State 28 file /tmp/output5749022031411626520.c line 33 thread 0
+----------------------------------------------------
+  intr_mask=0 (00000000)
+
+State 29 file /tmp/output5749022031411626520.c line 34 thread 0
+----------------------------------------------------
+  dev_on=0 (00000000000000000000000000000000)
+
+State 30 file /tmp/output5749022031411626520.c line 35 thread 0
+----------------------------------------------------
+  hw_start=((void (*)())NULL) (0000000000000000000000000000000000000000000000000000000000000000)
+
+State 31 file <built-in-additions> line 57 thread 0
+----------------------------------------------------
+  __CPROVER_rounding_mode=0 (00000000000000000000000000000000)
+
+State 32 file /tmp/output5749022031411626520.c line 79 thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 33 file /tmp/output5749022031411626520.c line 80 thread 0
+----------------------------------------------------
+  __network_thread_finished=0 (00000000000000000000000000000000)
+
+State 34 file /tmp/output5749022031411626520.c line 81 thread 0
+----------------------------------------------------
+  __napi_thread_finished=0 (00000000000000000000000000000000)
+
+State 35 file /tmp/output5749022031411626520.c line 82 thread 0
+----------------------------------------------------
+  __sysfs_thread_finished=0 (00000000000000000000000000000000)
+
+State 36 file /tmp/output5749022031411626520.c line 83 thread 0
+----------------------------------------------------
+  __workqueue_thread_finished=0 (00000000000000000000000000000000)
+
+State 37 file /tmp/output5749022031411626520.c line 84 thread 0
+----------------------------------------------------
+  __pci_thread_finished=0 (00000000000000000000000000000000)
+
+State 38 file /tmp/output5749022031411626520.c line 85 thread 0
+----------------------------------------------------
+  __dev_thread_finished=0 (00000000000000000000000000000000)
+
+State 39 file /tmp/output5749022031411626520.c line 86 thread 0
+----------------------------------------------------
+  __irq_thread_finished=0 (00000000000000000000000000000000)
+
+State 40 file /tmp/output5749022031411626520.c line 87 thread 0
+----------------------------------------------------
+  __deadlock_thread_finished=0 (00000000000000000000000000000000)
+
+State 41 file /tmp/output5749022031411626520.c line 88 thread 0
+----------------------------------------------------
+  __assert_fail=0 (00000000000000000000000000000000)
+
+State 42 file <built-in-additions> line 78 thread 0
+----------------------------------------------------
+  __CPROVER_pipe_count=0 (00000000000000000000000000000000)
+
+State 46 file /tmp/output5749022031411626520.c line 92 function main thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 47 file /tmp/output5749022031411626520.c line 93 function main thread 0
+----------------------------------------------------
+  registered=0 (00000000000000000000000000000000)
+
+State 48 file /tmp/output5749022031411626520.c line 94 function main thread 0
+----------------------------------------------------
+  netif_running=0 (00000000000000000000000000000000)
+
+State 49 file /tmp/output5749022031411626520.c line 95 function main thread 0
+----------------------------------------------------
+  irq_enabled=0 (00000000000000000000000000000000)
+
+State 50 file /tmp/output5749022031411626520.c line 96 function main thread 0
+----------------------------------------------------
+  napi_enabled=0 (00000000000000000000000000000000)
+
+State 51 file /tmp/output5749022031411626520.c line 97 function main thread 0
+----------------------------------------------------
+  napi_scheduled=0 (00000000000000000000000000000000)
+
+State 52 file /tmp/output5749022031411626520.c line 98 function main thread 0
+----------------------------------------------------
+  reset_task_ready=0 (00000000000000000000000000000000)
+
+State 53 file /tmp/output5749022031411626520.c line 99 function main thread 0
+----------------------------------------------------
+  sysfs_registered=0 (00000000000000000000000000000000)
+
+State 54 file /tmp/output5749022031411626520.c line 100 function main thread 0
+----------------------------------------------------
+  dev_lock=0 (00000000000000000000000000000000)
+
+State 55 file /tmp/output5749022031411626520.c line 101 function main thread 0
+----------------------------------------------------
+  sysfs_lock=0 (00000000000000000000000000000000)
+
+State 56 file /tmp/output5749022031411626520.c line 102 function main thread 0
+----------------------------------------------------
+  rtnl_lock=0 (00000000000000000000000000000000)
+
+State 57 file /tmp/output5749022031411626520.c line 103 function main thread 0
+----------------------------------------------------
+  want_sysfs=0 (00000000000000000000000000000000)
+
+State 58 file /tmp/output5749022031411626520.c line 104 function main thread 0
+----------------------------------------------------
+  want_dev=0 (00000000000000000000000000000000)
+
+State 59 file /tmp/output5749022031411626520.c line 105 function main thread 0
+----------------------------------------------------
+  irq_sem=0 (00000000000000000000000000000000)
+
+State 60 file /tmp/output5749022031411626520.c line 106 function main thread 0
+----------------------------------------------------
+  napi_sem=0 (00000000000000000000000000000000)
+
+State 61 file /tmp/output5749022031411626520.c line 107 function main thread 0
+----------------------------------------------------
+  dev_on=0 (00000000000000000000000000000000)
+
+State 62 file /tmp/output5749022031411626520.c line 108 function main thread 0
+----------------------------------------------------
+  IntrStatus=0 (00000000)
+
+State 63 file /tmp/output5749022031411626520.c line 109 function main thread 0
+----------------------------------------------------
+  IntrMask=0 (00000000)
+
+State 64 file /tmp/output5749022031411626520.c line 110 function main thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 67 file /tmp/output5749022031411626520.c line 111 function main thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 70 file /tmp/output5749022031411626520.c line 112 function main thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 73 file /tmp/output5749022031411626520.c line 148 function network_thread thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 74 file /tmp/output5749022031411626520.c line 149 function network_thread thread 2
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 75 file /tmp/output5749022031411626520.c line 149 function network_thread thread 2
+----------------------------------------------------
+  return_value_nondet_int$1=4294967295 (11111111111111111111111111111111)
+
+State 77 file /tmp/output5749022031411626520.c line 150 function network_thread thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 80 file /tmp/output5749022031411626520.c line 324 function open thread 2
+----------------------------------------------------
+  ret1=0 (00000000000000000000000000000000)
+
+State 81 file /tmp/output5749022031411626520.c line 325 function open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 82 file /tmp/output5749022031411626520.c line 326 function open thread 2
+----------------------------------------------------
+  ret1=0 (00000000000000000000000000000000)
+
+State 83 file /tmp/output5749022031411626520.c line 327 function open thread 2
+----------------------------------------------------
+  __test327=0 (00000000000000000000000000000000)
+
+State 84 file /tmp/output5749022031411626520.c line 113 function main thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 87 file /tmp/output5749022031411626520.c line 328 function open thread 2
+----------------------------------------------------
+  __test327=0 (00000000000000000000000000000000)
+
+State 89 file /tmp/output5749022031411626520.c line 609 function irq_thread thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 90 file /tmp/output5749022031411626520.c line 610 function irq_thread thread 3
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 91 file /tmp/output5749022031411626520.c line 610 function irq_thread thread 3
+----------------------------------------------------
+  return_value_nondet_int$1=4294967295 (11111111111111111111111111111111)
+
+State 93 file /tmp/output5749022031411626520.c line 612 function irq_thread thread 3
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 94 file /tmp/output5749022031411626520.c line 613 function irq_thread thread 3
+----------------------------------------------------
+  irq_sem=1 (00000000000000000000000000000001)
+
+State 95 file /tmp/output5749022031411626520.c line 616 function irq_thread thread 3
+----------------------------------------------------
+  irq_sem=0 (00000000000000000000000000000000)
+
+State 96 file /tmp/output5749022031411626520.c line 618 function irq_thread thread 3
+----------------------------------------------------
+  __test618=0 (00000000000000000000000000000000)
+
+State 97 file /tmp/output5749022031411626520.c line 338 function open thread 2
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 98 file /tmp/output5749022031411626520.c line 339 function open thread 2
+----------------------------------------------------
+  rtnl_lock=1 (00000000000000000000000000000001)
+
+State 99 file /tmp/output5749022031411626520.c line 342 function open thread 2
+----------------------------------------------------
+  rtnl_lock=0 (00000000000000000000000000000000)
+
+State 100 file /tmp/output5749022031411626520.c line 619 function irq_thread thread 3
+----------------------------------------------------
+  __test618=1 (00000000000000000000000000000001)
+
+State 104 file /tmp/output5749022031411626520.c line 610 function irq_thread thread 3
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 105 file /tmp/output5749022031411626520.c line 610 function irq_thread thread 3
+----------------------------------------------------
+  return_value_nondet_int$1=4294967295 (11111111111111111111111111111111)
+
+State 107 file /tmp/output5749022031411626520.c line 344 function open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 109 file /tmp/output5749022031411626520.c line 345 function open thread 2
+----------------------------------------------------
+  open1=0 (00000000000000000000000000000000)
+
+State 111 file /tmp/output5749022031411626520.c line 151 function network_thread thread 2
+----------------------------------------------------
+  __test151=0 (00000000000000000000000000000000)
+
+State 112 file /tmp/output5749022031411626520.c line 152 function network_thread thread 2
+----------------------------------------------------
+  __test151=1 (00000000000000000000000000000001)
+
+State 114 file /tmp/output5749022031411626520.c line 154 function network_thread thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 117 file /tmp/output5749022031411626520.c line 306 function close thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 118 file /tmp/output5749022031411626520.c line 308 function close thread 2
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 119 file /tmp/output5749022031411626520.c line 309 function close thread 2
+----------------------------------------------------
+  rtnl_lock=1 (00000000000000000000000000000001)
+
+State 120 file /tmp/output5749022031411626520.c line 311 function close thread 2
+----------------------------------------------------
+  __test311=0 (00000000000000000000000000000000)
+
+State 121 file /tmp/output5749022031411626520.c line 312 function close thread 2
+----------------------------------------------------
+  __test311=0 (00000000000000000000000000000000)
+
+State 123 file /tmp/output5749022031411626520.c line 167 function napi_thread thread 4
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 124 file /tmp/output5749022031411626520.c line 168 function napi_thread thread 4
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 125 file /tmp/output5749022031411626520.c line 168 function napi_thread thread 4
+----------------------------------------------------
+  return_value_nondet_int$1=4294967295 (11111111111111111111111111111111)
+
+State 127 file /tmp/output5749022031411626520.c line 114 function main thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 130 file /tmp/output5749022031411626520.c line 170 function napi_thread thread 4
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 131 file /tmp/output5749022031411626520.c line 171 function napi_thread thread 4
+----------------------------------------------------
+  napi_sem=1 (00000000000000000000000000000001)
+
+State 132 file /tmp/output5749022031411626520.c line 173 function napi_thread thread 4
+----------------------------------------------------
+  __test173=0 (00000000000000000000000000000000)
+
+State 133 file /tmp/output5749022031411626520.c line 174 function napi_thread thread 4
+----------------------------------------------------
+  __test173=1 (00000000000000000000000000000001)
+
+State 136 file /tmp/output5749022031411626520.c line 231 function workqueue_thread thread 5
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 137 file /tmp/output5749022031411626520.c line 232 function workqueue_thread thread 5
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 138 file /tmp/output5749022031411626520.c line 232 function workqueue_thread thread 5
+----------------------------------------------------
+  return_value_nondet_int$1=4294967295 (11111111111111111111111111111111)
+
+State 140 file /tmp/output5749022031411626520.c line 233 function workqueue_thread thread 5
+----------------------------------------------------
+  __test233=0 (00000000000000000000000000000000)
+
+State 141 file /tmp/output5749022031411626520.c line 234 function workqueue_thread thread 5
+----------------------------------------------------
+  __test233=1 (00000000000000000000000000000001)
+
+State 145 file /tmp/output5749022031411626520.c line 232 function workqueue_thread thread 5
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 146 file /tmp/output5749022031411626520.c line 232 function workqueue_thread thread 5
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 148 file /tmp/output5749022031411626520.c line 115 function main thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 151 file /tmp/output5749022031411626520.c line 189 function sysfs_thread thread 6
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 152 file /tmp/output5749022031411626520.c line 190 function sysfs_thread thread 6
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 153 file /tmp/output5749022031411626520.c line 190 function sysfs_thread thread 6
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 155 file /tmp/output5749022031411626520.c line 427 function pci_thread thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 156 file /tmp/output5749022031411626520.c line 428 function pci_thread thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 159 file /tmp/output5749022031411626520.c line 533 function drv_probe thread 1
+----------------------------------------------------
+  rc1=0 (00000000000000000000000000000000)
+
+State 160 file /tmp/output5749022031411626520.c line 534 function drv_probe thread 1
+----------------------------------------------------
+  ret4=0 (00000000000000000000000000000000)
+
+State 161 file /tmp/output5749022031411626520.c line 318 function close thread 2
+----------------------------------------------------
+  rtnl_lock=0 (00000000000000000000000000000000)
+
+State 162 file /tmp/output5749022031411626520.c line 535 function drv_probe thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 163 file /tmp/output5749022031411626520.c line 320 function close thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 166 file /tmp/output5749022031411626520.c line 155 function network_thread thread 2
+----------------------------------------------------
+  return_value_nondet_int$2=0 (00000000000000000000000000000000)
+
+State 167 file /tmp/output5749022031411626520.c line 155 function network_thread thread 2
+----------------------------------------------------
+  return_value_nondet_int$2=4294967295 (11111111111111111111111111111111)
+
+State 169 file /tmp/output5749022031411626520.c line 536 function drv_probe thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 172 file /tmp/output5749022031411626520.c line 596 function create_sysfs_files thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 173 file /tmp/output5749022031411626520.c line 598 function create_sysfs_files thread 1
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 174 file /tmp/output5749022031411626520.c line 599 function create_sysfs_files thread 1
+----------------------------------------------------
+  sysfs_lock=1 (00000000000000000000000000000001)
+
+State 175 file /tmp/output5749022031411626520.c line 601 function create_sysfs_files thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 178 file /tmp/output5749022031411626520.c line 389 function device_create_bin_file thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 179 file /tmp/output5749022031411626520.c line 390 function device_create_bin_file thread 1
+----------------------------------------------------
+  sysfs_registered=1 (00000000000000000000000000000001)
+
+State 180 file /tmp/output5749022031411626520.c line 391 function device_create_bin_file thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 182 file /tmp/output5749022031411626520.c line 603 function create_sysfs_files thread 1
+----------------------------------------------------
+  sysfs_lock=0 (00000000000000000000000000000000)
+
+State 183 file /tmp/output5749022031411626520.c line 605 function create_sysfs_files thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 185 file /tmp/output5749022031411626520.c line 156 function network_thread thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 188 file /tmp/output5749022031411626520.c line 537 function drv_probe thread 1
+----------------------------------------------------
+  hw_start=irep("(\"constant\" \"type\" (\"pointer\" \"subtype\" (\"code\" \"arguments\" (\"\" \"ellipsis\" (\"1\")) \"return_type\" (\"empty\"))) \"operands\" (\"\" \"\" (\"constant\" \"type\" (\"pointer\" \"subtype\" (\"code\" \"arguments\" (\"\" \"ellipsis\" (\"1\")) \"return_type\" (\"empty\"))) \"value\" (\"NULL\"))) \"value\" (\"0000001000000000000000000000000000000000000000000000000000000000\"))") (0000001000000000000000000000000000000000000000000000000000000000)
+
+State 189 file /tmp/output5749022031411626520.c line 538 function drv_probe thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 192 file /tmp/output5749022031411626520.c line 489 function register_netdev thread 1
+----------------------------------------------------
+  ret2=0 (00000000000000000000000000000000)
+
+State 193 file /tmp/output5749022031411626520.c line 131 function drv_xmit_timeout thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 194 file /tmp/output5749022031411626520.c line 132 function drv_xmit_timeout thread 2
+----------------------------------------------------
+  reset_task_ready=1 (00000000000000000000000000000001)
+
+State 195 file /tmp/output5749022031411626520.c line 490 function register_netdev thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 196 file /tmp/output5749022031411626520.c line 491 function register_netdev thread 1
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 197 file /tmp/output5749022031411626520.c line 491 function register_netdev thread 1
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 199 file /tmp/output5749022031411626520.c line 133 function drv_xmit_timeout thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 203 file /tmp/output5749022031411626520.c line 149 function network_thread thread 2
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 204 file /tmp/output5749022031411626520.c line 149 function network_thread thread 2
+----------------------------------------------------
+  return_value_nondet_int$1=4294967295 (11111111111111111111111111111111)
+
+State 206 file /tmp/output5749022031411626520.c line 494 function register_netdev thread 1
+----------------------------------------------------
+  registered=1 (00000000000000000000000000000001)
+
+State 207 file /tmp/output5749022031411626520.c line 495 function register_netdev thread 1
+----------------------------------------------------
+  ret2=0 (00000000000000000000000000000000)
+
+State 208 file /tmp/output5749022031411626520.c line 150 function network_thread thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 211 file /tmp/output5749022031411626520.c line 324 function open thread 2
+----------------------------------------------------
+  ret1=0 (00000000000000000000000000000000)
+
+State 212 file /tmp/output5749022031411626520.c line 325 function open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 213 file /tmp/output5749022031411626520.c line 326 function open thread 2
+----------------------------------------------------
+  ret1=0 (00000000000000000000000000000000)
+
+State 214 file /tmp/output5749022031411626520.c line 327 function open thread 2
+----------------------------------------------------
+  __test327=0 (00000000000000000000000000000000)
+
+State 215 file /tmp/output5749022031411626520.c line 328 function open thread 2
+----------------------------------------------------
+  __test327=1 (00000000000000000000000000000001)
+
+State 217 file /tmp/output5749022031411626520.c line 497 function register_netdev thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 219 file /tmp/output5749022031411626520.c line 498 function register_netdev thread 1
+----------------------------------------------------
+  rc1=0 (00000000000000000000000000000000)
+
+State 221 file /tmp/output5749022031411626520.c line 539 function drv_probe thread 1
+----------------------------------------------------
+  __test539=0 (00000000000000000000000000000000)
+
+State 222 file /tmp/output5749022031411626520.c line 540 function drv_probe thread 1
+----------------------------------------------------
+  __test539=0 (00000000000000000000000000000000)
+
+State 224 file /tmp/output5749022031411626520.c line 544 function drv_probe thread 1
+----------------------------------------------------
+  ret4=0 (00000000000000000000000000000000)
+
+State 225 file /tmp/output5749022031411626520.c line 330 function open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 228 file /tmp/output5749022031411626520.c line 349 function drv_open thread 2
+----------------------------------------------------
+  rc2=0 (00000000000000000000000000000000)
+
+State 229 file /tmp/output5749022031411626520.c line 350 function drv_open thread 2
+----------------------------------------------------
+  ret5=0 (00000000000000000000000000000000)
+
+State 230 file /tmp/output5749022031411626520.c line 351 function drv_open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 232 file /tmp/output5749022031411626520.c line 355 function drv_open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 234 file /tmp/output5749022031411626520.c line 360 function drv_open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 237 file /tmp/output5749022031411626520.c line 583 function request_irq thread 2
+----------------------------------------------------
+  ret3=0 (00000000000000000000000000000000)
+
+State 238 file /tmp/output5749022031411626520.c line 546 function drv_probe thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 240 file /tmp/output5749022031411626520.c line 547 function drv_probe thread 1
+----------------------------------------------------
+  probe1=0 (00000000000000000000000000000000)
+
+State 242 file /tmp/output5749022031411626520.c line 429 function pci_thread thread 1
+----------------------------------------------------
+  __test429=0 (00000000000000000000000000000000)
+
+State 243 file /tmp/output5749022031411626520.c line 430 function pci_thread thread 1
+----------------------------------------------------
+  __test429=1 (00000000000000000000000000000001)
+
+State 245 file /tmp/output5749022031411626520.c line 432 function pci_thread thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 248 file /tmp/output5749022031411626520.c line 419 function drv_disconnect thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 249 file /tmp/output5749022031411626520.c line 420 function drv_disconnect thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 252 file /tmp/output5749022031411626520.c line 382 function unregister_netdev thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 253 file /tmp/output5749022031411626520.c line 383 function unregister_netdev thread 1
+----------------------------------------------------
+  registered=0 (00000000000000000000000000000000)
+
+State 254 file /tmp/output5749022031411626520.c line 384 function unregister_netdev thread 1
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 255 file /tmp/output5749022031411626520.c line 385 function unregister_netdev thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 257 file /tmp/output5749022031411626520.c line 421 function drv_disconnect thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 260 file /tmp/output5749022031411626520.c line 246 function remove_sysfs_files thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 261 file /tmp/output5749022031411626520.c line 248 function remove_sysfs_files thread 1
+----------------------------------------------------
+  want_sysfs=5 (00000000000000000000000000000101)
+
+State 262 file /tmp/output5749022031411626520.c line 250 function remove_sysfs_files thread 1
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 263 file /tmp/output5749022031411626520.c line 251 function remove_sysfs_files thread 1
+----------------------------------------------------
+  sysfs_lock=5 (00000000000000000000000000000101)
+
+State 264 file /tmp/output5749022031411626520.c line 252 function remove_sysfs_files thread 1
+----------------------------------------------------
+  want_sysfs=0 (00000000000000000000000000000000)
+
+State 265 file /tmp/output5749022031411626520.c line 255 function remove_sysfs_files thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 268 file /tmp/output5749022031411626520.c line 483 function device_remove_bin_file thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 269 file /tmp/output5749022031411626520.c line 584 function request_irq thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 270 file /tmp/output5749022031411626520.c line 585 function request_irq thread 2
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 271 file /tmp/output5749022031411626520.c line 585 function request_irq thread 2
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 273 file /tmp/output5749022031411626520.c line 588 function request_irq thread 2
+----------------------------------------------------
+  irq_enabled=1 (00000000000000000000000000000001)
+
+State 274 file /tmp/output5749022031411626520.c line 589 function request_irq thread 2
+----------------------------------------------------
+  ret3=0 (00000000000000000000000000000000)
+
+State 275 file /tmp/output5749022031411626520.c line 591 function request_irq thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 277 file /tmp/output5749022031411626520.c line 592 function request_irq thread 2
+----------------------------------------------------
+  rc2=0 (00000000000000000000000000000000)
+
+State 279 file /tmp/output5749022031411626520.c line 361 function drv_open thread 2
+----------------------------------------------------
+  IntrMask=0 (00000000)
+
+State 280 file /tmp/output5749022031411626520.c line 362 function drv_open thread 2
+----------------------------------------------------
+  __test362=0 (00000000000000000000000000000000)
+
+State 281 file /tmp/output5749022031411626520.c line 363 function drv_open thread 2
+----------------------------------------------------
+  __test362=0 (00000000000000000000000000000000)
+
+State 283 file /tmp/output5749022031411626520.c line 367 function drv_open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 286 file /tmp/output5749022031411626520.c line 510 function napi_enable thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 287 file /tmp/output5749022031411626520.c line 484 function device_remove_bin_file thread 1
+----------------------------------------------------
+  sysfs_registered=0 (00000000000000000000000000000000)
+
+State 288 file /tmp/output5749022031411626520.c line 511 function napi_enable thread 2
+----------------------------------------------------
+  napi_enabled=1 (00000000000000000000000000000001)
+
+State 289 file /tmp/output5749022031411626520.c line 180 function napi_thread thread 4
+----------------------------------------------------
+  napi_sem=0 (00000000000000000000000000000000)
+
+State 291 file /tmp/output5749022031411626520.c line 168 function napi_thread thread 4
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 292 file /tmp/output5749022031411626520.c line 168 function napi_thread thread 4
+----------------------------------------------------
+  return_value_nondet_int$1=4294967295 (11111111111111111111111111111111)
+
+State 294 file /tmp/output5749022031411626520.c line 170 function napi_thread thread 4
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 295 file /tmp/output5749022031411626520.c line 171 function napi_thread thread 4
+----------------------------------------------------
+  napi_sem=1 (00000000000000000000000000000001)
+
+State 296 file /tmp/output5749022031411626520.c line 173 function napi_thread thread 4
+----------------------------------------------------
+  __test173=0 (00000000000000000000000000000000)
+
+State 297 file /tmp/output5749022031411626520.c line 174 function napi_thread thread 4
+----------------------------------------------------
+  __test173=1 (00000000000000000000000000000001)
+
+State 300 file /tmp/output5749022031411626520.c line 180 function napi_thread thread 4
+----------------------------------------------------
+  napi_sem=0 (00000000000000000000000000000000)
+
+State 302 file /tmp/output5749022031411626520.c line 116 function main thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 305 file /tmp/output5749022031411626520.c line 512 function napi_enable thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 307 file /tmp/output5749022031411626520.c line 368 function drv_open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 310 file /tmp/output5749022031411626520.c line 516 function dev_up thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 311 file /tmp/output5749022031411626520.c line 517 function dev_up thread 2
+----------------------------------------------------
+  dev_on=1 (00000000000000000000000000000001)
+
+State 312 file /tmp/output5749022031411626520.c line 485 function device_remove_bin_file thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 314 file /tmp/output5749022031411626520.c line 257 function remove_sysfs_files thread 1
+----------------------------------------------------
+  sysfs_lock=0 (00000000000000000000000000000000)
+
+State 315 file /tmp/output5749022031411626520.c line 518 function dev_up thread 2
+----------------------------------------------------
+  intr_mask=1 (00000001)
+
+State 316 file /tmp/output5749022031411626520.c line 519 function dev_up thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 319 file /tmp/output5749022031411626520.c line 519 function dev_up thread 2
+----------------------------------------------------
+  val=1 (00000001)
+
+State 320 file /tmp/output5749022031411626520.c line 559 function write_IntrMask thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 322 file /tmp/output5749022031411626520.c line 562 function write_IntrMask thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 324 file /tmp/output5749022031411626520.c line 117 function main thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 327 file /tmp/output5749022031411626520.c line 566 function write_IntrMask thread 2
+----------------------------------------------------
+  IntrMask=1 (00000001)
+
+State 328 file /tmp/output5749022031411626520.c line 567 function write_IntrMask thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 330 file /tmp/output5749022031411626520.c line 520 function dev_up thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 332 file /tmp/output5749022031411626520.c line 369 function drv_open thread 2
+----------------------------------------------------
+  ret5=0 (00000000000000000000000000000000)
+
+State 333 file /tmp/output5749022031411626520.c line 371 function drv_open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 335 file /tmp/output5749022031411626520.c line 372 function drv_open thread 2
+----------------------------------------------------
+  ret1=0 (00000000000000000000000000000000)
+
+State 337 file /tmp/output5749022031411626520.c line 331 function open thread 2
+----------------------------------------------------
+  __test331=0 (00000000000000000000000000000000)
+
+State 338 file /tmp/output5749022031411626520.c line 332 function open thread 2
+----------------------------------------------------
+  __test331=1 (00000000000000000000000000000001)
+
+State 340 file /tmp/output5749022031411626520.c line 334 function open thread 2
+----------------------------------------------------
+  netif_running=1 (00000000000000000000000000000001)
+
+State 341 file /tmp/output5749022031411626520.c line 612 function irq_thread thread 3
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 342 file /tmp/output5749022031411626520.c line 613 function irq_thread thread 3
+----------------------------------------------------
+  irq_sem=1 (00000000000000000000000000000001)
+
+State 343 file /tmp/output5749022031411626520.c line 524 function dev_thread thread 7
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 344 file /tmp/output5749022031411626520.c line 525 function dev_thread thread 7
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 345 file /tmp/output5749022031411626520.c line 525 function dev_thread thread 7
+----------------------------------------------------
+  return_value_nondet_int$1=4294967295 (11111111111111111111111111111111)
+
+State 347 file /tmp/output5749022031411626520.c line 616 function irq_thread thread 3
+----------------------------------------------------
+  irq_sem=0 (00000000000000000000000000000000)
+
+State 348 file /tmp/output5749022031411626520.c line 618 function irq_thread thread 3
+----------------------------------------------------
+  __test618=0 (00000000000000000000000000000000)
+
+State 349 file /tmp/output5749022031411626520.c line 526 function dev_thread thread 7
+----------------------------------------------------
+  IntrStatus=1 (00000001)
+
+State 351 file /tmp/output5749022031411626520.c line 525 function dev_thread thread 7
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 352 file /tmp/output5749022031411626520.c line 525 function dev_thread thread 7
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 354 file /tmp/output5749022031411626520.c line 619 function irq_thread thread 3
+----------------------------------------------------
+  __test618=0 (00000000000000000000000000000000)
+
+State 356 file /tmp/output5749022031411626520.c line 118 function main thread 0
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 357 file /tmp/output5749022031411626520.c line 241 function workqueue_thread thread 5
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 358 file /tmp/output5749022031411626520.c line 259 function remove_sysfs_files thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 360 file /tmp/output5749022031411626520.c line 338 function open thread 2
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 361 file /tmp/output5749022031411626520.c line 339 function open thread 2
+----------------------------------------------------
+  rtnl_lock=1 (00000000000000000000000000000001)
+
+State 362 file /tmp/output5749022031411626520.c line 342 function open thread 2
+----------------------------------------------------
+  rtnl_lock=0 (00000000000000000000000000000000)
+
+State 363 file /tmp/output5749022031411626520.c line 644 function deadlock_thread thread 8
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 364 file /tmp/output5749022031411626520.c line 344 function open thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 366 file /tmp/output5749022031411626520.c line 345 function open thread 2
+----------------------------------------------------
+  open1=0 (00000000000000000000000000000000)
+
+State 368 file /tmp/output5749022031411626520.c line 151 function network_thread thread 2
+----------------------------------------------------
+  __test151=0 (00000000000000000000000000000000)
+
+State 369 file /tmp/output5749022031411626520.c line 152 function network_thread thread 2
+----------------------------------------------------
+  __test151=1 (00000000000000000000000000000001)
+
+State 371 file /tmp/output5749022031411626520.c line 154 function network_thread thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 374 file /tmp/output5749022031411626520.c line 306 function close thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 375 file /tmp/output5749022031411626520.c line 242 function workqueue_thread thread 5
+----------------------------------------------------
+  __workqueue_thread_finished=1 (00000000000000000000000000000001)
+
+State 379 file /tmp/output5749022031411626520.c line 188 function sysfs_thread thread 6
+----------------------------------------------------
+  nondet1=0 (00000000000000000000000000000000)
+
+State 380 file /tmp/output5749022031411626520.c line 308 function close thread 2
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 381 file /tmp/output5749022031411626520.c line 309 function close thread 2
+----------------------------------------------------
+  rtnl_lock=1 (00000000000000000000000000000001)
+
+State 382 file /tmp/output5749022031411626520.c line 311 function close thread 2
+----------------------------------------------------
+  __test311=0 (00000000000000000000000000000000)
+
+State 383 file /tmp/output5749022031411626520.c line 312 function close thread 2
+----------------------------------------------------
+  __test311=1 (00000000000000000000000000000001)
+
+State 385 file /tmp/output5749022031411626520.c line 314 function close thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 388 file /tmp/output5749022031411626520.c line 551 function drv_close thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 389 file /tmp/output5749022031411626520.c line 552 function drv_close thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 392 file /tmp/output5749022031411626520.c line 376 function free_irq thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 393 file /tmp/output5749022031411626520.c line 377 function free_irq thread 2
+----------------------------------------------------
+  irq_enabled=0 (00000000000000000000000000000000)
+
+State 394 file /tmp/output5749022031411626520.c line 378 function free_irq thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 396 file /tmp/output5749022031411626520.c line 553 function drv_close thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 399 file /tmp/output5749022031411626520.c line 502 function dev_down thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 400 file /tmp/output5749022031411626520.c line 503 function dev_down thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 403 file /tmp/output5749022031411626520.c line 503 function dev_down thread 2
+----------------------------------------------------
+  val=0 (00000000)
+
+State 404 file /tmp/output5749022031411626520.c line 559 function write_IntrMask thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 406 file /tmp/output5749022031411626520.c line 562 function write_IntrMask thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 408 file /tmp/output5749022031411626520.c line 566 function write_IntrMask thread 2
+----------------------------------------------------
+  IntrMask=0 (00000000)
+
+State 410 file /tmp/output5749022031411626520.c line 624 function irq_thread thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 412 file /tmp/output5749022031411626520.c line 567 function write_IntrMask thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 414 file /tmp/output5749022031411626520.c line 504 function dev_down thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 417 file /tmp/output5749022031411626520.c line 571 function synchronize_irq thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 418 file /tmp/output5749022031411626520.c line 628 function irq_thread thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 421 file /tmp/output5749022031411626520.c line 263 function drv_irq thread 3
+----------------------------------------------------
+  handled2=0 (00000000000000000000000000000000)
+
+State 422 file /tmp/output5749022031411626520.c line 264 function drv_irq thread 3
+----------------------------------------------------
+  status1=0 (00000000)
+
+State 423 file /tmp/output5749022031411626520.c line 573 function synchronize_irq thread 2
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 424 file /tmp/output5749022031411626520.c line 574 function synchronize_irq thread 2
+----------------------------------------------------
+  irq_sem=1 (00000000000000000000000000000001)
+
+State 425 file /tmp/output5749022031411626520.c line 265 function drv_irq thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 426 file /tmp/output5749022031411626520.c line 266 function drv_irq thread 3
+----------------------------------------------------
+  handled2=0 (00000000000000000000000000000000)
+
+State 427 file /tmp/output5749022031411626520.c line 577 function synchronize_irq thread 2
+----------------------------------------------------
+  irq_sem=0 (00000000000000000000000000000000)
+
+State 428 file /tmp/output5749022031411626520.c line 267 function drv_irq thread 3
+----------------------------------------------------
+  status1=1 (00000001)
+
+State 429 file /tmp/output5749022031411626520.c line 268 function drv_irq thread 3
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 430 file /tmp/output5749022031411626520.c line 268 function drv_irq thread 3
+----------------------------------------------------
+  return_value_nondet_int$1=4294967295 (11111111111111111111111111111111)
+
+State 432 file /tmp/output5749022031411626520.c line 579 function synchronize_irq thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 434 file /tmp/output5749022031411626520.c line 269 function drv_irq thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 437 file /tmp/output5749022031411626520.c line 269 function drv_irq thread 3
+----------------------------------------------------
+  val=1 (00000001)
+
+State 438 file /tmp/output5749022031411626520.c line 505 function dev_down thread 2
+----------------------------------------------------
+  dev_on=0 (00000000000000000000000000000000)
+
+State 439 file /tmp/output5749022031411626520.c line 506 function dev_down thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 441 file /tmp/output5749022031411626520.c line 422 function drv_disconnect thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 443 file /tmp/output5749022031411626520.c line 434 function pci_thread thread 1
+----------------------------------------------------
+  want_dev=5 (00000000000000000000000000000101)
+
+State 444 file /tmp/output5749022031411626520.c line 554 function drv_close thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 447 file /tmp/output5749022031411626520.c line 471 function write_IntrStatus thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 448 file /tmp/output5749022031411626520.c line 528 function dev_thread thread 7
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 449 file /tmp/output5749022031411626520.c line 137 function napi_disable thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 450 file /tmp/output5749022031411626520.c line 436 function pci_thread thread 1
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 451 file /tmp/output5749022031411626520.c line 437 function pci_thread thread 1
+----------------------------------------------------
+  dev_lock=5 (00000000000000000000000000000101)
+
+State 452 file /tmp/output5749022031411626520.c line 438 function pci_thread thread 1
+----------------------------------------------------
+  want_dev=0 (00000000000000000000000000000000)
+
+State 454 file /tmp/output5749022031411626520.c line 476 function write_IntrStatus thread 3
+----------------------------------------------------
+  __assert_fail=1 (00000000000000000000000000000001)
+
+State 455 file /tmp/output5749022031411626520.c line 478 function write_IntrStatus thread 3
+----------------------------------------------------
+  IntrStatus=0 (00000000)
+
+State 456 file /tmp/output5749022031411626520.c line 529 function dev_thread thread 7
+----------------------------------------------------
+  __dev_thread_finished=1 (00000000000000000000000000000001)
+
+State 460 file /tmp/output5749022031411626520.c line 138 function napi_disable thread 2
+----------------------------------------------------
+  napi_enabled=0 (00000000000000000000000000000000)
+
+State 461 file /tmp/output5749022031411626520.c line 140 function napi_disable thread 2
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 462 file /tmp/output5749022031411626520.c line 141 function napi_disable thread 2
+----------------------------------------------------
+  napi_sem=1 (00000000000000000000000000000001)
+
+State 463 file /tmp/output5749022031411626520.c line 143 function napi_disable thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 465 file /tmp/output5749022031411626520.c line 555 function drv_close thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 467 file /tmp/output5749022031411626520.c line 315 function close thread 2
+----------------------------------------------------
+  netif_running=0 (00000000000000000000000000000000)
+
+State 468 file /tmp/output5749022031411626520.c line 479 function write_IntrStatus thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 470 file /tmp/output5749022031411626520.c line 318 function close thread 2
+----------------------------------------------------
+  rtnl_lock=0 (00000000000000000000000000000000)
+
+State 471 file /tmp/output5749022031411626520.c line 320 function close thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 474 file /tmp/output5749022031411626520.c line 155 function network_thread thread 2
+----------------------------------------------------
+  return_value_nondet_int$2=0 (00000000000000000000000000000000)
+
+State 475 file /tmp/output5749022031411626520.c line 155 function network_thread thread 2
+----------------------------------------------------
+  return_value_nondet_int$2=4294967295 (11111111111111111111111111111111)
+
+State 477 file /tmp/output5749022031411626520.c line 156 function network_thread thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 480 file /tmp/output5749022031411626520.c line 131 function drv_xmit_timeout thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 481 file /tmp/output5749022031411626520.c line 442 function pci_thread thread 1
+----------------------------------------------------
+  dev_lock=0 (00000000000000000000000000000000)
+
+State 482 file /tmp/output5749022031411626520.c line 132 function drv_xmit_timeout thread 2
+----------------------------------------------------
+  reset_task_ready=1 (00000000000000000000000000000001)
+
+State 483 file /tmp/output5749022031411626520.c line 133 function drv_xmit_timeout thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 487 file /tmp/output5749022031411626520.c line 270 function drv_irq thread 3
+----------------------------------------------------
+  status1=0 (00000000)
+
+State 488 file /tmp/output5749022031411626520.c line 271 function drv_irq thread 3
+----------------------------------------------------
+  __test271=0 (00000000000000000000000000000000)
+
+State 489 file /tmp/output5749022031411626520.c line 272 function drv_irq thread 3
+----------------------------------------------------
+  __test271=1 (00000000000000000000000000000001)
+
+State 491 file /tmp/output5749022031411626520.c line 274 function drv_irq thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 494 file /tmp/output5749022031411626520.c line 274 function drv_irq thread 3
+----------------------------------------------------
+  val=0 (00000000)
+
+State 495 file /tmp/output5749022031411626520.c line 559 function write_IntrMask thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 497 file /tmp/output5749022031411626520.c line 564 function write_IntrMask thread 3
+----------------------------------------------------
+  __assert_fail=1 (00000000000000000000000000000001)
+
+State 499 file /tmp/output5749022031411626520.c line 647 function deadlock_thread thread 8
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 501 file /tmp/output5749022031411626520.c line 183 function napi_thread thread 4
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 502 file /tmp/output5749022031411626520.c line 445 function pci_thread thread 1
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 503 file /tmp/output5749022031411626520.c line 566 function write_IntrMask thread 3
+----------------------------------------------------
+  IntrMask=0 (00000000)
+
+State 504 file /tmp/output5749022031411626520.c line 567 function write_IntrMask thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 506 file /tmp/output5749022031411626520.c line 275 function drv_irq thread 3
+----------------------------------------------------
+  intr_mask=0 (00000000)
+
+State 507 file /tmp/output5749022031411626520.c line 184 function napi_thread thread 4
+----------------------------------------------------
+  __napi_thread_finished=1 (00000000000000000000000000000001)
+
+State 511 file /tmp/output5749022031411626520.c line 276 function drv_irq thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 514 file /tmp/output5749022031411626520.c line 459 function napi_schedule thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 515 file /tmp/output5749022031411626520.c line 446 function pci_thread thread 1
+----------------------------------------------------
+  __pci_thread_finished=1 (00000000000000000000000000000001)
+
+State 519 file /tmp/output5749022031411626520.c line 147 function network_thread thread 2
+----------------------------------------------------
+  open1=0 (00000000000000000000000000000000)
+
+State 520 file /tmp/output5749022031411626520.c line 461 function napi_schedule thread 3
+----------------------------------------------------
+  __test461=0 (00000000000000000000000000000000)
+
+State 521 file /tmp/output5749022031411626520.c line 462 function napi_schedule thread 3
+----------------------------------------------------
+  __test461=0 (00000000000000000000000000000000)
+
+State 523 file /tmp/output5749022031411626520.c line 467 function napi_schedule thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 525 file /tmp/output5749022031411626520.c line 277 function drv_irq thread 3
+----------------------------------------------------
+  handled2=1 (00000000000000000000000000000001)
+
+State 527 file /tmp/output5749022031411626520.c line 268 function drv_irq thread 3
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 528 file /tmp/output5749022031411626520.c line 268 function drv_irq thread 3
+----------------------------------------------------
+  return_value_nondet_int$1=0 (00000000000000000000000000000000)
+
+State 530 file /tmp/output5749022031411626520.c line 162 function network_thread thread 2
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 531 file /tmp/output5749022031411626520.c line 163 function network_thread thread 2
+----------------------------------------------------
+  __network_thread_finished=1 (00000000000000000000000000000001)
+
+State 535 file /tmp/output5749022031411626520.c line 119 function main thread 0
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 536 file /tmp/output5749022031411626520.c line 120 function main thread 0
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 537 file /tmp/output5749022031411626520.c line 220 function sysfs_thread thread 6
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 538 file /tmp/output5749022031411626520.c line 221 function sysfs_thread thread 6
+----------------------------------------------------
+  __sysfs_thread_finished=1 (00000000000000000000000000000001)
+
+State 542 file /tmp/output5749022031411626520.c line 121 function main thread 0
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 543 file /tmp/output5749022031411626520.c line 651 function deadlock_thread thread 8
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 544 file /tmp/output5749022031411626520.c line 122 function main thread 0
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 545 file /tmp/output5749022031411626520.c line 123 function main thread 0
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 546 file /tmp/output5749022031411626520.c line 280 function drv_irq thread 3
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 547 file /tmp/output5749022031411626520.c line 281 function drv_irq thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 551 file /tmp/output5749022031411626520.c line 124 function main thread 0
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 552 file /tmp/output5749022031411626520.c line 631 function irq_thread thread 3
+----------------------------------------------------
+  __dummy=0 (00000000000000000000000000000000)
+
+State 553 file /tmp/output5749022031411626520.c line 632 function irq_thread thread 3
+----------------------------------------------------
+  __irq_thread_finished=1 (00000000000000000000000000000001)
+
+State 557 file /tmp/output5749022031411626520.c line 652 function deadlock_thread thread 8
+----------------------------------------------------
+  __deadlock_thread_finished=1 (00000000000000000000000000000001)
+
+State 559 file /tmp/output5749022031411626520.c line 125 function main thread 0
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+State 560 file /tmp/output5749022031411626520.c line 126 function main thread 0
+----------------------------------------------------
+  __assume_dummy=0 (00000000000000000000000000000000)
+
+Violated property:
+  file /tmp/output5749022031411626520.c line 127 function main
+  assertion __assert_fail == 0
+  __assert_fail == 0
+
+VERIFICATION FAILED

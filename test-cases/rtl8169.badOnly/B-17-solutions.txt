@@ -1,0 +1,1 @@
+ (14,3) : MoveUp (14,125) - 284: unlock(rtnl_lock);  ->  278: if (registered != 0) {...} 

@@ -1,0 +1,7 @@
+ (93,1) : MoveUp (93,84)  - 278: if (registered != 0) {...}     ->  277: lock(rtnl_lock);         
+ (94,1) : MoveUp (94,128) - 291: if (netif_running != 0) {...}  ->  290: lock(rtnl_lock);         
+ (93,2) : MoveUp (93,137) - 291: if (netif_running != 0) {...}  ->  290: lock(rtnl_lock);         
+ (95,2) : MoveUp (95,127) - 291: if (netif_running != 0) {...}  ->  290: lock(rtnl_lock);         
+ (95,1) : MoveUp (95,84)  - 278: if (registered != 0) {...}     ->  277: lock(rtnl_lock);         
+ (96,2) : MoveUp (96,57)  - 518: remove_sysfs_files();          ->  517: unregister_netdev();     
+ (96,4) : MoveUp (96,67)  - 646: device_remove_bin_file();      ->  637: nr{ want_sysfs = 5; ...} 

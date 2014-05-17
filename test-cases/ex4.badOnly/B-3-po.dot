@@ -1,0 +1,115 @@
+digraph PartialOrder {
+	compound = true
+	"87: request = thread_id;" -> "94: bsy = 0;" [ltail = cluster8, lhead = cluster10]
+	"113: request = 0;" -> "115: client_thread1();"
+	"70: assume(lock1 == 0);" -> "71: lock1 = thread_id;"
+	"53: bsy = 0;" -> "61: acm_cdc_notify(3);" [lhead = cluster7]
+	"110: lock1 = 0;" -> "111: bsy = 0;"
+	"102: assert(bsy);" -> "105: lock1 = 0;"
+	"67: result = 0;" -> "69: at{ assume(lock1 == 0); ...}" [lhead = cluster9]
+	"112: pending = 0;" -> "113: request = 0;"
+	"111: bsy = 0;" -> "112: pending = 0;"
+	"70: assume(lock1 == 0);" -> "75: pending = 0;" [ltail = cluster2]
+	"116: client_thread2();" -> "117: worker_thread();"
+	"54: request = 0;" -> "61: acm_cdc_notify(3);" [lhead = cluster7]
+	"99: pending = 1;" -> "102: assert(bsy);"
+	"115: client_thread1();" -> "116: client_thread2();"
+	"46: assert(lock1 != request);" -> "53: bsy = 0;"
+	"48: assume(lock1 == 0);" -> "49: lock1 = 3;"
+	"80: bsy = 1;" -> "94: bsy = 0;" [lhead = cluster10]
+	"57: lock1 = 0;" -> "61: acm_cdc_notify(3);" [lhead = cluster7]
+	"75: pending = 0;" -> "85: if (nondet == 0) {...}" [lhead = cluster3]
+	"46: assert(lock1 != request);" -> "54: request = 0;"
+	"49: lock1 = 3;" -> "57: lock1 = 0;" [ltail = cluster13]
+	"43: assume(request);" -> "46: assert(lock1 != request);"
+	"46: assert(lock1 != request);" -> "49: lock1 = 3;" [lhead = cluster13]
+	subgraph cluster12 {
+		label = "34: int client_thread2() {...}"
+		color = blue
+		"35: acm_cdc_notify(2);"  [label = "35: acm_cdc_notify(2);"]
+	}
+	subgraph cluster5 {
+		label = "40: int worker_thread() {...}"
+		color = blue
+		"41: while (1) {...}"  [label, style = invisible]
+		subgraph cluster6 {
+			label = "41: while (1) {...}"
+			color = blue
+			"47: at{ assume(lock1 == 0); ...}"  [label, style = invisible]
+			"46: assert(lock1 != request);"  [label = "46: assert(lock1 != request);"]
+			"53: bsy = 0;"  [label = "53: bsy = 0;"]
+			"57: lock1 = 0;"  [label = "57: lock1 = 0;"]
+			"60: if (pending == 0) {...}"  [label, style = invisible]
+			"54: request = 0;"  [label = "54: request = 0;"]
+			"43: assume(request);"  [label = "43: assume(request);"]
+			subgraph cluster7 {
+				label = "60: if (pending == 0) {...}"
+				color = blue
+				"61: acm_cdc_notify(3);"  [label = "61: acm_cdc_notify(3);"]
+			}
+			subgraph cluster13 {
+				label = "47: at{ assume(lock1 == 0); ...}"
+				color = blue
+				"48: assume(lock1 == 0);"  [label = "48: assume(lock1 == 0);"]
+				"49: lock1 = 3;"  [label = "49: lock1 = 3;"]
+			}
+		}
+	}
+	subgraph cluster4 {
+		label = "29: int client_thread1() {...}"
+		color = blue
+		"30: acm_cdc_notify(1);"  [label = "30: acm_cdc_notify(1);"]
+	}
+	subgraph cluster1 {
+		label = "66: int acm_cdc_notify(int thread_id) {...}"
+		color = blue
+		"67: result = 0;"  [label = "67: result = 0;"]
+		"-1003a: at{ at{ assume(lock1 == 0); ...} ...}"  [label, style = invisible]
+		subgraph cluster2 {
+			label = "69: at{ assume(lock1 == 0); ...}"
+			color = blue
+			"71: lock1 = thread_id;"  [label = "71: lock1 = thread_id;"]
+			"70: assume(lock1 == 0);"  [label = "70: assume(lock1 == 0);"]
+		}
+		subgraph cluster9 {
+			label = "-1003a: at{ at{ assume(lock1 == 0); ...} ...}"
+			color = blue
+			"75: pending = 0;"  [label = "75: pending = 0;"]
+			"69: at{ assume(lock1 == 0); ...}"  [label, style = invisible]
+			"78: if (bsy == 0) {...}"  [label, style = invisible]
+		}
+		subgraph cluster3 {
+			label = "78: if (bsy == 0) {...}"
+			color = blue
+			"102: assert(bsy);"  [label = "102: assert(bsy);"]
+			"105: lock1 = 0;"  [label = "105: lock1 = 0;"]
+			"99: pending = 1;"  [label = "99: pending = 1;"]
+			"82: lock1 = 0;"  [label = "82: lock1 = 0;"]
+			"80: bsy = 1;"  [label = "80: bsy = 1;"]
+			"92: if (result == (-1)) {...}"  [label, style = invisible]
+			"85: if (nondet == 0) {...}"  [label, style = invisible]
+			subgraph cluster8 {
+				label = "85: if (nondet == 0) {...}"
+				color = blue
+				"90: result = -1;"  [label = "90: result = -1;"]
+				"87: request = thread_id;"  [label = "87: request = thread_id;"]
+			}
+			subgraph cluster10 {
+				label = "92: if (result == (-1)) {...}"
+				color = blue
+				"94: bsy = 0;"  [label = "94: bsy = 0;"]
+			}
+		}
+	}
+	subgraph cluster11 {
+		label = "109: void main() {...}"
+		color = blue
+		"116: client_thread2();"  [label = "116: client_thread2();"]
+		"115: client_thread1();"  [label = "115: client_thread1();"]
+		"113: request = 0;"  [label = "113: request = 0;"]
+		"110: lock1 = 0;"  [label = "110: lock1 = 0;"]
+		"111: bsy = 0;"  [label = "111: bsy = 0;"]
+		"112: pending = 0;"  [label = "112: pending = 0;"]
+		"117: worker_thread();"  [label = "117: worker_thread();"]
+	}
+}

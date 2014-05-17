@@ -1,0 +1,2 @@
+ (38,2) : MoveUp (38,31) - 494: IntrMask = 0;      ->  492: (*hw_start)();         
+ (38,5) : MoveUp (38,67) - 249: drv_disconnect();  ->  240: nr{ want_dev = 5; ...} 

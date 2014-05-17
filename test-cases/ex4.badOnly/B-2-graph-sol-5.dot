@@ -1,0 +1,75 @@
+digraph Counterexample {
+	52 -> 54 [color = white, style = solid]
+	54 -> 55 [color = white, style = solid]
+	33 -> 27 [color = red, style = solid, constraint = false]
+	16 -> 18 [color = white, style = solid]
+	18 -> 19 [color = white, style = solid]
+	19 -> 21 [color = white, style = solid]
+	28 -> 29 [color = black, style = solid, constraint = false]
+	30 -> 31 [color = black, style = dotted]
+	31 -> 32 [color = black, style = dotted]
+	27 -> 28 [color = black, style = solid, constraint = false]
+	13 -> 14 [color = white, style = solid]
+	45 -> 46 [color = white, style = solid]
+	10 -> 13 [color = white, style = solid]
+	46 -> 47 [color = white, style = solid]
+	21 -> 26 [color = black, style = solid, constraint = false]
+	47 -> 49 [color = white, style = solid]
+	23 -> 28 [color = white, style = solid]
+	35 -> 47 [color = black, style = solid, constraint = false]
+	27 -> 29 [color = white, style = solid]
+	33 -> 35 [color = white, style = solid]
+	41 -> 44 [color = white, style = solid]
+	50 -> 52 [color = white, style = solid]
+	14 -> 15 [color = white, style = solid]
+	33 -> 45 [color = black, style = solid, constraint = false]
+	15 -> 16 [color = white, style = solid]
+	32 -> 33 [color = black, style = dotted]
+	21 -> 23 [color = white, style = solid]
+	26 -> 27 [color = white, style = solid]
+	44 -> 45 [color = white, style = solid]
+	55 -> 56 [color = white, style = solid]
+	49 -> 50 [color = white, style = solid]
+	29 -> 30 [color = black, style = dotted]
+	subgraph cluster2 {
+		label = client_thread2
+		color = blue
+		28  [label = "82: lock1 = 0;"]
+		14  [label = "70: assume(lock1 == 0);"]
+		15  [label = "71: lock1 = thread_id;"]
+		21  [label = "87: request = thread_id;"]
+		13  [label = "67: result = 0;"]
+		19  [label = "80: bsy = 1;"]
+		16  [label = "75: pending = 0;"]
+		10  [label = "35a: thread_id = 2;"]
+		23  [label = "92b: assume(!(result == (-1)));"]
+		18  [label = "78a: assume(bsy == 0);"]
+	}
+	subgraph cluster3 {
+		label = worker_thread
+		color = blue
+		31  [label = "53: bsy = 0;"]
+		30  [label = "49: lock1 = 3;"]
+		32  [label = "54: request = 0;"]
+		26  [label = "43: assume(request);"]
+		29  [label = "48: assume(lock1 == 0);"]
+		35  [label = "60a: assume(pending == 0);"]
+		27  [label = "46: assert(lock1 != request);", color = red]
+		33  [label = "57: lock1 = 0;"]
+	}
+	subgraph cluster1 {
+		label = client_thread1
+		color = blue
+		56  [label = "82: lock1 = 0;"]
+		44  [label = "67: result = 0;"]
+		55  [label = "94: bsy = 0;"]
+		47  [label = "75: pending = 0;"]
+		52  [label = "90: result = -1;"]
+		50  [label = "80: bsy = 1;"]
+		49  [label = "78a: assume(bsy == 0);"]
+		46  [label = "71: lock1 = thread_id;"]
+		45  [label = "70: assume(lock1 == 0);"]
+		54  [label = "92a: assume(result == (-1));"]
+		41  [label = "30a: thread_id = 1;"]
+	}
+}

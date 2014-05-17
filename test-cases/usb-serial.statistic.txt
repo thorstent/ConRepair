@@ -1,0 +1,191 @@
+File: usb-serial.c
+Mode: Combined
+
+ | BadOnly                                                                         | Mixed                                                                           | 
+ | =============================================================================== | =============================================================================== | 
+ | Summary:                                                                        | Summary:                                                                        | 
+ | 0 # of good rounds                                                              | 119 # of good rounds                                                            | 
+ | 6 # of bad rounds                                                               | 4 # of bad rounds                                                               | 
+ | 2260.18s (98.38%)¹ total                                                        | 4533.06s (98.34%)¹ total                                                        | 
+ |                                                                                 | 3340.26s (99.13%)¹ good trace learning²                                         | 
+ | Solution found, fixed the program.                                              | 1192.80s (96.98%)¹ bad trace program repair                                     | 
+ |                                                                                 |                                                                                 | 
+ |                                                                                 | Solution found, fixed the program.                                              | 
+ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | 
+ |                                                                                 |                                                                                 | 
+ |                                                                                 | Good trace learning:                                                            | 
+ |                                                                                 | - - - - - - - - - - -                                                           | 
+ |                                                                                 | Iteration  1: 12.80s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration  2:  7.38s (99.99%)¹                                                  | 
+ |                                                                                 | Iteration  3: 11.60s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration  4:  7.24s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration  5: 11.57s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration  6:  7.87s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration  7: 148.99s (97.64%)¹                                                 | 
+ |                                                                                 | Iteration  8: 44.95s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration  9: 22.92s (99.98%)¹                                                  | 
+ |                                                                                 | Iteration 10: 125.04s (96.97%)¹                                                 | 
+ |                                                                                 | Iteration 11: 56.45s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 12: 202.43s (98.12%)¹                                                 | 
+ |                                                                                 | Iteration 13: 55.38s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 14: 206.69s (98.12%)¹                                                 | 
+ |                                                                                 | Iteration 15: 55.15s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 16: 55.37s (99.97%)¹                                                  | 
+ |                                                                                 | Iteration 17: 115.11s (97.82%)¹                                                 | 
+ |                                                                                 | Iteration 18: 113.92s (97.67%)¹                                                 | 
+ |                                                                                 | Iteration 19: 66.61s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 20: 62.96s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 21: 57.77s (99.98%)¹                                                  | 
+ |                                                                                 | Iteration 22: 53.42s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 23: 122.48s (97.98%)¹                                                 | 
+ |                                                                                 | Iteration 24: 59.25s (99.98%)¹                                                  | 
+ |                                                                                 | Iteration 25: 56.47s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 26: 150.12s (98.16%)¹                                                 | 
+ |                                                                                 | Iteration 27: 62.22s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 28: 60.26s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 29: 95.55s (97.36%)¹                                                  | 
+ |                                                                                 | Iteration 30: 114.64s (97.82%)¹                                                 | 
+ |                                                                                 | Iteration 31: 96.89s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 32: 154.41s (98.40%)¹                                                 | 
+ |                                                                                 | Iteration 33: 70.96s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 34: 73.65s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 35: 60.14s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 36: 52.56s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 37: 59.18s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 38: 116.15s (97.96%)¹                                                 | 
+ |                                                                                 | Iteration 39: 75.57s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 40: 104.77s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 41: 153.54s (98.68%)¹                                                 | 
+ |                                                                                 | Iteration 42: 70.21s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 43: 162.25s (98.64%)¹                                                 | 
+ |                                                                                 | Iteration 44: 72.55s (99.75%)¹                                                  | 
+ |                                                                                 | Iteration 45: 156.97s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 46: 98.46s (97.67%)¹                                                  | 
+ |                                                                                 | Iteration 47: 163.97s (98.44%)¹                                                 | 
+ |                                                                                 | Iteration 48: 60.62s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 49: 58.79s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 50: 141.34s (98.62%)¹                                                 | 
+ |                                                                                 | Iteration 51: 112.10s (98.17%)¹                                                 | 
+ |                                                                                 | Iteration 52: 50.17s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 53: 38.59s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 54: 128.37s (98.26%)¹                                                 | 
+ |                                                                                 | Iteration 55: 167.98s (98.57%)¹                                                 | 
+ |                                                                                 | Iteration 56: 55.51s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 57: 62.58s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 58: 116.69s (98.29%)¹                                                 | 
+ |                                                                                 | Iteration 59: 146.77s (98.48%)¹                                                 | 
+ |                                                                                 | Iteration 60: 116.23s (97.79%)¹                                                 | 
+ |                                                                                 | Iteration 61: 89.18s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 62: 103.01s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 63: 217.14s (98.90%)¹                                                 | 
+ |                                                                                 | Iteration 64: 53.33s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 65: 56.22s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 66: 134.93s (98.35%)¹                                                 | 
+ |                                                                                 | Iteration 67: 103.64s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 68: 98.01s (97.56%)¹                                                  | 
+ |                                                                                 | Iteration 69: 86.30s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 70: 87.70s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 71: 91.51s (99.51%)¹                                                  | 
+ |                                                                                 | Iteration 72: 102.56s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 73: 190.57s (98.90%)¹                                                 | 
+ |                                                                                 | Iteration 74: 111.16s (97.53%)¹                                                 | 
+ |                                                                                 | Iteration 75: 50.76s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 76: 54.19s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 77: 145.90s (98.18%)¹                                                 | 
+ |                                                                                 | Iteration 78: 37.05s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 79: 47.32s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 80: 126.07s (97.85%)¹                                                 | 
+ |                                                                                 | Iteration 81: 44.92s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 82: 56.39s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 83: 106.47s (97.55%)¹                                                 | 
+ |                                                                                 | Iteration 84: 121.84s (97.95%)¹                                                 | 
+ |                                                                                 | Iteration 85: 66.16s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 86: 62.78s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 87: 98.33s (97.92%)¹                                                  | 
+ |                                                                                 | Iteration 88: 37.80s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 89: 38.30s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 90: 181.06s (98.70%)¹                                                 | 
+ |                                                                                 | Iteration 91: 54.12s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 92: 45.48s (99.99%)¹                                                  | 
+ |                                                                                 | Iteration 93: 159.35s (98.60%)¹                                                 | 
+ |                                                                                 | Iteration 94: 74.64s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 95: 106.28s (97.72%)¹                                                 | 
+ |                                                                                 | Iteration 96: 97.93s (99.86%)¹                                                  | 
+ |                                                                                 | Iteration 97: 79.03s (99.91%)¹                                                  | 
+ |                                                                                 | Iteration 98: 56.13s (100.00%)¹                                                 | 
+ |                                                                                 | Iteration 99: 83.04s (97.81%)¹                                                  | 
+ |                                                                                 | Iteration 100: 33.92s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 101: 35.94s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 102: 142.06s (98.96%)¹                                                | 
+ |                                                                                 | Iteration 103: 57.17s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 104: 38.60s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 105: 105.77s (98.20%)¹                                                | 
+ |                                                                                 | Iteration 106: 184.22s (99.20%)¹                                                | 
+ |                                                                                 | Iteration 107: 53.29s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 108: 48.41s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 109: 105.28s (98.65%)¹                                                | 
+ |                                                                                 | Iteration 110: 105.03s (98.89%)¹                                                | 
+ |                                                                                 | Iteration 111: 105.04s (98.88%)¹                                                | 
+ |                                                                                 | Iteration 112: 105.04s (98.88%)¹                                                | 
+ |                                                                                 | Iteration 113: 105.03s (98.89%)¹                                                | 
+ |                                                                                 | Iteration 114: 105.03s (98.89%)¹                                                | 
+ |                                                                                 | Iteration 115: 115.31s (99.06%)¹                                                | 
+ |                                                                                 | Iteration 116: 40.20s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 117: 51.88s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 118:  7.13s (100.00%)¹                                                | 
+ |                                                                                 | Iteration 119:  4.54s (100.00%)¹                                                | 
+ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | 
+ |                                                                                 |                                                                                 | 
+ | Bad trace program repair:                                                       | Bad trace program repair:                                                       | 
+ | - - - - - - - - - - - - -                                                       | - - - - - - - - - - - - -                                                       | 
+ | Iteration  1: 135.22s (95.63%)¹                                                 | Iteration  1: 137.92s (93.75%)¹                                                 | 
+ | Assertion triggered: 519: assert((fw_tty_lock != 2) | (port_work_stop == 0));   | Assertion triggered: 519: assert((fw_tty_lock != 2) | (port_work_stop == 0));   | 
+ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | 
+ | Iteration  2: 161.20s (95.59%)¹                                                 | Iteration  2: 162.82s (94.64%)¹                                                 | 
+ | Assertion triggered: 471: assert(port_work_initialized);                        | Assertion triggered: 471: assert(port_work_initialized);                        | 
+ | Changes up to this iteration³:                                                  | Changes up to this iteration³:                                                  | 
+ | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        | 
+ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | 
+ | Verification: 98.64s (100.00%)¹                                                 | Iteration  3: 131.88s (92.83%)¹                                                 | 
+ | Changes up to this iteration³:                                                  | Assertion triggered: 471: assert(port_work_initialized);                        | 
+ | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        | Changes up to this iteration³:                                                  | 
+ | Reorder(278: assume(port_tty_registered == 0); <-- 277: unlock_serial_bus();)   | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        | 
+ |                                                                                 | Reorder(190: assume(port_write_in_progress == 0); <-- 187: cancel_work_sync();) | 
+ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | 
+ | --Switched to non-deadlock mode--                                               | Iteration  4: 168.41s (94.50%)¹                                                 | 
+ | Iteration  3: 397.28s (97.32%)¹                                                 | Assertion triggered: 553: assert(port_tty_installed);                           | 
+ | Assertion triggered: 471: assert(port_work_initialized);                        | Changes up to this iteration³:                                                  | 
+ | Changes up to this iteration³:                                                  | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        | 
+ | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        | Reorder(190: assume(port_write_in_progress == 0); --> 187: cancel_work_sync();) | 
+ | Reorder(278: assume(port_tty_registered == 0); <-- 277: unlock_serial_bus();)   |                                                                                 | 
+ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | 
+ | Iteration  4: 533.75s (99.30%)¹                                                 | Verification: 591.77s (100.00%)¹                                                | 
+ | Assertion triggered: 471: assert(port_work_initialized);                        | Changes up to this iteration³:                                                  | 
+ | Changes up to this iteration³:                                                  | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        | 
+ | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        | Reorder(190: assume(port_write_in_progress == 0); --> 187: cancel_work_sync();) | 
+ | Reorder(537: assume(!port_dev_registered); <-- 535: unlock_serial_bus();)       | Reorder(191: port_tty_installed = 0; <-- 199: unlock_tty();)                    | 
+ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | 
+ | Iteration  5: 376.03s (100.00%)¹                                                |                                                                                 | 
+ | Changes up to this iteration³:                                                  |                                                                                 | 
+ | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        |                                                                                 | 
+ | Reorder(483: at{ assume(drv_module_ref_cnt == 0); ...} <-- 481: belkin_init();) |                                                                                 | 
+ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | 
+ | Iteration  6: 481.16s (98.08%)¹                                                 |                                                                                 | 
+ | Assertion triggered: 552: assert(dev_usb_serial_initialized);                   |                                                                                 | 
+ | Changes up to this iteration³:                                                  |                                                                                 | 
+ | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        |                                                                                 | 
+ | Reorder(190: assume(port_write_in_progress == 0); <-- 187: cancel_work_sync();) |                                                                                 | 
+ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | 
+ | Verification: 76.91s (100.00%)¹                                                 |                                                                                 | 
+ | Changes up to this iteration³:                                                  |                                                                                 | 
+ | Reorder(199: unlock_tty(); <-- 187: cancel_work_sync();)                        |                                                                                 | 
+ | Reorder(190: assume(port_write_in_progress == 0); <-- 187: cancel_work_sync();) |                                                                                 | 
+ | Reorder(547: lock_tty(); <-- 545: serial_install();)                            |                                                                                 | 
+ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

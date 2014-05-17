@@ -1,0 +1,1 @@
+ (12,57) : MoveUp (12,88) - 117: mtx = 0;  ->  85: assertd(state != 3); 

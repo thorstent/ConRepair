@@ -1,0 +1,61 @@
+digraph Counterexample {
+	20 -> 22 [color = white, style = solid]
+	20 -> 21 [color = black, style = solid, constraint = false]
+	17 -> 18 [color = white, style = solid]
+	25 -> 32 [color = white, style = solid]
+	21 -> 26 [color = white, style = solid]
+	19 -> 32 [color = black, style = solid, constraint = false]
+	16 -> 17 [color = white, style = solid]
+	22 -> 23 [color = white, style = solid]
+	24 -> 29 [color = white, style = solid]
+	14 -> 15 [color = white, style = solid]
+	19 -> 20 [color = black, style = dotted]
+	17 -> 22 [color = black, style = solid, constraint = false]
+	28 -> 33 [color = white, style = solid]
+	27 -> 31 [color = black, style = solid, constraint = false]
+	29 -> 30 [color = white, style = solid]
+	31 -> 33 [color = black, style = solid, constraint = false]
+	24 -> 15 [color = red, style = solid, constraint = false]
+	15 -> 19 [color = black, style = dotted]
+	23 -> 24 [color = white, style = solid]
+	25 -> 29 [color = black, style = solid, constraint = false]
+	21 -> 24 [color = black, style = solid, constraint = false]
+	26 -> 27 [color = white, style = solid]
+	18 -> 21 [color = white, style = solid]
+	33 -> 34 [color = white, style = solid]
+	30 -> 31 [color = white, style = solid]
+	27 -> 28 [color = white, style = solid]
+	subgraph cluster3 {
+		label = reassoc_thread
+		color = blue
+		25  [label = "101: assume(notify == 1);"]
+		32  [label = "103: assert(restarted == 1);"]
+	}
+	subgraph cluster2 {
+		label = iwl3945_bg_alive_start_thread
+		color = blue
+		31  [label = "96: lock1 = 0;"]
+		22  [label = "82: assume(rtnl_lock == 0);"]
+		15  [label = "65: lock1 = 1;"]
+		24  [label = "84: want_rtnl_lock = 0;"]
+		19  [label = "70: restarted = 1;"]
+		20  [label = "74: want_rtnl_lock = 2;"]
+		30  [label = "92: rtnl_lock = 0;"]
+		14  [label = "64: assume(lock1 == 0);"]
+		29  [label = "89: notify = 1;"]
+		23  [label = "83: rtnl_lock = 1;"]
+	}
+	subgraph cluster1 {
+		label = config_thread
+		color = blue
+		26  [label = "43: assume(lock1 == 0);"]
+		18  [label = "36: want_lock = 1;"]
+		27  [label = "44: lock1 = 1;"]
+		28  [label = "45: want_lock = 0;"]
+		34  [label = "55: rtnl_lock = 0;"]
+		21  [label = "38: assert((lock1 == 0) | (want_rtnl_lock != 2));", color = red]
+		16  [label = "30: assume(rtnl_lock == 0);"]
+		17  [label = "31: rtnl_lock = 1;"]
+		33  [label = "53: lock1 = 0;"]
+	}
+}

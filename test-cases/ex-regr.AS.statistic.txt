@@ -1,0 +1,50 @@
+File: ex-regr.c
+Mode: Combined
+
+ | BadOnly                                               | Mixed                                                 | 
+ | ===================================================== | ===================================================== | 
+ | Summary:                                              | Summary:                                              | 
+ | 0 # of good rounds                                    | 9 # of good rounds                                    | 
+ | 2 # of bad rounds                                     | 2 # of bad rounds                                     | 
+ |  0.90s (83.65%)¹ total                                |  2.38s (88.51%)¹ total                                | 
+ |                                                       |  0.86s (89.96%)¹ good trace learning²                 | 
+ | Solution found, fixed the program.                    |  1.53s (87.70%)¹ bad trace program repair             | 
+ |                                                       |                                                       | 
+ |                                                       | Solution found, fixed the program.                    | 
+ | ----------------------------------------------------- | ----------------------------------------------------- | 
+ |                                                       |                                                       | 
+ |                                                       | Good trace learning:                                  | 
+ |                                                       | - - - - - - - - - - -                                 | 
+ |                                                       | Iteration  1:  0.62s (85.53%)¹                        | 
+ |                                                       | Iteration  2:  0.61s (84.12%)¹                        | 
+ |                                                       | Iteration  3:  0.67s (85.01%)¹                        | 
+ |                                                       | Iteration  4:  0.30s (100.00%)¹                       | 
+ |                                                       | Iteration  5:  0.19s (100.00%)¹                       | 
+ |                                                       | Iteration  6:  0.34s (90.59%)¹                        | 
+ |                                                       | Iteration  7:  0.24s (88.61%)¹                        | 
+ |                                                       | Iteration  8:  0.22s (100.00%)¹                       | 
+ |                                                       | Iteration  9:  0.25s (100.00%)¹                       | 
+ | ----------------------------------------------------- | ----------------------------------------------------- | 
+ |                                                       |                                                       | 
+ | Bad trace program repair:                             | Bad trace program repair:                             | 
+ | - - - - - - - - - - - - -                             | - - - - - - - - - - - - -                             | 
+ | Iteration  1:  0.30s (70.47%)¹                        | Iteration  1:  0.33s (64.22%)¹                        | 
+ | Assertion triggered: 16: assert(y == 1);              | Assertion triggered: 16: assert(y == 1);              | 
+ | ----------------------------------------------------- | ----------------------------------------------------- | 
+ | Iteration  2:  0.28s (78.80%)¹                        | Iteration  2:  0.29s (75.85%)¹                        | 
+ | Assertion triggered: 20: assert((x == 1) | (y == 0)); | Assertion triggered: 20: assert((x == 1) | (y == 0)); | 
+ | Changes up to this iteration³:                        | Changes up to this iteration³:                        | 
+ | Reorder(11: y = 1; <-- 10: x = 1;)                    | Reorder(11: y = 1; <-- 10: x = 1;)                    | 
+ | ----------------------------------------------------- | ----------------------------------------------------- | 
+ | Verification:  0.32s (100.00%)¹                       | Verification:  0.91s (100.00%)¹                       | 
+ | Changes up to this iteration³:                        | Changes up to this iteration³:                        | 
+ | Reorder(11: y = 1; <-- 10: x = 1;)                    | AtomicSection(10: x = 1; --> 11: y = 1;)              | 
+ | AtomicSection(11: y = 1; --> 10: x = 1;)              |                                                       | 
+ | ----------------------------------------------------- | ----------------------------------------------------- | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

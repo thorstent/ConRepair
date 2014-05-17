@@ -1,0 +1,7 @@
+ 46: assert(lock1 != request); : acm_cdc_notify() - 70: assume(lock1 == 0);       --> 71: lock1 = thread_id;        
+ 46: assert(lock1 != request); : worker_thread()  - 46: assert(lock1 != request); --> 57: lock1 = 0;                
+ 46: assert(lock1 != request); : worker_thread()  - 43: assume(request);          --> 46: assert(lock1 != request); 
+ 46: assert(lock1 != request); : acm_cdc_notify() - 70: assume(lock1 == 0);       --> 71: lock1 = thread_id;        
+ 46: assert(lock1 != request); : acm_cdc_notify() - 82: lock1 = 0;                --> 85: if (nondet == 0) {...}    
+ 46: assert(lock1 != request); : worker_thread()  - 43: assume(request);          --> 46: assert(lock1 != request); 
+ 46: assert(lock1 != request); : worker_thread()  - 43: assume(request);          --> 46: assert(lock1 != request); 

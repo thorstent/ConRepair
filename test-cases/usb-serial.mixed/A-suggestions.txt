@@ -1,0 +1,11 @@
+ Deadlock-Round                                           : usb_bus_thread()        - 501: if (port_dev_registered == 0) {...} --> 497: usb_serial_probe();                        
+ Deadlock-Round                                           : usb_serial_put()        - 260: if (old == 1) {...}                 --> 255: at{ old = dev_usb_serial_initialized; ...} 
+ Deadlock-Round                                           : usb_serial_put()        - 260: if (old == 1) {...}                 --> 255: at{ old = dev_usb_serial_initialized; ...} 
+ 226: assert(dev_usb_serial_initialized >= 0);            : usb_serial_put()        - 260: if (old == 1) {...}                 --> 255: at{ old = dev_usb_serial_initialized; ...} 
+ 226: assert(dev_usb_serial_initialized >= 0);            : usb_serial_put()        - 260: if (old == 1) {...}                 --> 255: at{ old = dev_usb_serial_initialized; ...} 
+ 226: assert(dev_usb_serial_initialized >= 0);            : usb_bus_thread()        - 501: if (port_dev_registered == 0) {...} --> 497: usb_serial_probe();                        
+ 226: assert(dev_usb_serial_initialized >= 0);            : usb_serial_put()        - 260: if (old == 1) {...}                 --> 255: at{ old = dev_usb_serial_initialized; ...} 
+ 226: assert(dev_usb_serial_initialized >= 0);            : usb_serial_put()        - 260: if (old == 1) {...}                 --> 255: at{ old = dev_usb_serial_initialized; ...} 
+ 226: assert(dev_usb_serial_initialized >= 0);            : usb_serial_put()        - 260: if (old == 1) {...}                 --> 255: at{ old = dev_usb_serial_initialized; ...} 
+ 226: assert(dev_usb_serial_initialized >= 0);            : usb_serial_put()        - 260: if (old == 1) {...}                 --> 255: at{ old = dev_usb_serial_initialized; ...} 
+ 519: assert((fw_tty_lock != 2) | (port_work_stop == 0)); : usb_serial_disconnect() - 199: unlock_tty();                       --> 187: cancel_work_sync();                        

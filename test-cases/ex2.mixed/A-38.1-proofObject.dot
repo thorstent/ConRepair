@@ -1,0 +1,36 @@
+digraph ProofObject {
+	13 -> 30 [style = dotted, color = black]
+	2 -> 3 [style = dotted, color = black]
+	22 -> 24 [style = dotted, color = black]
+	16 -> 32 [color = Red, constraint = false]
+	16 -> 22 [style = dotted, color = black]
+	24 -> 28 [style = dotted, color = black]
+	16 -> 24 [color = Black]
+	24 -> 30 [color = Blue, constraint = false]
+	30 -> 32 [color = Black]
+	3 -> 4 [style = dotted, color = black]
+	14 -> 16 [style = dotted, color = black]
+	subgraph cluster0 {
+		label = main
+		color = blue
+		3  [label = "44: IntrMask = 0;"]
+		4  [label = "45: patched = 0;"]
+		2  [label = "43: starting = 1;"]
+	}
+	subgraph cluster1 {
+		label = thread1
+		color = blue
+		14  [label = "12: assert(starting == 0);"]
+		22  [label = "8: assume(starting == 0);"]
+		16  [label = "13: patched = 1;"]
+		28  [label = "8: assume(starting == 0);"]
+		24  [label = "18: IntrMask = 1;"]
+	}
+	subgraph cluster2 {
+		label = thread2
+		color = blue
+		13  [label = "36: starting = 0;"]
+		32  [label = "38: assert(patched == 1);"]
+		30  [label = "37: assume(IntrMask == 1);"]
+	}
+}

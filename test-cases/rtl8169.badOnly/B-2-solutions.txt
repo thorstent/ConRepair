@@ -1,0 +1,3 @@
+ (2,1) : MoveUp (2,2)  - 605: intr_mask = 1;                                                                ->  604: write_IntrMask(1);                                                           
+ (2,2) : MoveUp (2,56) - 310: up(irq_sem);                                                                  ->  306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...} 
+ (2,3) : MoveUp (2,56) - 306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...}  ->  305: down(irq_sem);                                                               

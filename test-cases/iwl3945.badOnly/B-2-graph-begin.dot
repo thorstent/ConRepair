@@ -1,0 +1,66 @@
+digraph Counterexample {
+	32 -> 33 [color = black, style = solid, constraint = false]
+	11 -> 12 [color = white, style = solid]
+	18 -> 19 [color = white, style = solid]
+	23 -> 32 [color = white, style = solid]
+	17 -> 18 [color = black, style = solid, constraint = false]
+	29 -> 30 [color = white, style = solid]
+	17 -> 26 [color = black, style = solid, constraint = false]
+	17 -> 20 [color = white, style = solid]
+	33 -> 37 [color = black, style = solid, constraint = false]
+	23 -> 28 [color = black, style = solid, constraint = false]
+	27 -> 28 [color = black, style = solid, constraint = false]
+	30 -> 31 [color = white, style = solid]
+	19 -> 20 [color = black, style = solid, constraint = false]
+	20 -> 21 [color = white, style = solid]
+	23 -> 26 [color = black, style = solid, constraint = false]
+	37 -> 39 [color = white, style = solid]
+	19 -> 28 [color = white, style = solid]
+	22 -> 23 [color = white, style = solid]
+	28 -> 29 [color = white, style = solid]
+	14 -> 15 [color = white, style = solid]
+	32 -> 37 [color = white, style = solid]
+	12 -> 14 [color = black, style = solid, constraint = false]
+	21 -> 22 [color = white, style = solid]
+	15 -> 17 [color = white, style = solid]
+	31 -> 33 [color = white, style = solid]
+	19 -> 26 [color = black, style = solid, constraint = false]
+	26 -> 27 [color = white, style = solid]
+	12 -> 18 [color = white, style = solid]
+	27 -> 32 [color = black, style = solid, constraint = false]
+	12 -> 26 [color = black, style = solid, constraint = false]
+	31 -> 32 [color = black, style = solid, constraint = false]
+	subgraph cluster3 {
+		label = reassoc_thread
+		color = blue
+		26  [label = "101: assume(notify == 1);"]
+		27  [label = "103: assert(restarted == 1);"]
+	}
+	subgraph cluster2 {
+		label = iwl3945_bg_alive_start_thread
+		color = blue
+		23  [label = "89: notify = 1;"]
+		15  [label = "65: lock1 = 1;"]
+		17  [label = "74: want_rtnl_lock = 2;"]
+		32  [label = "92: rtnl_lock = 0;"]
+		20  [label = "82: assume(rtnl_lock == 0);"]
+		37  [label = "70: restarted = 1;"]
+		21  [label = "83: rtnl_lock = 1;"]
+		14  [label = "64: assume(lock1 == 0);"]
+		22  [label = "84: want_rtnl_lock = 0;"]
+		39  [label = "96: lock1 = 0;"]
+	}
+	subgraph cluster1 {
+		label = config_thread
+		color = blue
+		18  [label = "36: want_lock = 1;"]
+		19  [label = "38: assert((lock1 == 0) | (want_rtnl_lock != 2));", color = red]
+		11  [label = "30: assume(rtnl_lock == 0);"]
+		30  [label = "45: want_lock = 0;"]
+		28  [label = "43: assume(lock1 == 0);"]
+		31  [label = "53: lock1 = 0;"]
+		29  [label = "44: lock1 = 1;"]
+		12  [label = "31: rtnl_lock = 1;"]
+		33  [label = "55: rtnl_lock = 0;"]
+	}
+}

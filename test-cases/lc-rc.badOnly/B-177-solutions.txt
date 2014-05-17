@@ -1,0 +1,14 @@
+ (177,1)  : MoveUp   (177,52) - 33: assume(!rc_running);   ->  31: stop_rc = 1;         
+ (177,2)  : MoveUp   (177,52) - 29: assume(!rsv_running);  ->  27: stop_rsv = 1;        
+ (177,3)  : MoveUp   (177,57) - 29: assume(!rsv_running);  ->  35: stop_neh = 1;        
+ (177,4)  : MoveUp   (177,57) - 37: assume(!neh_running);  ->  27: stop_rsv = 1;        
+ (177,4)  : MoveDown (177,57) - 37: assume(!neh_running);  ->  27: stop_rsv = 1;        
+ (177,6)  : MoveUp   (177,57) - 35: stop_neh = 1;          ->  31: stop_rc = 1;         
+ (177,7)  : MoveUp   (177,62) - 27: stop_rsv = 1;          ->  31: stop_rc = 1;         
+ (177,9)  : MoveUp   (177,62) - 37: assume(!neh_running);  ->  35: stop_neh = 1;        
+ (177,9)  : MoveDown (177,62) - 37: assume(!neh_running);  ->  35: stop_neh = 1;        
+ (177,11) : MoveUp   (177,67) - 29: assume(!rsv_running);  ->  31: stop_rc = 1;         
+ (177,11) : MoveDown (177,67) - 29: assume(!rsv_running);  ->  31: stop_rc = 1;         
+ (177,13) : MoveUp   (177,67) - 37: assume(!neh_running);  ->  33: assume(!rc_running); 
+ (177,14) : MoveUp   (177,72) - 37: assume(!neh_running);  ->  31: stop_rc = 1;         
+ (177,14) : MoveDown (177,72) - 37: assume(!neh_running);  ->  31: stop_rc = 1;         

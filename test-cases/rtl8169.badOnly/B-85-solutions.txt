@@ -1,0 +1,2 @@
+ (85,1) : MoveUp (85,2)  - 511: napi_disable();  ->  510: dev_down(); 
+ (85,2) : MoveUp (85,57) - 511: napi_disable();  ->  512: free_irq(); 

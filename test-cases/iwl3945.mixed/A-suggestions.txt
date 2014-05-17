@@ -1,0 +1,1 @@
+ 38: assert((lock1 == 0) | (want_rtnl_lock != 2)); : iwl3945_bg_alive_start_thread() - 96: lock1 = 0; --> 72: nr{ want_rtnl_lock = 2; ...} 

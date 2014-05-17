@@ -1,0 +1,51 @@
+File: ex3.c
+Mode: Combined
+
+ | BadOnly                                                | Mixed                                                  | 
+ | ====================================================== | ====================================================== | 
+ | Summary:                                               | Summary:                                               | 
+ | 0 # of good rounds                                     | 10 # of good rounds                                    | 
+ | 2 # of bad rounds                                      | 1 # of bad rounds                                      | 
+ |  1.08s (90.54%)¹ total                                 |  2.39s (90.71%)¹ total                                 | 
+ |                                                        |  1.61s (91.88%)¹ good trace learning²                  | 
+ | Solution found, fixed the program.                     |  0.78s (88.27%)¹ bad trace program repair              | 
+ |                                                        |                                                        | 
+ |                                                        | Solution found, fixed the program.                     | 
+ | ------------------------------------------------------ | ------------------------------------------------------ | 
+ |                                                        |                                                        | 
+ |                                                        | Good trace learning:                                   | 
+ |                                                        | - - - - - - - - - - -                                  | 
+ |                                                        | Iteration  1:  0.78s (89.37%)¹                         | 
+ |                                                        | Iteration  2:  0.78s (91.82%)¹                         | 
+ |                                                        | Iteration  3:  0.80s (74.88%)¹                         | 
+ |                                                        | Iteration  4:  0.85s (91.13%)¹                         | 
+ |                                                        | Iteration  5:  0.38s (100.00%)¹                        | 
+ |                                                        | Iteration  6:  0.38s (100.00%)¹                        | 
+ |                                                        | Iteration  7:  0.44s (99.77%)¹                         | 
+ |                                                        | Iteration  8:  0.22s (100.00%)¹                        | 
+ |                                                        | Iteration  9:  0.33s (100.00%)¹                        | 
+ |                                                        | Iteration 10:  0.27s (100.00%)¹                        | 
+ | ------------------------------------------------------ | ------------------------------------------------------ | 
+ |                                                        |                                                        | 
+ | Bad trace program repair:                              | Bad trace program repair:                              | 
+ | - - - - - - - - - - - - -                              | - - - - - - - - - - - - -                              | 
+ | Iteration  1:  0.32s (82.97%)¹                         | Iteration  1:  0.36s (74.93%)¹                         | 
+ | Assertion triggered: 30: assert(registered == 1);      | Assertion triggered: 30: assert(registered == 1);      | 
+ | ------------------------------------------------------ | ------------------------------------------------------ | 
+ | Iteration  2:  0.32s (85.36%)¹                         | Verification:  0.41s (100.00%)¹                        | 
+ | Assertion triggered: 24: assert(initialised2 == 1);    | Changes up to this iteration³:                         | 
+ | Changes up to this iteration³:                         | Reorder(13: registered = 1; <-- 11: initialised3 = 1;) | 
+ | Reorder(13: registered = 1; <-- 11: initialised3 = 1;) |                                                        | 
+ | ------------------------------------------------------ | ------------------------------------------------------ | 
+ | Verification:  0.43s (100.00%)¹                        |                                                        | 
+ | Changes up to this iteration³:                         |                                                        | 
+ | Reorder(13: registered = 1; <-- 11: initialised3 = 1;) |                                                        | 
+ | Reorder(12: initialised2 = 1; <-- 13: registered = 1;) |                                                        | 
+ | ------------------------------------------------------ | ------------------------------------------------------ | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

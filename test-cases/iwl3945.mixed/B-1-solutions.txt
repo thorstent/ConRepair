@@ -1,0 +1,5 @@
+ (1,5)  : MoveUp        (1,-988) - 96: lock1 = 0;                                     ->  72: nr{ want_rtnl_lock = 2; ...} 
+ (1,4)  : AtomicSection (1,26)   - 70: restarted = 1;                                 ->  72: nr{ want_rtnl_lock = 2; ...} 
+ (1,6)  : AtomicSection (1,28)   - 38: assert((lock1 == 0) | (want_rtnl_lock != 2));  ->  53: lock1 = 0;                   
+ (1,10) : AtomicSection (1,31)   - 63: at{ assume(lock1 == 0); ...}                   ->  72: nr{ want_rtnl_lock = 2; ...} 
+ (1,12) : MoveUp        (1,26)   - 96: lock1 = 0;                                     ->  70: restarted = 1;               

@@ -1,0 +1,10 @@
+ (1,1)  : AtomicSection (1,37) - 35: stop_neh = 1;          ->  37: assume(!neh_running); 
+ (1,6)  : MoveUp        (1,57) - 31: stop_rc = 1;           ->  27: stop_rsv = 1;         
+ (1,8)  : MoveUp        (1,62) - 33: assume(!rc_running);   ->  27: stop_rsv = 1;         
+ (1,3)  : AtomicSection (1,67) - 27: stop_rsv = 1;          ->  29: assume(!rsv_running); 
+ (1,7)  : MoveUp        (1,57) - 33: assume(!rc_running);   ->  29: assume(!rsv_running); 
+ (1,4)  : AtomicSection (1,67) - 31: stop_rc = 1;           ->  33: assume(!rc_running);  
+ (1,10) : MoveUp        (1,62) - 35: stop_neh = 1;          ->  29: assume(!rsv_running); 
+ (1,11) : MoveUp        (1,67) - 37: assume(!neh_running);  ->  29: assume(!rsv_running); 
+ (1,12) : MoveUp        (1,67) - 35: stop_neh = 1;          ->  27: stop_rsv = 1;         
+ (1,13) : MoveUp        (1,72) - 37: assume(!neh_running);  ->  27: stop_rsv = 1;         

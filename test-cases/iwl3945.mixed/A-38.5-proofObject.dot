@@ -1,0 +1,38 @@
+digraph ProofObject {
+	5 -> 17 [color = Red, constraint = false]
+	16 -> 17 [style = dotted, color = black]
+	5 -> 6 [style = dotted, color = black]
+	2 -> 3 [style = dotted, color = black]
+	12 -> 17 [color = Red, constraint = false]
+	6 -> 7 [style = dotted, color = black]
+	15 -> 16 [style = dotted, color = black]
+	14 -> 15 [style = dotted, color = black]
+	3 -> 4 [style = dotted, color = black]
+	4 -> 5 [style = dotted, color = black]
+	4 -> 14 [color = Blue, constraint = false]
+	11 -> 12 [style = dotted, color = black]
+	subgraph cluster2 {
+		label = iwl3945_bg_alive_start_thread
+		color = blue
+		11  [label = "64: assume(lock1 == 0);"]
+		12  [label = "65: lock1 = 1;"]
+	}
+	subgraph cluster0 {
+		label = main
+		color = blue
+		5  [label = "110: want_rtnl_lock = 0;"]
+		4  [label = "109: rtnl_lock = 0;"]
+		2  [label = "107: lock1 = 0;"]
+		6  [label = "111: restarted = 0;"]
+		3  [label = "108: want_lock = 0;"]
+		7  [label = "112: notify = 0;"]
+	}
+	subgraph cluster1 {
+		label = config_thread
+		color = blue
+		15  [label = "31: rtnl_lock = 1;"]
+		14  [label = "30: assume(rtnl_lock == 0);"]
+		17  [label = "38: assert((lock1 == 0) | (want_rtnl_lock != 2));"]
+		16  [label = "36: want_lock = 1;"]
+	}
+}

@@ -1,0 +1,5 @@
+ 307: assert(intr_mask != 0); : drv_open()  - 498: if (rc2 < 0) {...}       --> 496: rc2 = request_irq();     
+ 307: assert(intr_mask != 0); : drv_open()  - 498: if (rc2 < 0) {...}       --> 496: rc2 = request_irq();     
+ 307: assert(intr_mask != 0); : dev_up()    - 605: intr_mask = 1;           --> 604: write_IntrMask(1);       
+ 307: assert(intr_mask != 0); : dev_up()    - 605: intr_mask = 1;           --> 604: write_IntrMask(1);       
+ 492a: assert(hw_start != 0); : drv_probe() - 477: hw_start = drv_hw_start; --> 476: rc1 = register_netdev(); 

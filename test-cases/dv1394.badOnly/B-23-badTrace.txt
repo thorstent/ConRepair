@@ -1,0 +1,43 @@
+ | main                    | mmap_thread                                               | ioctl_thread                                             | rw_thread                  | 
+ | ======================= | ========================================================= | ======================================================== | ========================== | 
+ | 136: mtx = 0;           |                                                           |                                                          |                            | 
+ | 137: want_mtx = 0;      |                                                           |                                                          |                            | 
+ | 138: sem = 1;           |                                                           |                                                          |                            | 
+ | 139: want_sem = 0;      |                                                           |                                                          |                            | 
+ | 140: state = 0;         |                                                           |                                                          |                            | 
+ | 141: vm_consistent = 1; |                                                           |                                                          |                            | 
+ |                         | 30: assume(sem == 1);                                     |                                                          |                            | 
+ |                         | 31: sem = 0;                                              |                                                          |                            | 
+ |                         | 35: assert(vm_consistent == 1);                           |                                                          |                            | 
+ |                         | 72: sem = 1;                                              |                                                          |                            | 
+ |                         | 43: assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); |                                                          |                            | 
+ |                         | 45: want_mtx = 1;                                         |                                                          |                            | 
+ |                         | 49: assume(mtx == 0);                                     |                                                          |                            | 
+ |                         | 50: mtx = 1;                                              |                                                          |                            | 
+ |                         | 51: want_mtx = 0;                                         |                                                          |                            | 
+ |                         |                                                           | 87: old_state = state;                                   |                            | 
+ |                         |                                                           | 85: assertd(state != 3);                                 |                            | 
+ |                         |                                                           | 89: state = 3;                                           |                            | 
+ |                         | !!55: assert(state != 3);                                 |                                                          |                            | 
+ |                         |                                                           |                                                          | ##123: assume(mtx == 0);   | 
+ |                         |                                                           |                                                          | 124: mtx = 1;              | 
+ |                         |                                                           | 115: state = old_state;                                  |                            | 
+ |                         |                                                           | ##80: assume(mtx == 0);                                  |                            | 
+ |                         |                                                           | 81: mtx = 1;                                             |                            | 
+ |                         |                                                           | 96: assert(((want_mtx == 0) | (sem == 1)) | (mtx == 0)); |                            | 
+ |                         |                                                           | 97: want_sem = 2;                                        |                            | 
+ |                         |                                                           | 101: assume(sem == 1);                                   |                            | 
+ |                         |                                                           | 102: sem = 0;                                            |                            | 
+ |                         |                                                           | 103: want_sem = 0;                                       |                            | 
+ |                         |                                                           | 107: assert(vm_consistent);                              |                            | 
+ |                         | 57: state = 3;                                            |                                                          |                            | 
+ |                         |                                                           |                                                          | !!128: assert(state != 3); | 
+ |                         |                                                           |                                                          | 131: mtx = 0;              | 
+ |                         | 59: state = 1;                                            |                                                          |                            | 
+ |                         | 61: state = 3;                                            |                                                          |                            | 
+ |                         |                                                           | 110: sem = 1;                                            |                            | 
+ |                         | 63: state = 2;                                            |                                                          |                            | 
+ |                         |                                                           | 117: mtx = 0;                                            |                            | 
+ |                         | 66: mtx = 0;                                              |                                                          |                            | 
+ |                         | 37: vm_consistent = 0;                                    |                                                          |                            | 
+ |                         | 70: vm_consistent = 1;                                    |                                                          |                            | 

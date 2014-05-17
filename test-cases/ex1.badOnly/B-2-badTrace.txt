@@ -1,0 +1,25 @@
+ | main                   | thread1                        | thread2                             | thread3                        | 
+ | ====================== | ============================== | =================================== | ============================== | 
+ | 89: napi_poll = 0;     |                                |                                     |                                | 
+ | 90: shutdown = 0;      |                                |                                     |                                | 
+ | 91: stuff1_done = 0;   |                                |                                     |                                | 
+ | 92: updated = 0;       |                                |                                     |                                | 
+ | 93: napi_disabled = 0; |                                |                                     |                                | 
+ |                        | 33: disable_napi();            |                                     |                                | 
+ |                        |                                |                                     | 73a: assume(napi_poll == 0);   | 
+ |                        |                                |                                     | 73b: napi_poll = 1;            | 
+ |                        |                                |                                     | 74: rtl8169_poll();            | 
+ |                        |                                |                                     |   81: stuff3();                | 
+ |                        |                                |                                     |     85: assert(shutdown == 0); | 
+ |                        |                                |                                     | 75a: napi_poll = 0;            | 
+ |                        |   24a: assume(napi_poll == 0); |                                     |                                | 
+ |                        |   24b: napi_poll = 1;          |                                     |                                | 
+ |                        |                                | 48: rtl_shutdown();                 |                                | 
+ |                        |                                |   54: stuff2();                     |                                | 
+ |                        |   25: napi_disabled = 1;       |                                     |                                | 
+ |                        | 31: stuff1();                  |                                     |                                | 
+ |                        |   37: shutdown = 1;            |                                     |                                | 
+ |                        | 32: update_state();            |                                     |                                | 
+ |                        |                                |     61: assume(napi_disabled == 1); |                                | 
+ |                        |                                |     !!62: assert(updated == 1);     |                                | 
+ |                        |   20: updated = 1;             |                                     |                                | 

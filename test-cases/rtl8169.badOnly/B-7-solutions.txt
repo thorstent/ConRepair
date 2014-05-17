@@ -1,0 +1,14 @@
+ (6,3) : MoveUp   (6,25)  - 329: if (napi_scheduled == 0) {...}                                                ->  328: down(napi_sem);                                                              
+ (6,5) : MoveUp   (6,65)  - 534: write_IntrStatus(status1);                                                    ->  528: if (intr_mask != 0) {...}                                                    
+ (6,4) : MoveUp   (6,27)  - 332: up(napi_sem);                                                                 ->  329: if (napi_scheduled == 0) {...}                                               
+ (6,7) : MoveUp   (6,130) - 306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...}  ->  305: down(irq_sem);                                                               
+ (6,6) : MoveUp   (6,85)  - 310: up(irq_sem);                                                                  ->  306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...} 
+ (7,2) : MoveUp   (7,7)   - 332: up(napi_sem);                                                                 ->  329: if (napi_scheduled == 0) {...}                                               
+ (7,3) : MoveUp   (7,23)  - 534: write_IntrStatus(status1);                                                    ->  528: if (intr_mask != 0) {...}                                                    
+ (7,4) : MoveUp   (7,28)  - 535: status1 = IntrStatus;                                                         ->  528: if (intr_mask != 0) {...}                                                    
+ (7,5) : MoveUp   (7,32)  - 329: if (napi_scheduled == 0) {...}                                                ->  328: down(napi_sem);                                                              
+ (7,6) : MoveUp   (7,38)  - 310: up(irq_sem);                                                                  ->  306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...} 
+ (7,7) : MoveUp   (7,53)  - 306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...}  ->  305: down(irq_sem);                                                               
+ (7,8) : MoveUp   (7,85)  - 531: napi_schedule();                                                              ->  530: intr_mask = 0;                                                               
+ (7,9) : MoveUp   (7,128) - 531: napi_schedule();                                                              ->  529: write_IntrMask(0);                                                           
+ (7,9) : MoveDown (7,128) - 531: napi_schedule();                                                              ->  529: write_IntrMask(0);                                                           

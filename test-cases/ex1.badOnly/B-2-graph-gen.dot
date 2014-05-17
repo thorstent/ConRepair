@@ -1,0 +1,36 @@
+digraph Counterexample {
+	25 -> 26 [color = white, style = solid]
+	35 -> 41 [color = white, style = solid]
+	26 -> 31 [color = white, style = solid]
+	24 -> 25 [color = black, style = solid, constraint = false]
+	31 -> 38 [color = black, style = solid, constraint = false]
+	14 -> 15 [color = white, style = solid]
+	38 -> 39 [color = white, style = solid]
+	39 -> 41 [color = black, style = solid, constraint = false]
+	31 -> 35 [color = white, style = solid]
+	20 -> 24 [color = white, style = solid]
+	15 -> 20 [color = white, style = solid]
+	subgraph cluster3 {
+		label = thread3
+		color = blue
+		24  [label = "75a: napi_poll = 0;"]
+		15  [label = "73b: napi_poll = 1;"]
+		20  [label = "85: assert(shutdown == 0);"]
+		14  [label = "73a: assume(napi_poll == 0);"]
+	}
+	subgraph cluster1 {
+		label = thread1
+		color = blue
+		41  [label = "20: updated = 1;"]
+		26  [label = "24b: napi_poll = 1;"]
+		31  [label = "25: napi_disabled = 1;"]
+		35  [label = "37: shutdown = 1;"]
+		25  [label = "24a: assume(napi_poll == 0);"]
+	}
+	subgraph cluster2 {
+		label = thread2
+		color = blue
+		39  [label = "62: assert(updated == 1);", color = red]
+		38  [label = "61: assume(napi_disabled == 1);"]
+	}
+}

@@ -1,0 +1,672 @@
+digraph PartialOrder {
+	compound = true
+	"467: assert(port_consistent);" -> "470: unlock_port();"
+	"253: assert(dev_usb_serial_initialized > 0);" -> "257: dev_usb_serial_initialized = dev_usb_serial_initialized - 1;" [lhead = cluster52]
+	"628: serial_bus_thread();" -> "629: tty_thread();"
+	"226: assert(dev_usb_serial_initialized >= 0);" -> "229: belkin_port_probe();"
+	"316: lock_table();" -> "317: assert(fw_driver_list_consistent);"
+	"553: assert(port_tty_installed);" -> "554: lock_port();"
+	"70: assume(fw_table_lock == 0);" -> "71: fw_table_lock = 1;"
+	"257: dev_usb_serial_initialized = dev_usb_serial_initialized - 1;" -> "276: port_dev_registered = 0;" [ltail = cluster52, lhead = cluster21]
+	"179: assume(fw_tty_lock == 0);" -> "183: assert(drv_module_ref_cnt > 0);" [ltail = cluster63]
+	"452: lock_port();" -> "453: assert(port_consistent);"
+	"538: lock_serial_bus();" -> "540: unlock_serial_bus();"
+	"238: assert(dev_usb_serial_initialized >= 0);" -> "245: belkin_port_remove();"
+	"185: assert(port_initialized);" -> "194: drv_module_ref_cnt = drv_module_ref_cnt - 1;"
+	"585: fw_tty_lock = 0;" -> "586: fw_driver_list_consistent = 1;"
+	"623: write_urb_state = 0;" -> "626: fw_module_thread();"
+	"594: drv_usb_initialized = 0;" -> "596: drv_registered_with_usb_fw = 0;"
+	"265: assert(fw_idr_consistent);" -> "266: fw_idr_consistent = 0;"
+	"92: assume(fw_tty_lock == 0);" -> "93: fw_tty_lock = 1;"
+	"534: usb_serial_device_probe();" -> "539: usb_serial_device_remove();"
+	"420: try_module_get();" -> "428: port_tty_installed = 1;" [lhead = cluster12]
+	"615: port_idr_registered = 0;" -> "616: port_work = 0;"
+	"596: drv_registered_with_usb_fw = 0;" -> "597: drv_registered_with_serial_fw = 0;"
+	"453: assert(port_consistent);" -> "454: port_consistent = 0;"
+	"241: dev_autopm = dev_autopm + 1;" -> "247: dev_autopm = dev_autopm - 1;"
+	"226: assert(dev_usb_serial_initialized >= 0);" -> "227: dev_autopm = dev_autopm + 1;"
+	"133: dev_usb_serial_initialized = 1;" -> "148: assert(fw_idr_consistent);"
+	"631: usb_cb_thread();" -> "632: port_work_thread();"
+	"185: assert(port_initialized);" -> "199: unlock_tty();"
+	"555: assert(port_consistent);" -> "561: write_urb_state = 1;" [lhead = cluster66]
+	"275: lock_serial_bus();" -> "277: unlock_serial_bus();"
+	"237: assert(port_initialized);" -> "238: assert(dev_usb_serial_initialized >= 0);"
+	"599: drv_id_table = 0;" -> "600: drv_module_ref_cnt = 0;"
+	"168: assert(dev_usb_serial_initialized >= 0);" -> "169: dev_disconnected = 1;"
+	"318: fw_driver_list_consistent = 0;" -> "320: fw_driver_list_consistent = 1;"
+	"417: unlock_table();" -> "428: port_tty_installed = 1;" [lhead = cluster12]
+	"266: fw_idr_consistent = 0;" -> "268: fw_idr_consistent = 1;"
+	"597: drv_registered_with_serial_fw = 0;" -> "599: drv_id_table = 0;"
+	"449: assert(port_initialized);" -> "450: assert(dev_usb_serial_initialized);"
+	"485: drv_module_ref_cnt = drv_module_ref_cnt - 1;" -> "481: belkin_init();" [ltail = cluster43]
+	"227: dev_autopm = dev_autopm + 1;" -> "233: dev_autopm = dev_autopm - 1;"
+	"81: assume(fw_serial_bus_lock == 0);" -> "82: fw_serial_bus_lock = 1;"
+	"509: assert(drv_usb_initialized);" -> "511: serial_write_callback();"
+	"453: assert(port_consistent);" -> "460: write_urb_state = 1;" [lhead = cluster54]
+	"168: assert(dev_usb_serial_initialized >= 0);" -> "170: unlock_disc();"
+	"466: lock_port();" -> "467: assert(port_consistent);"
+	"184: assert(dev_usb_serial_initialized);" -> "185: assert(port_initialized);"
+	"129: assert(drv_usb_registered);" -> "143: dev_disconnected = 1;"
+	"331: drv_registered_with_usb_fw = 0;" -> "337: assert(fw_driver_list_consistent);"
+	"414: assert(dev_usb_serial_initialized > 0);" -> "420: try_module_get();"
+	"471: assert(port_work_initialized);" -> "472: port_work = 1;"
+	"583: fw_tty_registered = 0;" -> "584: fw_tty_initialized = 0;"
+	"520: lock_tty();" -> "527: unlock_tty();"
+	"532: lock_serial_bus();" -> "535: unlock_serial_bus();"
+	"185: assert(port_initialized);" -> "188: port_work_initialized = 0;"
+	"134: belkin_probe();" -> "148: assert(fw_idr_consistent);"
+	"312: drv_usb_registered = 1;" -> "317: assert(fw_driver_list_consistent);"
+	"593: drv_usb_registered = 0;" -> "594: drv_usb_initialized = 0;"
+	"317: assert(fw_driver_list_consistent);" -> "322: drv_registered_with_serial_fw = 1;"
+	"454: port_consistent = 0;" -> "455: port_consistent = 1;"
+	"265: assert(fw_idr_consistent);" -> "267: port_idr_registered = 0;"
+	"170: unlock_disc();" -> "172: assert(port_initialized);"
+	"509: assert(drv_usb_initialized);" -> "510: write_urb_state = 0;"
+	"617: port_work_initialized = 0;" -> "618: port_work_stop = 0;"
+	"337: assert(fw_driver_list_consistent);" -> "343: unlock_table();"
+	"522: assert(port_initialized);" -> "523: assert(port_tty_installed);"
+	"337: assert(fw_driver_list_consistent);" -> "347: drv_usb_initialized = 0;"
+	"519: assert((fw_tty_lock != 2) | (port_work_stop == 0));" -> "523: assert(port_tty_installed);" [lhead = cluster46]
+	"616: port_work = 0;" -> "617: port_work_initialized = 0;"
+	"451: assert(port_tty_installed);" -> "452: lock_port();"
+	"148: assert(fw_idr_consistent);" -> "157: port_dev_registered = 1;"
+	"570: try_module_get();" -> "577: drv_module_ref_cnt = drv_module_ref_cnt - 1;" [lhead = cluster35]
+	"169: dev_disconnected = 1;" -> "172: assert(port_initialized);"
+	"414: assert(dev_usb_serial_initialized > 0);" -> "417: unlock_table();"
+	"400: lock_table();" -> "408: if (dev_disconnected == 0) {...}" [lhead = cluster6]
+	"166: lock_disc();" -> "168: assert(dev_usb_serial_initialized >= 0);"
+	"256: old = dev_usb_serial_initialized;" -> "257: dev_usb_serial_initialized = dev_usb_serial_initialized - 1;"
+	"479: usb_serial_init();" -> "490: usb_serial_exit();"
+	"311: drv_usb_initialized = 1;" -> "317: assert(fw_driver_list_consistent);"
+	"612: port_initialized = 0;" -> "613: port_tty_registered = 0;"
+	"407: lock_disc();" -> "417: unlock_table();" [lhead = cluster7]
+	"518: assume((port_work == 1) | (port_work_stop == 1));" -> "519: assert((fw_tty_lock != 2) | (port_work_stop == 0));"
+	"337: assert(fw_driver_list_consistent);" -> "338: fw_driver_list_consistent = 0;"
+	"172: assert(port_initialized);" -> "202: usb_serial_port_poison_urbs();" [lhead = cluster10]
+	"149: fw_idr_consistent = 0;" -> "151: fw_idr_consistent = 1;"
+	"185: assert(port_initialized);" -> "190: assume(port_write_in_progress == 0);"
+	"143: dev_disconnected = 1;" -> "148: assert(fw_idr_consistent);"
+	"588: fw_table_lock = 0;" -> "589: fw_serial_bus_lock = 0;"
+	"185: assert(port_initialized);" -> "191: port_tty_installed = 0;"
+	"103: assume(port_lock == 0);" -> "104: port_lock = 1;"
+	"338: fw_driver_list_consistent = 0;" -> "340: fw_driver_list_consistent = 1;"
+	"551: assert(port_initialized);" -> "552: assert(dev_usb_serial_initialized);"
+	"337: assert(fw_driver_list_consistent);" -> "342: drv_registered_with_serial_fw = 0;"
+	"148: assert(fw_idr_consistent);" -> "152: unlock_table();"
+	"317: assert(fw_driver_list_consistent);" -> "319: drv_registered_with_usb_fw = 1;"
+	"226: assert(dev_usb_serial_initialized >= 0);" -> "231: port_tty_registered = 1;"
+	"549: port_write_in_progress = 1;" -> "551: assert(port_initialized);"
+	"614: port_tty_installed = 0;" -> "615: port_idr_registered = 0;"
+	"317: assert(fw_driver_list_consistent);" -> "323: unlock_table();"
+	"469: port_consistent = 1;" -> "471: assert(port_work_initialized);"
+	"600: drv_module_ref_cnt = 0;" -> "601: drv_device_id_registered = 0;"
+	"555: assert(port_consistent);" -> "556: port_consistent = 0;"
+	"554: lock_port();" -> "555: assert(port_consistent);"
+	"131: unlock_table();" -> "147: lock_table();"
+	"317: assert(fw_driver_list_consistent);" -> "326: drv_id_table = 1;"
+	"415: dev_usb_serial_initialized = dev_usb_serial_initialized + 1;" -> "428: port_tty_installed = 1;" [lhead = cluster12]
+	"172: assert(port_initialized);" -> "210: belkin_disconnect();"
+	"128: assert(drv_usb_initialized);" -> "129: assert(drv_usb_registered);"
+	"555: assert(port_consistent);" -> "558: unlock_port();"
+	"453: assert(port_consistent);" -> "456: unlock_port();"
+	"179: assume(fw_tty_lock == 0);" -> "180: fw_tty_lock = 2;"
+	"484: assume(drv_module_ref_cnt == 0);" -> "485: drv_module_ref_cnt = drv_module_ref_cnt - 1;"
+	"519: assert((fw_tty_lock != 2) | (port_work_stop == 0));" -> "520: lock_tty();"
+	"238: assert(dev_usb_serial_initialized >= 0);" -> "243: port_tty_registered = 0;"
+	"264: lock_table();" -> "265: assert(fw_idr_consistent);"
+	"606: dev_disconnected = 0;" -> "607: dev_disc_lock = 0;"
+	"465: assert(port_initialized);" -> "466: lock_port();"
+	"129: assert(drv_usb_registered);" -> "137: belkin_attach();"
+	"148: assert(fw_idr_consistent);" -> "158: dev_disconnected = 0;"
+	"183: assert(drv_module_ref_cnt > 0);" -> "184: assert(dev_usb_serial_initialized);"
+	"225: assert(port_initialized);" -> "226: assert(dev_usb_serial_initialized >= 0);"
+	"470: unlock_port();" -> "471: assert(port_work_initialized);"
+	"604: dev_usb_serial_initialized = -1;" -> "605: dev_autopm = 0;"
+	"129: assert(drv_usb_registered);" -> "133: dev_usb_serial_initialized = 1;"
+	"148: assert(fw_idr_consistent);" -> "155: port_work_initialized = 1;"
+	"587: fw_idr_consistent = 1;" -> "588: fw_table_lock = 0;"
+	"535: unlock_serial_bus();" -> "538: lock_serial_bus();"
+	"605: dev_autopm = 0;" -> "606: dev_disconnected = 0;"
+	"450: assert(dev_usb_serial_initialized);" -> "451: assert(port_tty_installed);"
+	"148: assert(fw_idr_consistent);" -> "150: port_idr_registered = 1;"
+	"113: lock_table();" -> "115: assert(fw_driver_list_consistent);"
+	"620: port_lock = 0;" -> "621: port_write_in_progress = 0;"
+	"481: belkin_init();" -> "488: belkin_exit();"
+	"185: assert(port_initialized);" -> "187: cancel_work_sync();"
+	"613: port_tty_registered = 0;" -> "614: port_tty_installed = 0;"
+	"607: dev_disc_lock = 0;" -> "611: port_dev_registered = 0;"
+	"589: fw_serial_bus_lock = 0;" -> "593: drv_usb_registered = 0;"
+	"199: unlock_tty();" -> "187: cancel_work_sync();"
+	"601: drv_device_id_registered = 0;" -> "604: dev_usb_serial_initialized = -1;"
+	"552: assert(dev_usb_serial_initialized);" -> "553: assert(port_tty_installed);"
+	"330: assert(drv_usb_initialized);" -> "335: lock_table();"
+	"619: port_consistent = 1;" -> "620: port_lock = 0;"
+	"547: lock_tty();" -> "564: unlock_tty();"
+	"317: assert(fw_driver_list_consistent);" -> "318: fw_driver_list_consistent = 0;"
+	"337: assert(fw_driver_list_consistent);" -> "346: drv_usb_registered = 0;"
+	"121: try_module_get();" -> "157: port_dev_registered = 1;" [lhead = cluster53]
+	"413: assert(port_initialized);" -> "414: assert(dev_usb_serial_initialized > 0);"
+	"523: assert(port_tty_installed);" -> "524: port_write_in_progress = 0;"
+	"137: belkin_attach();" -> "148: assert(fw_idr_consistent);"
+	"627: usb_bus_thread();" -> "628: serial_bus_thread();"
+	"584: fw_tty_initialized = 0;" -> "585: fw_tty_lock = 0;"
+	"202: usb_serial_port_poison_urbs();" -> "213: usb_serial_put();" [ltail = cluster10]
+	"194: drv_module_ref_cnt = drv_module_ref_cnt - 1;" -> "195: usb_serial_put();"
+	"129: assert(drv_usb_registered);" -> "134: belkin_probe();"
+	"185: assert(port_initialized);" -> "202: usb_serial_port_poison_urbs();"
+	"611: port_dev_registered = 0;" -> "612: port_initialized = 0;"
+	"147: lock_table();" -> "148: assert(fw_idr_consistent);"
+	"379: assume(dev_disc_lock == 0);" -> "380: dev_disc_lock = 1;"
+	"626: fw_module_thread();" -> "627: usb_bus_thread();"
+	"238: assert(dev_usb_serial_initialized >= 0);" -> "241: dev_autopm = dev_autopm + 1;"
+	"337: assert(fw_driver_list_consistent);" -> "339: drv_registered_with_usb_fw = 0;"
+	"556: port_consistent = 0;" -> "557: port_consistent = 1;"
+	"129: assert(drv_usb_registered);" -> "131: unlock_table();"
+	"468: port_consistent = 0;" -> "469: port_consistent = 1;"
+	"467: assert(port_consistent);" -> "468: port_consistent = 0;"
+	"497: usb_serial_probe();" -> "502: usb_serial_disconnect();" [lhead = cluster64]
+	"414: assert(dev_usb_serial_initialized > 0);" -> "415: dev_usb_serial_initialized = dev_usb_serial_initialized + 1;"
+	"621: port_write_in_progress = 0;" -> "623: write_urb_state = 0;"
+	"335: lock_table();" -> "337: assert(fw_driver_list_consistent);"
+	"586: fw_driver_list_consistent = 1;" -> "587: fw_idr_consistent = 1;"
+	"507: assume((write_urb_state == 1) | (drv_usb_registered == 0));" -> "511: serial_write_callback();" [lhead = cluster30]
+	"629: tty_thread();" -> "630: attribute_thread();"
+	"148: assert(fw_idr_consistent);" -> "149: fw_idr_consistent = 0;"
+	"148: assert(fw_idr_consistent);" -> "156: port_initialized = 1;"
+	"630: attribute_thread();" -> "631: usb_cb_thread();"
+	"265: assert(fw_idr_consistent);" -> "269: unlock_table();"
+	"523: assert(port_tty_installed);" -> "525: port_work = 0;"
+	"330: assert(drv_usb_initialized);" -> "331: drv_registered_with_usb_fw = 0;"
+	"545: serial_install();" -> "555: assert(port_consistent);" [lhead = cluster51]
+	"618: port_work_stop = 0;" -> "619: port_consistent = 1;"
+	"115: assert(fw_driver_list_consistent);" -> "121: try_module_get();" [lhead = cluster18]
+	subgraph cluster40 {
+		label = "90: void lock_tty() {...}"
+		color = blue
+		"91: at{ assume(fw_tty_lock == 0); ...}"  [label, style = invisible]
+		subgraph cluster41 {
+			label = "91: at{ assume(fw_tty_lock == 0); ...}"
+			color = blue
+			"93: fw_tty_lock = 1;"  [label = "93: fw_tty_lock = 1;"]
+			"92: assume(fw_tty_lock == 0);"  [label = "92: assume(fw_tty_lock == 0);"]
+		}
+	}
+	subgraph cluster47 {
+		label = "79: void lock_serial_bus() {...}"
+		color = blue
+		"80: at{ assume(fw_serial_bus_lock == 0); ...}"  [label, style = invisible]
+		subgraph cluster48 {
+			label = "80: at{ assume(fw_serial_bus_lock == 0); ...}"
+			color = blue
+			"82: fw_serial_bus_lock = 1;"  [label = "82: fw_serial_bus_lock = 1;"]
+			"81: assume(fw_serial_bus_lock == 0);"  [label = "81: assume(fw_serial_bus_lock == 0);"]
+		}
+	}
+	subgraph cluster13 {
+		label = "289: void try_module_get() {...}"
+		color = blue
+		"290: at{ if (drv_module_ref_cnt >= 0) {...} ...}"  [label, style = invisible]
+		subgraph cluster32 {
+			label = "290: at{ if (drv_module_ref_cnt >= 0) {...} ...}"
+			color = blue
+			"291: if (drv_module_ref_cnt >= 0) {...}"  [label, style = invisible]
+			subgraph cluster33 {
+				label = "291: if (drv_module_ref_cnt >= 0) {...}"
+				color = blue
+				"292: drv_module_ref_cnt = drv_module_ref_cnt + 1;"  [label = "292: drv_module_ref_cnt = drv_module_ref_cnt + 1;"]
+			}
+		}
+	}
+	subgraph cluster4 {
+		label = "101: void lock_port() {...}"
+		color = blue
+		"102: at{ assume(port_lock == 0); ...}"  [label, style = invisible]
+		subgraph cluster19 {
+			label = "102: at{ assume(port_lock == 0); ...}"
+			color = blue
+			"104: port_lock = 1;"  [label = "104: port_lock = 1;"]
+			"103: assume(port_lock == 0);"  [label = "103: assume(port_lock == 0);"]
+		}
+	}
+	subgraph cluster8 {
+		label = "384: void unlock_disc() {...}"
+		color = blue
+		"385: dev_disc_lock = 0;"  [label = "385: dev_disc_lock = 0;"]
+	}
+	subgraph cluster37 {
+		label = "86: void unlock_serial_bus() {...}"
+		color = blue
+		"87: fw_serial_bus_lock = fw_serial_bus_lock - 1;"  [label = "87: fw_serial_bus_lock = fw_serial_bus_lock - 1;"]
+	}
+	subgraph cluster39 {
+		label = "377: void lock_disc() {...}"
+		color = blue
+		"378: at{ assume(dev_disc_lock == 0); ...}"  [label, style = invisible]
+		subgraph cluster58 {
+			label = "378: at{ assume(dev_disc_lock == 0); ...}"
+			color = blue
+			"380: dev_disc_lock = 1;"  [label = "380: dev_disc_lock = 1;"]
+			"379: assume(dev_disc_lock == 0);"  [label = "379: assume(dev_disc_lock == 0);"]
+		}
+	}
+	subgraph cluster34 {
+		label = "59: void usb_serial_exit() {...}"
+		color = blue
+		"65: fw_tty_initialized = 0;"  [label = "65: fw_tty_initialized = 0;"]
+		"64: assume(port_tty_installed == 0);"  [label = "64: assume(port_tty_installed == 0);"]
+		"61: fw_tty_registered = 0;"  [label = "61: fw_tty_registered = 0;"]
+	}
+	subgraph cluster1 {
+		label = "68: void lock_table() {...}"
+		color = blue
+		"69: at{ assume(fw_table_lock == 0); ...}"  [label, style = invisible]
+		subgraph cluster2 {
+			label = "69: at{ assume(fw_table_lock == 0); ...}"
+			color = blue
+			"70: assume(fw_table_lock == 0);"  [label = "70: assume(fw_table_lock == 0);"]
+			"71: fw_table_lock = 1;"  [label = "71: fw_table_lock = 1;"]
+		}
+	}
+	subgraph cluster15 {
+		label = "216: void cancel_work_sync() {...}"
+		color = blue
+		"217: port_work_stop = 1;"  [label = "217: port_work_stop = 1;"]
+		"219: at{ assume(port_work == 0); ...}"  [label, style = invisible]
+		subgraph cluster38 {
+			label = "219: at{ assume(port_work == 0); ...}"
+			color = blue
+			"220: assume(port_work == 0);"  [label = "220: assume(port_work == 0);"]
+		}
+	}
+	subgraph cluster27 {
+		label = "53: void usb_serial_init() {...}"
+		color = blue
+		"55: fw_tty_registered = 1;"  [label = "55: fw_tty_registered = 1;"]
+		"54: fw_tty_initialized = 1;"  [label = "54: fw_tty_initialized = 1;"]
+	}
+	subgraph cluster57 {
+		label = "75: void unlock_table() {...}"
+		color = blue
+		"76: fw_table_lock = 0;"  [label = "76: fw_table_lock = 0;"]
+	}
+	subgraph cluster44 {
+		label = "108: void unlock_port() {...}"
+		color = blue
+		"109: port_lock = 0;"  [label = "109: port_lock = 0;"]
+	}
+	subgraph cluster24 {
+		label = "97: void unlock_tty() {...}"
+		color = blue
+		"98: fw_tty_lock = 0;"  [label = "98: fw_tty_lock = 0;"]
+	}
+	subgraph cluster28 {
+		label = "569: void attribute_thread() {...}"
+		color = blue
+		"570: try_module_get();"  [label = "570: try_module_get();"]
+		"572: if (drv_module_ref_cnt <= 0) {...}"  [label, style = invisible]
+		subgraph cluster35 {
+			label = "572: if (drv_module_ref_cnt <= 0) {...}"
+			color = blue
+			"576: drv_device_id_registered = 1;"  [label = "576: drv_device_id_registered = 1;"]
+			"577: drv_module_ref_cnt = drv_module_ref_cnt - 1;"  [label = "577: drv_module_ref_cnt = drv_module_ref_cnt - 1;"]
+			"575: assume(drv_registered_with_serial_fw);"  [label = "575: assume(drv_registered_with_serial_fw);"]
+		}
+	}
+	subgraph cluster29 {
+		label = "505: void usb_cb_thread() {...}"
+		color = blue
+		"507: assume((write_urb_state == 1) | (drv_usb_registered == 0));"  [label = "507: assume((write_urb_state == 1) | (drv_usb_registered == 0));"]
+		"508: if (write_urb_state == 1) {...}"  [label, style = invisible]
+		subgraph cluster30 {
+			label = "508: if (write_urb_state == 1) {...}"
+			color = blue
+			"511: serial_write_callback();"  [label = "511: serial_write_callback();"]
+			"509: assert(drv_usb_initialized);"  [label = "509: assert(drv_usb_initialized);"]
+			"510: write_urb_state = 0;"  [label = "510: write_urb_state = 0;"]
+		}
+	}
+	subgraph cluster17 {
+		label = "112: void usb_serial_probe() {...}"
+		color = blue
+		"113: lock_table();"  [label = "113: lock_table();"]
+		"116: if (drv_registered_with_usb_fw == 0) {...}"  [label, style = invisible]
+		"115: assert(fw_driver_list_consistent);"  [label = "115: assert(fw_driver_list_consistent);"]
+		subgraph cluster18 {
+			label = "116: if (drv_registered_with_usb_fw == 0) {...}"
+			color = blue
+			"117: unlock_table();"  [label = "117: unlock_table();"]
+			"121: try_module_get();"  [label = "121: try_module_get();"]
+			"123: if (drv_module_ref_cnt <= 0) {...}"  [label, style = invisible]
+			subgraph cluster53 {
+				label = "123: if (drv_module_ref_cnt <= 0) {...}"
+				color = blue
+				"143: dev_disconnected = 1;"  [label = "143: dev_disconnected = 1;"]
+				"149: fw_idr_consistent = 0;"  [label = "149: fw_idr_consistent = 0;"]
+				"134: belkin_probe();"  [label = "134: belkin_probe();"]
+				"131: unlock_table();"  [label = "131: unlock_table();"]
+				"158: dev_disconnected = 0;"  [label = "158: dev_disconnected = 0;"]
+				"147: lock_table();"  [label = "147: lock_table();"]
+				"133: dev_usb_serial_initialized = 1;"  [label = "133: dev_usb_serial_initialized = 1;"]
+				"156: port_initialized = 1;"  [label = "156: port_initialized = 1;"]
+				"137: belkin_attach();"  [label = "137: belkin_attach();"]
+				"124: unlock_table();"  [label = "124: unlock_table();"]
+				"151: fw_idr_consistent = 1;"  [label = "151: fw_idr_consistent = 1;"]
+				"148: assert(fw_idr_consistent);"  [label = "148: assert(fw_idr_consistent);"]
+				"128: assert(drv_usb_initialized);"  [label = "128: assert(drv_usb_initialized);"]
+				"150: port_idr_registered = 1;"  [label = "150: port_idr_registered = 1;"]
+				"129: assert(drv_usb_registered);"  [label = "129: assert(drv_usb_registered);"]
+				"155: port_work_initialized = 1;"  [label = "155: port_work_initialized = 1;"]
+				"152: unlock_table();"  [label = "152: unlock_table();"]
+				"157: port_dev_registered = 1;"  [label = "157: port_dev_registered = 1;"]
+			}
+		}
+	}
+	subgraph cluster5 {
+		label = "396: void serial_install() {...}"
+		color = blue
+		"400: lock_table();"  [label = "400: lock_table();"]
+		"401: if (port_idr_registered == 0) {...}"  [label, style = invisible]
+		subgraph cluster6 {
+			label = "401: if (port_idr_registered == 0) {...}"
+			color = blue
+			"408: if (dev_disconnected == 0) {...}"  [label, style = invisible]
+			"402: unlock_table();"  [label = "402: unlock_table();"]
+			"407: lock_disc();"  [label = "407: lock_disc();"]
+			subgraph cluster7 {
+				label = "408: if (dev_disconnected == 0) {...}"
+				color = blue
+				"414: assert(dev_usb_serial_initialized > 0);"  [label = "414: assert(dev_usb_serial_initialized > 0);"]
+				"417: unlock_table();"  [label = "417: unlock_table();"]
+				"420: try_module_get();"  [label = "420: try_module_get();"]
+				"415: dev_usb_serial_initialized = dev_usb_serial_initialized + 1;"  [label = "415: dev_usb_serial_initialized = dev_usb_serial_initialized + 1;"]
+				"421: if (drv_module_ref_cnt <= 0) {...}"  [label, style = invisible]
+				"413: assert(port_initialized);"  [label = "413: assert(port_initialized);"]
+				"409: unlock_disc();"  [label = "409: unlock_disc();"]
+				"410: unlock_table();"  [label = "410: unlock_table();"]
+				subgraph cluster12 {
+					label = "421: if (drv_module_ref_cnt <= 0) {...}"
+					color = blue
+					"429: unlock_disc();"  [label = "429: unlock_disc();"]
+					"428: port_tty_installed = 1;"  [label = "428: port_tty_installed = 1;"]
+					"422: usb_serial_put();"  [label = "422: usb_serial_put();"]
+					"423: unlock_disc();"  [label = "423: unlock_disc();"]
+					"427: dev_autopm = dev_autopm + 1;"  [label = "427: dev_autopm = dev_autopm + 1;"]
+				}
+			}
+		}
+	}
+	subgraph cluster42 {
+		label = "478: void fw_module_thread() {...}"
+		color = blue
+		"483: at{ assume(drv_module_ref_cnt == 0); ...}"  [label, style = invisible]
+		"488: belkin_exit();"  [label = "488: belkin_exit();"]
+		"481: belkin_init();"  [label = "481: belkin_init();"]
+		"490: usb_serial_exit();"  [label = "490: usb_serial_exit();"]
+		"479: usb_serial_init();"  [label = "479: usb_serial_init();"]
+		subgraph cluster43 {
+			label = "483: at{ assume(drv_module_ref_cnt == 0); ...}"
+			color = blue
+			"484: assume(drv_module_ref_cnt == 0);"  [label = "484: assume(drv_module_ref_cnt == 0);"]
+			"485: drv_module_ref_cnt = drv_module_ref_cnt - 1;"  [label = "485: drv_module_ref_cnt = drv_module_ref_cnt - 1;"]
+		}
+	}
+	subgraph cluster25 {
+		label = "329: void belkin_exit() {...}"
+		color = blue
+		"331: drv_registered_with_usb_fw = 0;"  [label = "331: drv_registered_with_usb_fw = 0;"]
+		"340: fw_driver_list_consistent = 1;"  [label = "340: fw_driver_list_consistent = 1;"]
+		"339: drv_registered_with_usb_fw = 0;"  [label = "339: drv_registered_with_usb_fw = 0;"]
+		"343: unlock_table();"  [label = "343: unlock_table();"]
+		"338: fw_driver_list_consistent = 0;"  [label = "338: fw_driver_list_consistent = 0;"]
+		"335: lock_table();"  [label = "335: lock_table();"]
+		"346: drv_usb_registered = 0;"  [label = "346: drv_usb_registered = 0;"]
+		"337: assert(fw_driver_list_consistent);"  [label = "337: assert(fw_driver_list_consistent);"]
+		"342: drv_registered_with_serial_fw = 0;"  [label = "342: drv_registered_with_serial_fw = 0;"]
+		"347: drv_usb_initialized = 0;"  [label = "347: drv_usb_initialized = 0;"]
+		"330: assert(drv_usb_initialized);"  [label = "330: assert(drv_usb_initialized);"]
+	}
+	subgraph cluster31 {
+		label = "296: void belkin_init() {...}"
+		color = blue
+		"312: drv_usb_registered = 1;"  [label = "312: drv_usb_registered = 1;"]
+		"323: unlock_table();"  [label = "323: unlock_table();"]
+		"319: drv_registered_with_usb_fw = 1;"  [label = "319: drv_registered_with_usb_fw = 1;"]
+		"320: fw_driver_list_consistent = 1;"  [label = "320: fw_driver_list_consistent = 1;"]
+		"317: assert(fw_driver_list_consistent);"  [label = "317: assert(fw_driver_list_consistent);"]
+		"326: drv_id_table = 1;"  [label = "326: drv_id_table = 1;"]
+		"316: lock_table();"  [label = "316: lock_table();"]
+		"318: fw_driver_list_consistent = 0;"  [label = "318: fw_driver_list_consistent = 0;"]
+		"322: drv_registered_with_serial_fw = 1;"  [label = "322: drv_registered_with_serial_fw = 1;"]
+		"311: drv_usb_initialized = 1;"  [label = "311: drv_usb_initialized = 1;"]
+	}
+	subgraph cluster56 {
+		label = "495: void usb_bus_thread() {...}"
+		color = blue
+		"497: usb_serial_probe();"  [label = "497: usb_serial_probe();"]
+		"496: assume(drv_usb_registered | drv_device_id_registered);"  [label = "496: assume(drv_usb_registered | drv_device_id_registered);"]
+		"501: if (port_dev_registered == 0) {...}"  [label, style = invisible]
+		subgraph cluster64 {
+			label = "501: if (port_dev_registered == 0) {...}"
+			color = blue
+			"502: usb_serial_disconnect();"  [label = "502: usb_serial_disconnect();"]
+		}
+	}
+	subgraph cluster50 {
+		label = "543: void tty_thread() {...}"
+		color = blue
+		"564: unlock_tty();"  [label = "564: unlock_tty();"]
+		"547: lock_tty();"  [label = "547: lock_tty();"]
+		"545: serial_install();"  [label = "545: serial_install();"]
+		"544: assume(drv_registered_with_serial_fw);"  [label = "544: assume(drv_registered_with_serial_fw);"]
+		"548: if (port_tty_installed == 0) {...}"  [label, style = invisible]
+		subgraph cluster51 {
+			label = "548: if (port_tty_installed == 0) {...}"
+			color = blue
+			"556: port_consistent = 0;"  [label = "556: port_consistent = 0;"]
+			"555: assert(port_consistent);"  [label = "555: assert(port_consistent);"]
+			"551: assert(port_initialized);"  [label = "551: assert(port_initialized);"]
+			"554: lock_port();"  [label = "554: lock_port();"]
+			"552: assert(dev_usb_serial_initialized);"  [label = "552: assert(dev_usb_serial_initialized);"]
+			"553: assert(port_tty_installed);"  [label = "553: assert(port_tty_installed);"]
+			"558: unlock_port();"  [label = "558: unlock_port();"]
+			"557: port_consistent = 1;"  [label = "557: port_consistent = 1;"]
+			"560: if (write_urb_state == 0) {...}"  [label, style = invisible]
+			"549: port_write_in_progress = 1;"  [label = "549: port_write_in_progress = 1;"]
+			subgraph cluster66 {
+				label = "560: if (write_urb_state == 0) {...}"
+				color = blue
+				"561: write_urb_state = 1;"  [label = "561: write_urb_state = 1;"]
+			}
+		}
+	}
+	subgraph cluster9 {
+		label = "165: void usb_serial_disconnect() {...}"
+		color = blue
+		"174: if (port_tty_installed == 0) {...}"  [label, style = invisible]
+		"210: belkin_disconnect();"  [label = "210: belkin_disconnect();"]
+		"213: usb_serial_put();"  [label = "213: usb_serial_put();"]
+		"166: lock_disc();"  [label = "166: lock_disc();"]
+		"170: unlock_disc();"  [label = "170: unlock_disc();"]
+		"168: assert(dev_usb_serial_initialized >= 0);"  [label = "168: assert(dev_usb_serial_initialized >= 0);"]
+		"169: dev_disconnected = 1;"  [label = "169: dev_disconnected = 1;"]
+		"172: assert(port_initialized);"  [label = "172: assert(port_initialized);"]
+		subgraph cluster10 {
+			label = "174: if (port_tty_installed == 0) {...}"
+			color = blue
+			"194: drv_module_ref_cnt = drv_module_ref_cnt - 1;"  [label = "194: drv_module_ref_cnt = drv_module_ref_cnt - 1;"]
+			"187: cancel_work_sync();"  [label = "187: cancel_work_sync();"]
+			"191: port_tty_installed = 0;"  [label = "191: port_tty_installed = 0;"]
+			"184: assert(dev_usb_serial_initialized);"  [label = "184: assert(dev_usb_serial_initialized);"]
+			"199: unlock_tty();"  [label = "199: unlock_tty();"]
+			"190: assume(port_write_in_progress == 0);"  [label = "190: assume(port_write_in_progress == 0);"]
+			"188: port_work_initialized = 0;"  [label = "188: port_work_initialized = 0;"]
+			"195: usb_serial_put();"  [label = "195: usb_serial_put();"]
+			"178: at{ assume(fw_tty_lock == 0); ...}"  [label, style = invisible]
+			"202: usb_serial_port_poison_urbs();"  [label = "202: usb_serial_port_poison_urbs();"]
+			"185: assert(port_initialized);"  [label = "185: assert(port_initialized);"]
+			"183: assert(drv_module_ref_cnt > 0);"  [label = "183: assert(drv_module_ref_cnt > 0);"]
+			subgraph cluster63 {
+				label = "178: at{ assume(fw_tty_lock == 0); ...}"
+				color = blue
+				"180: fw_tty_lock = 2;"  [label = "180: fw_tty_lock = 2;"]
+				"179: assume(fw_tty_lock == 0);"  [label = "179: assume(fw_tty_lock == 0);"]
+			}
+		}
+	}
+	subgraph cluster20 {
+		label = "250: void usb_serial_put() {...}"
+		color = blue
+		"255: at{ old = dev_usb_serial_initialized; ...}"  [label, style = invisible]
+		"260: if (old == 1) {...}"  [label, style = invisible]
+		"253: assert(dev_usb_serial_initialized > 0);"  [label = "253: assert(dev_usb_serial_initialized > 0);"]
+		subgraph cluster21 {
+			label = "260: if (old == 1) {...}"
+			color = blue
+			"280: port_initialized = 0;"  [label = "280: port_initialized = 0;"]
+			"279: dev_usb_serial_initialized = -1;"  [label = "279: dev_usb_serial_initialized = -1;"]
+			"262: if (port_idr_registered == 0) {...}"  [label, style = invisible]
+			"277: unlock_serial_bus();"  [label = "277: unlock_serial_bus();"]
+			"281: drv_module_ref_cnt = drv_module_ref_cnt - 1;"  [label = "281: drv_module_ref_cnt = drv_module_ref_cnt - 1;"]
+			"278: assume(port_tty_registered == 0);"  [label = "278: assume(port_tty_registered == 0);"]
+			"272: belkin_release();"  [label = "272: belkin_release();"]
+			"276: port_dev_registered = 0;"  [label = "276: port_dev_registered = 0;"]
+			"275: lock_serial_bus();"  [label = "275: lock_serial_bus();"]
+			subgraph cluster60 {
+				label = "262: if (port_idr_registered == 0) {...}"
+				color = blue
+				"266: fw_idr_consistent = 0;"  [label = "266: fw_idr_consistent = 0;"]
+				"269: unlock_table();"  [label = "269: unlock_table();"]
+				"268: fw_idr_consistent = 1;"  [label = "268: fw_idr_consistent = 1;"]
+				"264: lock_table();"  [label = "264: lock_table();"]
+				"265: assert(fw_idr_consistent);"  [label = "265: assert(fw_idr_consistent);"]
+				"267: port_idr_registered = 0;"  [label = "267: port_idr_registered = 0;"]
+			}
+		}
+		subgraph cluster52 {
+			label = "255: at{ old = dev_usb_serial_initialized; ...}"
+			color = blue
+			"256: old = dev_usb_serial_initialized;"  [label = "256: old = dev_usb_serial_initialized;"]
+			"257: dev_usb_serial_initialized = dev_usb_serial_initialized - 1;"  [label = "257: dev_usb_serial_initialized = dev_usb_serial_initialized - 1;"]
+		}
+	}
+	subgraph cluster36 {
+		label = "236: void usb_serial_device_remove() {...}"
+		color = blue
+		"241: dev_autopm = dev_autopm + 1;"  [label = "241: dev_autopm = dev_autopm + 1;"]
+		"238: assert(dev_usb_serial_initialized >= 0);"  [label = "238: assert(dev_usb_serial_initialized >= 0);"]
+		"247: dev_autopm = dev_autopm - 1;"  [label = "247: dev_autopm = dev_autopm - 1;"]
+		"243: port_tty_registered = 0;"  [label = "243: port_tty_registered = 0;"]
+		"245: belkin_port_remove();"  [label = "245: belkin_port_remove();"]
+		"237: assert(port_initialized);"  [label = "237: assert(port_initialized);"]
+	}
+	subgraph cluster45 {
+		label = "516: void port_work_thread() {...}"
+		color = blue
+		"527: unlock_tty();"  [label = "527: unlock_tty();"]
+		"519: assert((fw_tty_lock != 2) | (port_work_stop == 0));"  [label = "519: assert((fw_tty_lock != 2) | (port_work_stop == 0));"]
+		"520: lock_tty();"  [label = "520: lock_tty();"]
+		"518: assume((port_work == 1) | (port_work_stop == 1));"  [label = "518: assume((port_work == 1) | (port_work_stop == 1));"]
+		"521: if (port_work == 0) {...}"  [label, style = invisible]
+		subgraph cluster46 {
+			label = "521: if (port_work == 0) {...}"
+			color = blue
+			"522: assert(port_initialized);"  [label = "522: assert(port_initialized);"]
+			"523: assert(port_tty_installed);"  [label = "523: assert(port_tty_installed);"]
+			"525: port_work = 0;"  [label = "525: port_work = 0;"]
+			"524: port_write_in_progress = 0;"  [label = "524: port_write_in_progress = 0;"]
+		}
+	}
+	subgraph cluster49 {
+		label = "531: void serial_bus_thread() {...}"
+		color = blue
+		"534: usb_serial_device_probe();"  [label = "534: usb_serial_device_probe();"]
+		"538: lock_serial_bus();"  [label = "538: lock_serial_bus();"]
+		"532: lock_serial_bus();"  [label = "532: lock_serial_bus();"]
+		"537: assume(!port_dev_registered);"  [label = "537: assume(!port_dev_registered);"]
+		"535: unlock_serial_bus();"  [label = "535: unlock_serial_bus();"]
+		"539: usb_serial_device_remove();"  [label = "539: usb_serial_device_remove();"]
+		"533: assume(port_dev_registered);"  [label = "533: assume(port_dev_registered);"]
+		"540: unlock_serial_bus();"  [label = "540: unlock_serial_bus();"]
+	}
+	subgraph cluster14 {
+		label = "448: void serial_write() {...}"
+		color = blue
+		"456: unlock_port();"  [label = "456: unlock_port();"]
+		"453: assert(port_consistent);"  [label = "453: assert(port_consistent);"]
+		"449: assert(port_initialized);"  [label = "449: assert(port_initialized);"]
+		"458: if (write_urb_state != 0) {...}"  [label, style = invisible]
+		"454: port_consistent = 0;"  [label = "454: port_consistent = 0;"]
+		"455: port_consistent = 1;"  [label = "455: port_consistent = 1;"]
+		"451: assert(port_tty_installed);"  [label = "451: assert(port_tty_installed);"]
+		"452: lock_port();"  [label = "452: lock_port();"]
+		"450: assert(dev_usb_serial_initialized);"  [label = "450: assert(dev_usb_serial_initialized);"]
+		subgraph cluster54 {
+			label = "458: if (write_urb_state != 0) {...}"
+			color = blue
+			"460: write_urb_state = 1;"  [label = "460: write_urb_state = 1;"]
+		}
+	}
+	subgraph cluster55 {
+		label = "580: void main() {...}"
+		color = blue
+		"600: drv_module_ref_cnt = 0;"  [label = "600: drv_module_ref_cnt = 0;"]
+		"606: dev_disconnected = 0;"  [label = "606: dev_disconnected = 0;"]
+		"613: port_tty_registered = 0;"  [label = "613: port_tty_registered = 0;"]
+		"632: port_work_thread();"  [label = "632: port_work_thread();"]
+		"589: fw_serial_bus_lock = 0;"  [label = "589: fw_serial_bus_lock = 0;"]
+		"583: fw_tty_registered = 0;"  [label = "583: fw_tty_registered = 0;"]
+		"631: usb_cb_thread();"  [label = "631: usb_cb_thread();"]
+		"621: port_write_in_progress = 0;"  [label = "621: port_write_in_progress = 0;"]
+		"627: usb_bus_thread();"  [label = "627: usb_bus_thread();"]
+		"615: port_idr_registered = 0;"  [label = "615: port_idr_registered = 0;"]
+		"587: fw_idr_consistent = 1;"  [label = "587: fw_idr_consistent = 1;"]
+		"630: attribute_thread();"  [label = "630: attribute_thread();"]
+		"618: port_work_stop = 0;"  [label = "618: port_work_stop = 0;"]
+		"628: serial_bus_thread();"  [label = "628: serial_bus_thread();"]
+		"617: port_work_initialized = 0;"  [label = "617: port_work_initialized = 0;"]
+		"599: drv_id_table = 0;"  [label = "599: drv_id_table = 0;"]
+		"620: port_lock = 0;"  [label = "620: port_lock = 0;"]
+		"616: port_work = 0;"  [label = "616: port_work = 0;"]
+		"626: fw_module_thread();"  [label = "626: fw_module_thread();"]
+		"601: drv_device_id_registered = 0;"  [label = "601: drv_device_id_registered = 0;"]
+		"588: fw_table_lock = 0;"  [label = "588: fw_table_lock = 0;"]
+		"605: dev_autopm = 0;"  [label = "605: dev_autopm = 0;"]
+		"584: fw_tty_initialized = 0;"  [label = "584: fw_tty_initialized = 0;"]
+		"614: port_tty_installed = 0;"  [label = "614: port_tty_installed = 0;"]
+		"629: tty_thread();"  [label = "629: tty_thread();"]
+		"604: dev_usb_serial_initialized = -1;"  [label = "604: dev_usb_serial_initialized = -1;"]
+		"612: port_initialized = 0;"  [label = "612: port_initialized = 0;"]
+		"585: fw_tty_lock = 0;"  [label = "585: fw_tty_lock = 0;"]
+		"596: drv_registered_with_usb_fw = 0;"  [label = "596: drv_registered_with_usb_fw = 0;"]
+		"586: fw_driver_list_consistent = 1;"  [label = "586: fw_driver_list_consistent = 1;"]
+		"623: write_urb_state = 0;"  [label = "623: write_urb_state = 0;"]
+		"611: port_dev_registered = 0;"  [label = "611: port_dev_registered = 0;"]
+		"597: drv_registered_with_serial_fw = 0;"  [label = "597: drv_registered_with_serial_fw = 0;"]
+		"607: dev_disc_lock = 0;"  [label = "607: dev_disc_lock = 0;"]
+		"619: port_consistent = 1;"  [label = "619: port_consistent = 1;"]
+		"594: drv_usb_initialized = 0;"  [label = "594: drv_usb_initialized = 0;"]
+		"593: drv_usb_registered = 0;"  [label = "593: drv_usb_registered = 0;"]
+	}
+	subgraph cluster26 {
+		label = "224: void usb_serial_device_probe() {...}"
+		color = blue
+		"227: dev_autopm = dev_autopm + 1;"  [label = "227: dev_autopm = dev_autopm + 1;"]
+		"225: assert(port_initialized);"  [label = "225: assert(port_initialized);"]
+		"229: belkin_port_probe();"  [label = "229: belkin_port_probe();"]
+		"231: port_tty_registered = 1;"  [label = "231: port_tty_registered = 1;"]
+		"233: dev_autopm = dev_autopm - 1;"  [label = "233: dev_autopm = dev_autopm - 1;"]
+		"226: assert(dev_usb_serial_initialized >= 0);"  [label = "226: assert(dev_usb_serial_initialized >= 0);"]
+	}
+	subgraph cluster62 {
+		label = "464: void serial_write_callback() {...}"
+		color = blue
+		"466: lock_port();"  [label = "466: lock_port();"]
+		"465: assert(port_initialized);"  [label = "465: assert(port_initialized);"]
+		"469: port_consistent = 1;"  [label = "469: port_consistent = 1;"]
+		"467: assert(port_consistent);"  [label = "467: assert(port_consistent);"]
+		"471: assert(port_work_initialized);"  [label = "471: assert(port_work_initialized);"]
+		"468: port_consistent = 0;"  [label = "468: port_consistent = 0;"]
+		"472: port_work = 1;"  [label = "472: port_work = 1;"]
+		"470: unlock_port();"  [label = "470: unlock_port();"]
+	}
+}

@@ -1,0 +1,5 @@
+ Deadlock-Round            : set_IntrMask()     - 17: arizona_wait_for_boot(); --> 18: IntrMask = 1;          
+ Deadlock-Round            : thread2()          - 36: starting = 0;            --> 37: assume(IntrMask == 1); 
+ Deadlock-Round            : thread2()          - 37: assume(IntrMask == 1);   --> 38: assert(patched == 1);  
+ Deadlock-Round            : arizona_dev_init() - 23: wm5102_patch();          --> 24: set_IntrMask();        
+ 38: assert(patched == 1); : thread2()          - 37: assume(IntrMask == 1);   --> 38: assert(patched == 1);  

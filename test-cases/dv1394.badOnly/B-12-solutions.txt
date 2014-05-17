@@ -1,0 +1,8 @@
+ (12,10) : MoveUp (12,37) - 89: state = 3;                  ->  85: assertd(state != 3);                                           
+ (12,16) : MoveUp (12,42) - 115: state = old_state;         ->  85: assertd(state != 3);                                           
+ (12,19) : MoveUp (12,44) - 72: sem = 1;                    ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (12,29) : MoveUp (12,52) - 87: old_state = state;          ->  85: assertd(state != 3);                                           
+ (12,36) : MoveUp (12,57) - 72: sem = 1;                    ->  37: vm_consistent = 0;                                             
+ (12,39) : MoveUp (12,67) - 79: at{ assume(mtx == 0); ...}  ->  85: assertd(state != 3);                                           
+ (12,42) : MoveUp (12,72) - 91: if (nondet == 0) {...}      ->  85: assertd(state != 3);                                           
+ (12,57) : MoveUp (12,88) - 117: mtx = 0;                   ->  85: assertd(state != 3);                                           

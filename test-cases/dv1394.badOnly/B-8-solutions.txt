@@ -1,0 +1,2 @@
+ (8,2) : MoveUp (8,6) - 85: assertd(state != 3);  ->  115: state = old_state; 
+ (8,7) : MoveUp (8,8) - 85: assertd(state != 3);  ->  89: state = 3;          

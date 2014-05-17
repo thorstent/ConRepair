@@ -1,0 +1,55 @@
+digraph Counterexample {
+	12 -> 33 [color = black, style = solid, constraint = false]
+	20 -> 21 [color = black, style = solid, constraint = false]
+	25 -> 26 [color = black, style = solid, constraint = false]
+	19 -> 33 [color = black, style = solid, constraint = false]
+	26 -> 29 [color = white, style = solid]
+	16 -> 17 [color = white, style = solid]
+	18 -> 19 [color = white, style = solid]
+	14 -> 16 [color = white, style = solid]
+	25 -> 33 [color = black, style = solid, constraint = false]
+	19 -> 21 [color = white, style = solid]
+	17 -> 18 [color = black, style = solid, constraint = false]
+	24 -> 25 [color = white, style = solid]
+	21 -> 24 [color = white, style = solid]
+	12 -> 14 [color = black, style = solid, constraint = false]
+	20 -> 26 [color = white, style = solid]
+	17 -> 20 [color = black, style = solid, constraint = false]
+	17 -> 33 [color = black, style = solid, constraint = false]
+	12 -> 18 [color = white, style = solid]
+	29 -> 33 [color = black, style = solid, constraint = false]
+	33 -> 36 [color = white, style = solid]
+	19 -> 20 [color = black, style = solid, constraint = false]
+	20 -> 33 [color = black, style = solid, constraint = false]
+	12 -> 20 [color = black, style = solid, constraint = false]
+	subgraph cluster1 {
+		label = shutdown_thread
+		color = blue
+		21  [label = "29: assume(!rsv_running);"]
+		24  [label = "33: assume(!rc_running);"]
+		19  [label = "31: stop_rc = 1;"]
+		12  [label = "35: stop_neh = 1;"]
+		18  [label = "37: assume(!neh_running);"]
+		25  [label = "27: stop_rsv = 1;"]
+	}
+	subgraph cluster3 {
+		label = neh_thread
+		color = blue
+		17  [label = "55: neh_running = 0;"]
+		16  [label = "53: assume(stop_neh);"]
+		14  [label = "51: assert(rsv_running);"]
+	}
+	subgraph cluster4 {
+		label = rsv_thread
+		color = blue
+		33  [label = "60: assume(stop_rsv);"]
+		36  [label = "62: rsv_running = 0;"]
+	}
+	subgraph cluster2 {
+		label = rc_thread
+		color = blue
+		29  [label = "46: rc_running = 0;"]
+		26  [label = "44: assume(stop_rc);"]
+		20  [label = "42: assert(neh_running);", color = red]
+	}
+}

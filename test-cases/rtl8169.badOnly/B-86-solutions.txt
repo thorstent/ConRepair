@@ -1,0 +1,1 @@
+ (85,2) : MoveUp (85,57) - 511: napi_disable();  ->  512: free_irq(); 

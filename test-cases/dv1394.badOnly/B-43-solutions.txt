@@ -1,0 +1,2 @@
+ (43,1) : MoveUp (43,2)  - 70: vm_consistent = 1;  ->  41: nr{ assertd(((want_sem == 0) | (mtx == 0)) | (sem != 0)); ...} 
+ (43,5) : MoveUp (43,57) - 70: vm_consistent = 1;  ->  72: sem = 1;                                                       

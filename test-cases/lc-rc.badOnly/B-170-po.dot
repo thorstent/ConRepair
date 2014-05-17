@@ -1,0 +1,62 @@
+digraph PartialOrder {
+	compound = true
+	"72: rsv_running = 1;" -> "73: stop_rsv = 0;"
+	"35: stop_neh = 1;" -> "27: stop_rsv = 1;"
+	"33: assume(!rc_running);" -> "29: assume(!rsv_running);"
+	"70: stop_rc = 0;" -> "72: rsv_running = 1;"
+	"77: neh_thread();" -> "78: rsv_thread();"
+	"42: assert(neh_running);" -> "46: rc_running = 0;"
+	"76: rc_thread();" -> "77: neh_thread();"
+	"66: neh_running = 1;" -> "67: stop_neh = 0;"
+	"69: rc_running = 1;" -> "70: stop_rc = 0;"
+	"51: assert(rsv_running);" -> "55: neh_running = 0;"
+	"75: shutdown_thread();" -> "76: rc_thread();"
+	"42: assert(neh_running);" -> "44: assume(stop_rc);"
+	"73: stop_rsv = 0;" -> "75: shutdown_thread();"
+	"67: stop_neh = 0;" -> "69: rc_running = 1;"
+	"51: assert(rsv_running);" -> "53: assume(stop_neh);"
+	subgraph cluster5 {
+		label = "58: int rsv_thread() {...}"
+		color = blue
+		"60: assume(stop_rsv);"  [label = "60: assume(stop_rsv);"]
+		"62: rsv_running = 0;"  [label = "62: rsv_running = 0;"]
+	}
+	subgraph cluster4 {
+		label = "40: int rc_thread() {...}"
+		color = blue
+		"46: rc_running = 0;"  [label = "46: rc_running = 0;"]
+		"44: assume(stop_rc);"  [label = "44: assume(stop_rc);"]
+		"42: assert(neh_running);"  [label = "42: assert(neh_running);"]
+	}
+	subgraph cluster1 {
+		label = "24: void shutdown_thread() {...}"
+		color = blue
+		"35: stop_neh = 1;"  [label = "35: stop_neh = 1;"]
+		"31: stop_rc = 1;"  [label = "31: stop_rc = 1;"]
+		"33: assume(!rc_running);"  [label = "33: assume(!rc_running);"]
+		"29: assume(!rsv_running);"  [label = "29: assume(!rsv_running);"]
+		"27: stop_rsv = 1;"  [label = "27: stop_rsv = 1;"]
+		"37: assume(!neh_running);"  [label = "37: assume(!neh_running);"]
+	}
+	subgraph cluster2 {
+		label = "65: void main() {...}"
+		color = blue
+		"76: rc_thread();"  [label = "76: rc_thread();"]
+		"75: shutdown_thread();"  [label = "75: shutdown_thread();"]
+		"69: rc_running = 1;"  [label = "69: rc_running = 1;"]
+		"72: rsv_running = 1;"  [label = "72: rsv_running = 1;"]
+		"73: stop_rsv = 0;"  [label = "73: stop_rsv = 0;"]
+		"77: neh_thread();"  [label = "77: neh_thread();"]
+		"78: rsv_thread();"  [label = "78: rsv_thread();"]
+		"66: neh_running = 1;"  [label = "66: neh_running = 1;"]
+		"70: stop_rc = 0;"  [label = "70: stop_rc = 0;"]
+		"67: stop_neh = 0;"  [label = "67: stop_neh = 0;"]
+	}
+	subgraph cluster3 {
+		label = "49: int neh_thread() {...}"
+		color = blue
+		"53: assume(stop_neh);"  [label = "53: assume(stop_neh);"]
+		"55: neh_running = 0;"  [label = "55: neh_running = 0;"]
+		"51: assert(rsv_running);"  [label = "51: assert(rsv_running);"]
+	}
+}

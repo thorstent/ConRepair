@@ -1,0 +1,68 @@
+File: ex2.c
+Mode: Combined
+
+ | BadOnly                                                       | Mixed                                                           | 
+ | ============================================================= | =============================================================== | 
+ | Summary:                                                      | Summary:                                                        | 
+ | 0 # of good rounds                                            | 7 # of good rounds                                              | 
+ | 5 # of bad rounds                                             | 2 # of bad rounds                                               | 
+ |  3.27s (89.25%)¹ total                                        |  2.88s (86.83%)¹ total                                          | 
+ |                                                               |  1.39s (89.53%)¹ good trace learning²                           | 
+ | Solution found, fixed the program.                            |  1.48s (84.29%)¹ bad trace program repair                       | 
+ |                                                               |                                                                 | 
+ |                                                               | Solution found, fixed the program.                              | 
+ | ------------------------------------------------------------- | --------------------------------------------------------------- | 
+ |                                                               |                                                                 | 
+ |                                                               | Good trace learning:                                            | 
+ |                                                               | - - - - - - - - - - -                                           | 
+ |                                                               | Iteration  1:  0.60s (77.48%)¹                                  | 
+ |                                                               | Iteration  2:  0.65s (79.44%)¹                                  | 
+ |                                                               | Iteration  3:  0.72s (91.42%)¹                                  | 
+ |                                                               | Iteration  4:  0.35s (100.00%)¹                                 | 
+ |                                                               | Iteration  5:  0.36s (100.00%)¹                                 | 
+ |                                                               | Iteration  6:  0.22s (100.00%)¹                                 | 
+ |                                                               | Iteration  7:  0.27s (100.00%)¹                                 | 
+ | ------------------------------------------------------------- | --------------------------------------------------------------- | 
+ |                                                               |                                                                 | 
+ | Bad trace program repair:                                     | Bad trace program repair:                                       | 
+ | - - - - - - - - - - - - -                                     | - - - - - - - - - - - - -                                       | 
+ | Iteration  1:  0.41s (76.63%)¹                                | Iteration  1:  0.49s (62.96%)¹                                  | 
+ | Assertion triggered: 12: assert(starting == 0);               | Assertion triggered: 12: assert(starting == 0);                 | 
+ | ------------------------------------------------------------- | --------------------------------------------------------------- | 
+ | Verification:  0.42s (100.00%)¹                               | Verification:  0.34s (100.00%)¹                                 | 
+ | Changes up to this iteration³:                                | Changes up to this iteration³:                                  | 
+ | Reorder(37: assume(IntrMask == 1); <-- 36: starting = 0;)     | AtomicSection(36: starting = 0; --> 37: assume(IntrMask == 1);) | 
+ | ------------------------------------------------------------- | --------------------------------------------------------------- | 
+ | --Switched to non-deadlock mode--                             | --Switched to non-deadlock mode--                               | 
+ | Iteration  2:  0.44s (79.95%)¹                                | Iteration  2:  0.37s (85.83%)¹                                  | 
+ | Assertion triggered: 12: assert(starting == 0);               | Assertion triggered: 12: assert(starting == 0);                 | 
+ | Changes up to this iteration³:                                | Changes up to this iteration³:                                  | 
+ | Reorder(37: assume(IntrMask == 1); <-- 36: starting = 0;)     | AtomicSection(36: starting = 0; --> 37: assume(IntrMask == 1);) | 
+ | ------------------------------------------------------------- | --------------------------------------------------------------- | 
+ | Iteration  3:  0.56s (83.33%)¹                                | Verification:  0.28s (100.00%)¹                                 | 
+ | Assertion triggered: 38: assert(patched == 1);                | Changes up to this iteration³:                                  | 
+ | Changes up to this iteration³:                                | Reorder(25: arizona_wait_for_boot(); <-- 23: wm5102_patch();)   | 
+ | Reorder(24: set_IntrMask(); <-- 23: wm5102_patch();)          |                                                                 | 
+ | ------------------------------------------------------------- | --------------------------------------------------------------- | 
+ | Iteration  4:  0.63s (100.00%)¹                               |                                                                 | 
+ | Changes up to this iteration³:                                |                                                                 | 
+ | Reorder(24: set_IntrMask(); <-- 23: wm5102_patch();)          |                                                                 | 
+ | Reorder(37: assume(IntrMask == 1); <-- 36: starting = 0;)     |                                                                 | 
+ | ------------------------------------------------------------- | --------------------------------------------------------------- | 
+ | Iteration  5:  0.54s (86.19%)¹                                |                                                                 | 
+ | Assertion triggered: 38: assert(patched == 1);                |                                                                 | 
+ | Changes up to this iteration³:                                |                                                                 | 
+ | Reorder(25: arizona_wait_for_boot(); --> 23: wm5102_patch();) |                                                                 | 
+ | ------------------------------------------------------------- | --------------------------------------------------------------- | 
+ | Verification:  0.28s (100.00%)¹                               |                                                                 | 
+ | Changes up to this iteration³:                                |                                                                 | 
+ | Reorder(25: arizona_wait_for_boot(); --> 23: wm5102_patch();) |                                                                 | 
+ | Reorder(23: wm5102_patch(); <-- 24: set_IntrMask();)          |                                                                 | 
+ | ------------------------------------------------------------- | --------------------------------------------------------------- | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

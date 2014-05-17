@@ -1,0 +1,18 @@
+ (1,1)  : MoveUp   (1,-980) - 199: unlock_tty();                                 ->  187: cancel_work_sync();                    
+ (1,1)  : MoveDown (1,-980) - 199: unlock_tty();                                 ->  187: cancel_work_sync();                    
+ (1,3)  : MoveUp   (1,63)   - 278: assume(port_tty_registered == 0);             ->  262: if (port_idr_registered == 0) {...}    
+ (1,3)  : MoveDown (1,63)   - 278: assume(port_tty_registered == 0);             ->  262: if (port_idr_registered == 0) {...}    
+ (1,5)  : MoveUp   (1,67)   - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  277: unlock_serial_bus();                   
+ (1,5)  : MoveDown (1,67)   - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  277: unlock_serial_bus();                   
+ (1,7)  : MoveUp   (1,72)   - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  276: port_dev_registered = 0;               
+ (1,7)  : MoveDown (1,72)   - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  276: port_dev_registered = 0;               
+ (1,9)  : MoveUp   (1,77)   - 279: dev_usb_serial_initialized = -1;              ->  262: if (port_idr_registered == 0) {...}    
+ (1,9)  : MoveDown (1,77)   - 279: dev_usb_serial_initialized = -1;              ->  262: if (port_idr_registered == 0) {...}    
+ (1,11) : MoveUp   (1,79)   - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  275: lock_serial_bus();                     
+ (1,11) : MoveDown (1,79)   - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  275: lock_serial_bus();                     
+ (1,13) : MoveUp   (1,84)   - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  262: if (port_idr_registered == 0) {...}    
+ (1,13) : MoveDown (1,84)   - 281: drv_module_ref_cnt = drv_module_ref_cnt - 1;  ->  262: if (port_idr_registered == 0) {...}    
+ (1,15) : MoveUp   (1,105)  - 545: serial_install();                             ->  544: assume(drv_registered_with_serial_fw); 
+ (1,16) : MoveUp   (1,105)  - 547: lock_tty();                                   ->  544: assume(drv_registered_with_serial_fw); 
+ (1,17) : MoveUp   (1,115)  - 564: unlock_tty();                                 ->  544: assume(drv_registered_with_serial_fw); 
+ (1,17) : MoveDown (1,115)  - 564: unlock_tty();                                 ->  544: assume(drv_registered_with_serial_fw); 

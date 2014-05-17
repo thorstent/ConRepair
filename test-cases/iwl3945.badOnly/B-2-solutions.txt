@@ -1,0 +1,8 @@
+ (1,5)  : MoveUp   (1,12) - 96: lock1 = 0;                    ->  72: nr{ want_rtnl_lock = 2; ...} 
+ (1,10) : MoveDown (1,16) - 72: nr{ want_rtnl_lock = 2; ...}  ->  63: at{ assume(lock1 == 0); ...} 
+ (1,10) : MoveUp   (1,16) - 72: nr{ want_rtnl_lock = 2; ...}  ->  63: at{ assume(lock1 == 0); ...} 
+ (1,13) : MoveDown (1,26) - 96: lock1 = 0;                    ->  70: restarted = 1;               
+ (1,13) : MoveUp   (1,26) - 96: lock1 = 0;                    ->  70: restarted = 1;               
+ (2,2)  : MoveUp   (2,11) - 72: nr{ want_rtnl_lock = 2; ...}  ->  63: at{ assume(lock1 == 0); ...} 
+ (2,7)  : MoveUp   (2,26) - 70: restarted = 1;                ->  63: at{ assume(lock1 == 0); ...} 
+ (2,8)  : MoveUp   (2,26) - 96: lock1 = 0;                    ->  72: nr{ want_rtnl_lock = 2; ...} 

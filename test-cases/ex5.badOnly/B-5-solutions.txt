@@ -1,0 +1,1 @@
+ (4,3) : MoveUp (4,31) - 14: assume(y == 1);  ->  15: nr{ assertd(x == 1); ...} 

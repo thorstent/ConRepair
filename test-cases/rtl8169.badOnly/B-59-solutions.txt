@@ -1,0 +1,2 @@
+ (59,1) : MoveUp (59,61) - 496: rc2 = request_irq();  ->  492: (*hw_start)(); 
+ (59,2) : MoveUp (59,71) - 498: if (rc2 < 0) {...}    ->  492: (*hw_start)(); 

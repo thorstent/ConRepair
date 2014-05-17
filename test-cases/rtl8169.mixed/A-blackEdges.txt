@@ -1,0 +1,9 @@
+ 307: assert(intr_mask != 0); : drv_napi_poll()  - 549: intr_mask = 255;                                                             --> 550: IntrMask = 255;       
+ 307: assert(intr_mask != 0); : drv_irq()        - 530: intr_mask = 0;                                                               --> 531: napi_schedule();      
+ 597: assert(dev_on != 0);    : network_thread() - 260: open1 = open();                                                              --> 261: if (open1 == 0) {...} 
+ 597: assert(dev_on != 0);    : irq_thread()     - 306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...} --> 310: up(irq_sem);          
+ 597: assert(dev_on != 0);    : network_thread() - 260: open1 = open();                                                              --> 261: if (open1 == 0) {...} 
+ 597: assert(dev_on != 0);    : network_thread() - 260: open1 = open();                                                              --> 261: if (open1 == 0) {...} 
+ 597: assert(dev_on != 0);    : dev_down()       - 613: synchronize_irq();                                                           --> 615: dev_on = 0;           
+ 597: assert(dev_on != 0);    : dev_up()         - 603: dev_on = 1;                                                                  --> 604: write_IntrMask(1);    
+ 597: assert(dev_on != 0);    : network_thread() - 260: open1 = open();                                                              --> 261: if (open1 == 0) {...} 

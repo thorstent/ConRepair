@@ -1,0 +1,4 @@
+ (97,7) : MoveUp   (97,65) - 498: if (rc2 < 0) {...}     ->  492: (*hw_start)();            
+ (97,7) : MoveDown (97,65) - 498: if (rc2 < 0) {...}     ->  492: (*hw_start)();            
+ (99,2) : MoveUp   (99,84) - 530: intr_mask = 0;         ->  529: write_IntrMask(0);        
+ (99,1) : MoveUp   (99,29) - 535: status1 = IntrStatus;  ->  528: if (intr_mask != 0) {...} 

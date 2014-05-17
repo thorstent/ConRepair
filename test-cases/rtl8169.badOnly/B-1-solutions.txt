@@ -1,0 +1,5 @@
+ (1,1) : MoveUp   (1,6)  - 477: hw_start = drv_hw_start;    ->  476: rc1 = register_netdev(); 
+ (1,2) : MoveUp   (1,11) - 477: hw_start = drv_hw_start;    ->  474: create_sysfs_files();    
+ (1,2) : MoveDown (1,11) - 477: hw_start = drv_hw_start;    ->  474: create_sysfs_files();    
+ (1,5) : MoveUp   (1,59) - 278: if (registered != 0) {...}  ->  277: lock(rtnl_lock);         
+ (1,6) : MoveUp   (1,67) - 363: nr{ want_dev = 6; ...}      ->  353: nr{ want_sysfs = 6; ...} 

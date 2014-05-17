@@ -1,0 +1,2 @@
+ (114,4) : MoveUp   (114,69) - 33: assume(!rc_running);  ->  35: stop_neh = 1; 
+ (114,4) : MoveDown (114,69) - 33: assume(!rc_running);  ->  35: stop_neh = 1; 

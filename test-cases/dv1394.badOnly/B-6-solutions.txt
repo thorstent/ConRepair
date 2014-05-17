@@ -1,0 +1,3 @@
+ (2,34) : MoveUp   (2,39) - 117: mtx = 0;            ->  89: state = 3;                 
+ (2,53) : MoveDown (2,71) - 115: state = old_state;  ->  79: at{ assume(mtx == 0); ...} 
+ (2,53) : MoveUp   (2,71) - 115: state = old_state;  ->  79: at{ assume(mtx == 0); ...} 

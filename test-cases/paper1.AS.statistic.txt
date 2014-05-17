@@ -1,0 +1,54 @@
+File: paper1.c
+Mode: Combined
+
+ | BadOnly                                             | Mixed                                               | 
+ | =================================================== | =================================================== | 
+ | Summary:                                            | Summary:                                            | 
+ | 0 # of good rounds                                  | 7 # of good rounds                                  | 
+ | 3 # of bad rounds                                   | 1 # of bad rounds                                   | 
+ |  1.26s (79.62%)¹ total                              |  1.89s (86.43%)¹ total                              | 
+ |                                                     |  1.20s (90.72%)¹ good trace learning²               | 
+ | Solution found, fixed the program.                  |  0.69s (79.02%)¹ bad trace program repair           | 
+ |                                                     |                                                     | 
+ |                                                     | Solution found, fixed the program.                  | 
+ | --------------------------------------------------- | --------------------------------------------------- | 
+ |                                                     |                                                     | 
+ |                                                     | Good trace learning:                                | 
+ |                                                     | - - - - - - - - - - -                               | 
+ |                                                     | Iteration  1:  0.60s (83.58%)¹                      | 
+ |                                                     | Iteration  2:  0.59s (80.44%)¹                      | 
+ |                                                     | Iteration  3:  0.63s (93.78%)¹                      | 
+ |                                                     | Iteration  4:  0.24s (100.00%)¹                     | 
+ |                                                     | Iteration  5:  0.23s (100.00%)¹                     | 
+ |                                                     | Iteration  6:  0.21s (100.00%)¹                     | 
+ |                                                     | Iteration  7:  0.23s (100.00%)¹                     | 
+ | --------------------------------------------------- | --------------------------------------------------- | 
+ |                                                     |                                                     | 
+ | Bad trace program repair:                           | Bad trace program repair:                           | 
+ | - - - - - - - - - - - - -                           | - - - - - - - - - - - - -                           | 
+ | Iteration  1:  0.33s (71.78%)¹                      | Iteration  1:  0.35s (58.92%)¹                      | 
+ | Assertion triggered: 16: assert(z == 1);            | Assertion triggered: 16: assert(z == 1);            | 
+ | --------------------------------------------------- | --------------------------------------------------- | 
+ | Iteration  2:  0.30s (75.00%)¹                      | Verification:  0.34s (100.00%)¹                     | 
+ | Assertion triggered: 22: assert(y == 1);            | Changes up to this iteration³:                      | 
+ | Changes up to this iteration³:                      | Reorder(9: z = 1; <-- 7: x = 1;)                    | 
+ | Reorder(9: z = 1; <-- 8: y = 1;)                    |                                                     | 
+ | --------------------------------------------------- | --------------------------------------------------- | 
+ | Iteration  3:  0.28s (68.07%)¹                      |                                                     | 
+ | Assertion triggered: 22: assert(y == 1);            |                                                     | 
+ | Changes up to this iteration³:                      |                                                     | 
+ | Reorder(9: z = 1; <-- 8: y = 1;)                    |                                                     | 
+ | Reorder(8: y = 1; <-- 7: x = 1;)                    |                                                     | 
+ | --------------------------------------------------- | --------------------------------------------------- | 
+ | Verification:  0.35s (100.00%)¹                     |                                                     | 
+ | Changes up to this iteration³:                      |                                                     | 
+ | Reorder(9: z = 1; <-- 8: y = 1;)                    |                                                     | 
+ | AtomicSection(9: z = 1; --> 8: y = 1;)              |                                                     | 
+ | --------------------------------------------------- | --------------------------------------------------- | 
+
+
+
+¹ All times in seconds. In parenthesis the time spent in the external model-checker.
+² The total time is less than the sum of individual iterations because of parallel execution of good iterations.
+³ For each bad iteration all changes are printed from the beginning. The algorithm can backtrack, therefore
+  the list is not necessarily incremental.

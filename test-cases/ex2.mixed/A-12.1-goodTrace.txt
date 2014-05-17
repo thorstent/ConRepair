@@ -1,0 +1,20 @@
+Assertion: 12: assert(starting == 0);
+
+ | main              | thread1                          | thread2                    | 
+ | ================= | ================================ | ========================== | 
+ | 43: starting = 1; |                                  |                            | 
+ | 44: IntrMask = 0; |                                  |                            | 
+ | 45: patched = 0;  |                                  |                            | 
+ |                   | 30: arizona_dev_init();          |                            | 
+ |                   |   23: wm5102_patch();            |                            | 
+ |                   |                                  | 36: starting = 0;          | 
+ |                   |     12: assert(starting == 0);   |                            | 
+ |                   |     13: patched = 1;             |                            | 
+ |                   |   24: set_IntrMask();            |                            | 
+ |                   |     17: arizona_wait_for_boot(); |                            | 
+ |                   |       8: assume(starting == 0);  |                            | 
+ |                   |     18: IntrMask = 1;            |                            | 
+ |                   |   25: arizona_wait_for_boot();   |                            | 
+ |                   |     8: assume(starting == 0);    |                            | 
+ |                   |                                  | 37: assume(IntrMask == 1); | 
+ |                   |                                  | 38: assert(patched == 1);  | 

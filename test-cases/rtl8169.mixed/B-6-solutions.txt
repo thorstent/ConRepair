@@ -1,0 +1,16 @@
+ (5,1)  : AtomicSection (5,17)  - 549: intr_mask = 255;                                                              ->  550: IntrMask = 255;            
+ (5,4)  : MoveUp        (5,27)  - 550: IntrMask = 255;                                                               ->  548: napi_complete();           
+ (5,3)  : MoveUp        (5,23)  - 534: write_IntrStatus(status1);                                                    ->  528: if (intr_mask != 0) {...}  
+ (5,8)  : MoveUp        (5,82)  - 531: napi_schedule();                                                              ->  529: write_IntrMask(0);         
+ (5,5)  : MoveUp        (5,28)  - 535: status1 = IntrStatus;                                                         ->  528: if (intr_mask != 0) {...}  
+ (5,6)  : MoveUp        (5,45)  - 329: if (napi_scheduled == 0) {...}                                                ->  328: down(napi_sem);            
+ (5,7)  : MoveUp        (5,52)  - 530: intr_mask = 0;                                                                ->  529: write_IntrMask(0);         
+ (5,10) : MoveUp        (5,149) - 284: unlock(rtnl_lock);                                                            ->  278: if (registered != 0) {...} 
+ (5,9)  : MoveUp        (5,88)  - 306: if ((((irq_enabled != 0) & (IntrStatus != 0)) & (IntrMask != 0)) == 0) {...}  ->  305: down(irq_sem);             
+ (6,1)  : AtomicSection (6,17)  - 549: intr_mask = 255;                                                              ->  550: IntrMask = 255;            
+ (6,2)  : MoveUp        (6,23)  - 534: write_IntrStatus(status1);                                                    ->  528: if (intr_mask != 0) {...}  
+ (6,3)  : MoveUp        (6,27)  - 550: IntrMask = 255;                                                               ->  548: napi_complete();           
+ (6,4)  : MoveUp        (6,28)  - 535: status1 = IntrStatus;                                                         ->  528: if (intr_mask != 0) {...}  
+ (6,5)  : MoveUp        (6,39)  - 549: intr_mask = 255;                                                              ->  548: napi_complete();           
+ (6,7)  : MoveUp        (6,82)  - 531: napi_schedule();                                                              ->  529: write_IntrMask(0);         
+ (6,8)  : MoveUp        (6,87)  - 278: if (registered != 0) {...}                                                    ->  277: lock(rtnl_lock);           

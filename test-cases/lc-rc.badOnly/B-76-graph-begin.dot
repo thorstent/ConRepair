@@ -1,0 +1,56 @@
+digraph Counterexample {
+	18 -> 21 [color = black, style = solid, constraint = false]
+	22 -> 23 [color = black, style = solid, constraint = false]
+	15 -> 21 [color = black, style = solid, constraint = false]
+	14 -> 21 [color = black, style = solid, constraint = false]
+	14 -> 15 [color = black, style = solid, constraint = false]
+	27 -> 29 [color = white, style = solid]
+	16 -> 18 [color = white, style = solid]
+	19 -> 23 [color = black, style = solid, constraint = false]
+	29 -> 34 [color = black, style = solid, constraint = false]
+	14 -> 16 [color = white, style = solid]
+	18 -> 23 [color = black, style = solid, constraint = false]
+	24 -> 26 [color = white, style = solid]
+	19 -> 34 [color = white, style = solid]
+	21 -> 22 [color = white, style = solid]
+	23 -> 24 [color = white, style = solid]
+	34 -> 35 [color = white, style = solid]
+	15 -> 16 [color = black, style = solid, constraint = false]
+	18 -> 19 [color = black, style = solid, constraint = false]
+	26 -> 27 [color = white, style = solid]
+	22 -> 34 [color = black, style = solid, constraint = false]
+	15 -> 23 [color = white, style = solid]
+	14 -> 19 [color = black, style = solid, constraint = false]
+	19 -> 21 [color = black, style = solid, constraint = false]
+	15 -> 19 [color = black, style = solid, constraint = false]
+	subgraph cluster1 {
+		label = shutdown_thread
+		color = blue
+		29  [label = "37: assume(!neh_running);"]
+		24  [label = "31: stop_rc = 1;"]
+		26  [label = "27: stop_rsv = 1;"]
+		15  [label = "35: stop_neh = 1;"]
+		27  [label = "33: assume(!rc_running);"]
+		23  [label = "29: assume(!rsv_running);"]
+	}
+	subgraph cluster2 {
+		label = rc_thread
+		color = blue
+		35  [label = "46: rc_running = 0;"]
+		19  [label = "42: assert(neh_running);", color = red]
+		34  [label = "44: assume(stop_rc);"]
+	}
+	subgraph cluster4 {
+		label = rsv_thread
+		color = blue
+		21  [label = "60: assume(stop_rsv);"]
+		22  [label = "62: rsv_running = 0;"]
+	}
+	subgraph cluster3 {
+		label = neh_thread
+		color = blue
+		16  [label = "53: assume(stop_neh);"]
+		14  [label = "51: assert(rsv_running);"]
+		18  [label = "55: neh_running = 0;"]
+	}
+}

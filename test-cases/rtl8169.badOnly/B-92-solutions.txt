@@ -1,0 +1,4 @@
+ (90,3) : MoveUp (90,50)  - 293: drv_close();                ->  292: netif_running = 0;         
+ (92,1) : MoveUp (92,160) - 284: unlock(rtnl_lock);          ->  278: if (registered != 0) {...} 
+ (92,2) : MoveUp (92,180) - 494: IntrMask = 0;               ->  492: (*hw_start)();             
+ (92,3) : MoveUp (92,190) - 278: if (registered != 0) {...}  ->  277: lock(rtnl_lock);           

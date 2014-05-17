@@ -1,0 +1,1 @@
+ (1,1) : AtomicSection (1,17) - 15: nr{ assertd(x == 1); ...}  ->  19: b = 1; 

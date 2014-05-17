@@ -1,0 +1,88 @@
+digraph ProofObject {
+	12 -> 45 [color = Red, constraint = false]
+	77 -> 78 [style = dotted, color = black]
+	61 -> 70 [style = dotted, color = black]
+	78 -> 81 [style = dotted, color = black]
+	50 -> 54 [style = dotted, color = black]
+	74 -> 76 [style = dotted, color = black]
+	15 -> 16 [style = dotted, color = black]
+	12 -> 13 [style = dotted, color = black]
+	14 -> 15 [style = dotted, color = black]
+	11 -> 12 [style = dotted, color = black]
+	10 -> 45 [color = Red, constraint = false]
+	71 -> 76 [color = Blue, constraint = false]
+	2 -> 3 [style = dotted, color = black]
+	8 -> 9 [style = dotted, color = black]
+	6 -> 7 [style = dotted, color = black]
+	78 -> 81 [color = Blue, constraint = false]
+	54 -> 61 [style = dotted, color = black]
+	76 -> 77 [style = dotted, color = black]
+	16 -> 17 [style = dotted, color = black]
+	5 -> 6 [style = dotted, color = black]
+	13 -> 14 [style = dotted, color = black]
+	17 -> 18 [style = dotted, color = black]
+	9 -> 45 [color = Red, constraint = false]
+	70 -> 71 [style = dotted, color = black]
+	49 -> 50 [style = dotted, color = black]
+	10 -> 11 [style = dotted, color = black]
+	45 -> 50 [color = Green, constraint = false]
+	13 -> 45 [color = Red, constraint = false]
+	10 -> 49 [color = Blue, constraint = false]
+	9 -> 10 [style = dotted, color = black]
+	4 -> 5 [style = dotted, color = black]
+	7 -> 8 [style = dotted, color = black]
+	3 -> 4 [style = dotted, color = black]
+	71 -> 74 [style = dotted, color = black]
+	7 -> 42 [color = Blue, constraint = false]
+	subgraph cluster7 {
+		label = dev_thread
+		color = blue
+		62  [label = "317: IntrStatus = 1;"]
+	}
+	subgraph cluster5 {
+		label = workqueue_thread
+		color = blue
+		42  [label = "340a: assume(reset_task_ready == 0);"]
+	}
+	subgraph cluster1 {
+		label = pci_thread
+		color = blue
+		76  [label = "479a: assume(rc1 < 0);"]
+		61  [label = "631a: sysfs_lock = 0;"]
+		77  [label = "480: ret4 = rc1;"]
+		54  [label = "452: sysfs_registered = 1;"]
+		78  [label = "237: probe1 = ret4;"]
+		74  [label = "477: hw_start = drv_hw_start;"]
+		70  [label = "391: ret2 = -1;"]
+		50  [label = "629b: sysfs_lock = 1;"]
+		71  [label = "476: rc1 = ret2;"]
+		81  [label = "238b: assume(!(probe1 == 0));"]
+		49  [label = "629a: assume(sysfs_lock == 0);"]
+	}
+	subgraph cluster8 {
+		label = deadlock_thread
+		color = blue
+		45  [label = "652: assert(!((((dev_lock == want_sysfs) & (sysfs_lock == want_dev)) & (dev_lock != 0)) & (sysfs_lock != 0)));"]
+	}
+	subgraph cluster0 {
+		label = main
+		color = blue
+		3  [label = "657: netif_running = 0;"]
+		12  [label = "672: want_sysfs = 0;"]
+		5  [label = "661: napi_enabled = 0;"]
+		10  [label = "669: sysfs_lock = 0;"]
+		18  [label = "680: IntrMask = 0;"]
+		14  [label = "675: irq_sem = 0;"]
+		8  [label = "666: sysfs_registered = 0;"]
+		17  [label = "679: IntrStatus = 0;"]
+		11  [label = "670: rtnl_lock = 0;"]
+		13  [label = "673: want_dev = 0;"]
+		6  [label = "662: napi_scheduled = 0;"]
+		7  [label = "664: reset_task_ready = 0;"]
+		4  [label = "659: irq_enabled = 0;"]
+		9  [label = "668: dev_lock = 0;"]
+		2  [label = "656: registered = 0;"]
+		15  [label = "676: napi_sem = 0;"]
+		16  [label = "677: dev_on = 0;"]
+	}
+}
